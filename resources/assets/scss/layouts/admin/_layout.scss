@@ -1,0 +1,8 @@
+body {
+    main {
+        margin-top: 40px;
+        @include breakpoint-materialize (mobile) {
+            margin-top: 20px;
+        }
+    }
+}

@@ -1,0 +1,17 @@
+<?php $__env->startSection('content'); ?>
+    <?php $__env->startSection('styles'); ?>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <?php $__env->appendSection(); ?>
+
+    <?php echo $__env->make('landing.heroHeader', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+    <div class="container">
+        <div style="margin-top: 190px;margin-bottom: 90px;">
+            <?php echo $page; ?>
+
+        </div>
+    </div>
+
+    <?php echo $__env->make('landing.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout/main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

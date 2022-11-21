@@ -1,0 +1,36 @@
+<div class="modal-header">
+    <h3 class="modal-title">Upload Image Label</h3>
+</div>
+<div class="modal-body" cj-stop-event="touchend">
+    <form name="uploadImageLabelForm" class="m-l-md form-validation" novalidate>
+        <div class="row m-b">
+            <div class="col-md-6">
+                <h4>Set title for your Image Label:</h4>
+                <input type="text" name="label"
+                       class="form-control"
+                       ng-model="uploadImageLabelCtrl.label.name"
+                       popover="Image Label title"
+                       popover-trigger="focus"
+                       required>
+                <div ng-messages="uploadImageLabelForm.label.$error"
+                     ng-if="uploadImageLabelForm.showValidation || uploadImageLabelForm.label.$dirty">
+                    <div ng-message="required">This filed is required</div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <progressbar ng-show="uploadImageLabelCtrl.progress" value="uploadImageLabelCtrl.progress"
+                 class="progress-xxs m-t-sm"></progressbar>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default float-left"
+            ng-disabled="uploadImageLabelCtrl.progress"
+            ng-click="uploadImageLabelCtrl.cancel(uploadImageLabelForm)">
+        Cancel
+    </button>
+    <button class="btn btn-success float-right"
+            ng-disabled="uploadImageLabelCtrl.progress"
+            ng-click="uploadImageLabelCtrl.ok(uploadImageLabelForm)">
+        Upload
+    </button>
+</div>

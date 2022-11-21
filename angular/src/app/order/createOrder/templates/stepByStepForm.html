@@ -1,0 +1,17 @@
+<tabset class="tab-container order-form-wizard">
+    <tab active="createOrderCtrl.formWizard.activeStep === 1" select="createOrderCtrl.formWizard.completePercent=10">
+        <ng-include src="'app/order/createOrder/templates/steps/step1.html'"></ng-include>
+    </tab>
+    <tab active="createOrderCtrl.formWizard.activeStep === 2" select="createOrderCtrl.formWizard.completePercent=20">
+        <ng-include src="'app/order/createOrder/templates/steps/step2.html'"></ng-include>
+    </tab>
+    <tab active="createOrderCtrl.formWizard.activeStep === 3" select="createOrderCtrl.formWizard.completePercent=40">
+        <ng-include src="'app/order/createOrder/templates/steps/step3.html'"></ng-include>
+    </tab>
+    <tab active="createOrderCtrl.formWizard.activeStep === 4" select="createOrderCtrl.formWizard.completePercent=60">
+        <ng-include src="'app/order/createOrder/templates/steps/step4.html'"></ng-include>
+    </tab>
+    <tab active="createOrderCtrl.formWizard.activeStep === 5" select="createOrderCtrl.formWizard.completePercent=80">
+        <ng-include src="'app/order/createOrder/templates/steps/step5.html'"></ng-include>
+    </tab>
+</tabset>

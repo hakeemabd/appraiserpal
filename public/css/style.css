@@ -1,0 +1,642 @@
+@font-face {
+    font-family: Montserrat;
+    src: url(fonts/Montserrat-Regular.otf);
+
+}
+
+@font-face {
+    font-family: Montserrat-light;
+    src: url(fonts/Montserrat-Light.otf);
+
+}
+
+@font-face {
+    font-family: Montserrat-Semibold;
+    src: url(fonts/Montserrat-SemiBold.otf);
+
+}
+
+@font-face {
+    font-family: Montserrat-Thin;
+    src: url(fonts/Montserrat-Thin.otf);
+
+}
+
+body {
+    background: #fff;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    font-family: Montserrat-light;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+    font-family: Montserrat-light;
+}
+
+:-ms-input-placeholder { /* IE 10+ */
+    font-family: Montserrat-light;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    font-family: Montserrat-light;
+}
+
+.full-container {
+    max-width: 100%;
+    margin: 0 auto;
+    width: 100%;
+    float: left;
+}
+
+.paddingLR {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+/**********Header************/
+.navbar-toggle {
+    position: relative;
+    float: right;
+    padding: 9px 10px;
+    margin-top: 30px;
+    margin-right: 15px;
+    margin-bottom: 8px;
+    background-color: #363636;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.navbar-toggle .icon-bar {
+    background: #fff;
+}
+
+#header .navbar a {
+    font-size: 18px;
+    font-family: Montserrat;
+    color: #363636;
+}
+
+#header .navbar {
+    min-height: 90px;
+    margin: 0px;
+}
+
+#header .nav {
+    padding-top: 18px;
+}
+
+#header .navbar-brand a {
+    padding: 0px;
+}
+
+#header .navbar-brand {
+    padding-top: 5px;
+}
+
+#header .col-lg-offset-3 {
+    margin-left: 25%;
+}
+
+.home_banner {
+    background: url(../images/home-banner.jpg);
+    min-height: 572px;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    width: 100%;
+}
+
+.banner_content p {
+    font-family: Montserrat;
+    font-size: 34px;
+    color: #fff;
+    text-transform: uppercase;
+    line-height: 42px;
+    padding-top: 160px;
+}
+
+.form-control {
+    height: 45px;
+    border-radius: 0px;
+    font-size: 14px;
+    font-family: Montserrat;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.btn-submit {
+    background: #fe9800;
+    font-size: 18px;
+    color: #fff;
+    width: 100%;
+    border-color: #fe9800;
+    font-family: Montserrat;
+
+}
+
+form h2 {
+    font-size: 28px;
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 40px;
+    font-family: Montserrat;
+}
+
+a.btn-submit {
+    margin-top: 25px;
+    max-width: 490px;
+    height: 65px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.btn-submit:focus {
+    background: #fe9800;
+}
+
+.header_form form {
+    max-width: 420px;
+    margin-top: 60px;
+    padding: 35px;
+    background: url(../images/form-bkg.png);
+    float: right;
+    width: 100%;
+}
+
+.icons_top {
+    float: left;
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.appraisel_types {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    float: left;
+    width: 100%;
+}
+
+.appraisel_benefits {
+    padding-top: 15px;
+    padding-bottom: 25px;
+}
+
+h1 {
+    font-size: 34px;
+    text-align: center;
+    color: #363636;
+    font-family: Montserrat;
+}
+
+h4 {
+    font-size: 18px;
+    color: #363636;
+    font-family: Montserrat-light;
+    text-align: center;
+    margin-top: 45px;
+}
+
+.appraisel_benefits h1 {
+    color: #fff;
+    font-family: Montserrat;
+}
+
+.appraisel_types h1 {
+    font-family: Montserrat-light;
+}
+
+.benefits_list_full { /* background:url(../images/full_bkg_02.jpg);*/
+}
+
+.benefits_list .benefits_list_1:nth-child(1) {
+    background: url(../images/list1-bkg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 40px;
+}
+
+.benefits_list .benefits_list_1:nth-child(2) {
+    background: url(../images/list2_bkg.jpg);
+    background-repeat: no-repeat;
+    padding-top: 40px;
+    background-size: cover;
+}
+
+.benefits_list .benefits_list_1:nth-child(3) {
+    background: url(../images/list3-bkg.png);
+    background-repeat: no-repeat;
+    padding-top: 40px;
+    background-size: cover;
+}
+
+.benefits_list {
+    margin: 0 auto;
+}
+
+.benefits_list_1 {
+    min-height: 472px;
+    padding-left: 45px;
+}
+
+.benefits_list h3 {
+    font-size: 23px;
+    color: #fff;
+    font-family: Montserrat-light;
+}
+
+.benefits_list ul li {
+    font-size: 16px;
+    font-family: Montserrat-light;
+    color: #fff;
+    padding-top: 24px;
+    width: 80%;
+    margin-left: 15px;
+}
+
+.benefits_list ul {
+    float: left;
+    padding-left: 4px;
+}
+
+.benefits_list span.border {
+    border-top: 4px solid #0ca4d0;
+    width: 30px;
+    height: 10px;
+    float: left;
+    margin-top: 15px;
+}
+
+.services_container {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.services_list {
+    float: left;
+    width: 100%;
+    border: 1px solid #dcdcdc;
+    min-height: 465px;
+    padding-left: 25px;
+    padding-top: 25px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    margin-bottom: 38px;
+}
+
+.services_list h3 {
+    font-size: 20px;
+    font-family: Montserrat;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.services_list ul {
+    float: left;
+    padding-left: 4px;
+}
+
+.services_list ul li {
+    font-size: 15px;
+    margin-bottom: 22px;
+    margin-left: 15px;
+    font-family: Montserrat-light;
+    padding-right: 25px;
+}
+
+#quote-carousel {
+    padding: 0 10px 30px 10px;
+    margin-top: 60px;
+}
+
+#quote-carousel .carousel-control {
+    background: none;
+    color: #75c8e0;
+    font-size: 30px;
+    text-shadow: none;
+    margin-top: 125px;
+    font-weight: normal;
+}
+
+.carousel-control {
+    width: 5%;
+}
+
+#quote-carousel .carousel-indicators {
+    position: relative;
+    right: 50%;
+    top: auto;
+    bottom: 0px;
+    margin-top: 20px;
+    margin-right: -19px;
+}
+
+#quote-carousel .carousel-indicators li {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    opacity: 0.4;
+    overflow: hidden;
+    transition: all .4s ease-in;
+    vertical-align: middle;
+}
+
+#quote-carousel .carousel-indicators .active {
+    width: 128px;
+    height: 128px
+    opacity: 1;
+    transition: all .2s;
+}
+
+.item blockquote {
+    border-left: none;
+    margin: 0;
+}
+
+.carousel-inner img {
+    margin-bottom: 40px;
+}
+
+.carousel-inner p {
+    font-size: 16px;
+    color: #fff;
+    font-family: Montserrat-Thin;
+    text-align: left;
+    padding-left: 3%;
+}
+
+blockquote footer, blockquote small:before, blockquote .small:before {
+    content: '';
+}
+
+blockquote footer, blockquote small, blockquote .small {
+    display: block;
+    font-size: 16px;
+    line-height: 2.42857143;
+    color: #fff;
+    font-family: Montserrat-Thin;
+    padding-left: 3%;
+
+    text-align: left;
+}
+
+.testimonials {
+    background: url(../images/testimonials_bkg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 418px;
+    background-position: top center;
+}
+
+.section_prices {
+    padding-top: 45px;
+    padding-bottom: 50px;
+}
+
+.section_prices:last-child {
+    padding-top: 0px;
+}
+
+.section_prices h4 {
+    margin-top: 20px;
+}
+
+.section_prices .prices {
+    background: url(../images/sale_2.jpg);
+    max-width: 317px;
+    min-height: 588px;
+    background-repeat: no-repeat;
+    background-position: top center;
+}
+
+.section_prices .prices h3 {
+    float: left;
+    text-align: center;
+    width: 100%;
+    font-size: 24px;
+    color: #fff;
+    text-transform: uppercase;
+    margin-top: 40px;
+    margin-bottom: 35px;
+    font-family: Montserrat;
+    letter-spacing: -0.5px;
+}
+
+.section_prices .prices .price {
+    font-size: 39.44px;
+    font-family: Montserrat-Semibold;
+    margin-top: 10px;
+    float: left;
+    width: 100%;
+    text-align: center;
+    color: #494a4f;
+}
+
+.section_prices .prices .price span {
+    font-size: 21px;
+    font-family: Montserrat-Semibold;
+    text-decoration: line-through;
+}
+
+.section_prices .price_text {
+    float: left;
+    padding-left: 40px;
+    padding-right: 40px;
+    font-size: 14px;
+    color: #a0a0a0;
+    font-family: Montserrat-Light;
+    margin-top: 0px;
+}
+
+.section_prices ul {
+    float: left;
+    width: 100%;
+    color: #363636;
+    font-family: Montserrat-Light;
+    font-size: 14px;
+    list-style: none;
+    padding-top: 90px;
+    padding-bottom: 70px;
+}
+
+.section_prices ul {
+    list-style-image: url(../images/libkg.png);
+    list-style-position: inside;
+
+}
+
+.section_prices ul li {
+    padding-bottom: 5px;
+}
+
+.section_prices .price_btn {
+    text-align: center;
+}
+
+.section_prices .price_btn a.btn-submit {
+    font-size: 18px;
+    font-family: Montserrat-Light;
+    width: 255px;
+    margin-top: -20px;
+}
+
+.subject_change {
+    font-size: 12px;
+    font-family: Montserrat-Light;
+    float: left;
+    margin-top: 15px;
+}
+
+.footer_container {
+    font-size: 16px;
+    color: #fff;
+    background: #02425c;
+    padding-top: 55px;
+    padding-bottom: 40px;
+    text-align: center;
+    font-family: Montserrat-Light;
+}
+
+.footer_container p {
+    margin-bottom: 30px;
+}
+
+.services_container .col-sm-3 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.services_list_last {
+    min-height: 465px;
+}
+
+/**********************/
+@media screen and (max-width: 1200px) {
+    #header .col-lg-offset-3 {
+        margin-left: 15%;
+    }
+
+    .benefits_list ul li {
+        font-size: 13px;
+        width: 95%;
+    }
+
+    .benefits_list h3 {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    #header .col-lg-offset-3 {
+        margin-left: 0%;
+    }
+
+    .btn-submit {
+        font-size: 15px;
+        white-space: normal;
+        padding-bottom: 20px !important;
+        height: auto !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .navbar-right {
+        margin-left: 0px !important;
+    }
+
+    .header_form form {
+        margin: 0 auto;
+        float: none;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 15px;
+    }
+
+    h4 {
+        font-size: 15px;
+    }
+
+    .banner_content p {
+        font-size: 25px;
+    }
+
+    .benefits_list .benefits_list_1:nth-child(1) {
+        background-size: cover;
+    }
+
+    .benefits_list .benefits_list_1:nth-child(2) {
+        background-size: cover;
+    }
+
+    .benefits_list .benefits_list_1:nth-child(3) {
+        background-size: cover;
+    }
+
+    .benefits_list ul li {
+        font-size: 13px;
+        width: 80%;
+    }
+
+    .benefits_list_1 {
+        padding-left: 15px;
+    }
+
+    .section_prices .prices {
+        margin: 0 auto;
+        margin-bottom: 25px;
+        background-size: cover;
+        border-radius: 5px;
+    }
+
+    .section_prices .price_btn a.btn-submit {
+        width: 200px;
+    }
+
+    .section_prices {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .section_prices .prices h3 {
+        font-size: 20px;
+    }
+
+    .section_prices .prices .price {
+        font-size: 28px;
+    }
+
+    .section_prices ul {
+        font-size: 14px;
+        padding-top: 105px;
+    }
+
+}
+
+@media screen and (max-width: 360px) {
+    #table {
+        margin-left: -15px;
+    }
+
+    .numbers {
+        width: 65px;
+    }
+
+    .benefits_list ul li {
+        font-size: 13px;
+        width: 95%;
+    }
+}

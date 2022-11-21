@@ -1,0 +1,31 @@
+<div class="row">
+    <h4>If you have a promo-code, enter it here:</h4>
+    <div class="col-md-6 m-b-lg">
+        <div class="form-group">
+            <label class="col-xs-0 col-md-3 control-label"></label>
+            <div class="col-xs-7 col-sm-6">
+                <input type="text"
+                       name="promoCode"
+                       class="form-control"
+                       ng-model="checkoutCtrl.billingInfo.promoCode"
+                       placeholder="Promo Code"
+                       ng-disabled="checkoutCtrl.promoCodeApplied">
+                <div ng-messages="checkoutForm.promoCode.$error" ng-if="checkoutForm.showValidation || checkoutForm.promoCode.$dirty">
+                </div>
+            </div>
+            <div class="col-xs-3">
+                <button class="btn btn-primary"
+                        ng-class="{'active btn-success':checkoutCtrl.promoCodeApplied}"
+                        ng-click="checkoutCtrl.applyPromoCode()"
+                        ng-disabled="checkoutCtrl.promoCodeApplied">
+                    <i class="fa fa-check text-active"></i>
+                    <span class="text">Apply</span>
+                    <span class="text-active">Applied</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 text-center">
+        <button class="btn btn-primary m-l-md" ng-click="checkoutCtrl.returnToEditOrder()"><i class="fa fa-reply m-r-xs"></i>GO BACK TO ORDER</button>
+    </div>
+</div>

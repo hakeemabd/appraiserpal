@@ -1,0 +1,21 @@
+<?php $__env->startSection('styles'); ?>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link href="<?php echo e(asset('build/styles/vendor.css')); ?>" rel="stylesheet" type="text/css">
+<link href="<?php echo e(asset('build/styles/app.css')); ?>" rel="stylesheet" type="text/css">
+<?php $__env->appendSection(); ?>
+
+<?php $__env->startSection('header'); ?>
+    <header class="un-conflict-wrapper">
+        <div class="container">
+            <?php echo $__env->make('landing.headerNav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        </div>
+    </header>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+    <div class="container">
+        <h1>Error with your activation!</h1>
+        <h3><?php echo e($error); ?></h3>
+        <a class="link" href="/">Home page</a>
+    </div>
+<?php $__env->stopSection(); ?>

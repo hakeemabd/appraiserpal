@@ -1,0 +1,12 @@
+<h2 class="text-center">
+    Create Order: {{createOrderCtrl.getActiveStepTitle()}}<br>
+    <button class="hidden-lg hidden-md btn" ng-click="createOrderCtrl.openOrderSummaryModal()">Show order summary
+    </button>
+</h2>
+<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+    <ng-include src="'app/order/createOrder/templates/stepByStepForm.html'"></ng-include>
+</div>
+
+<div class="col-lg-4 col-md-4 hidden-sm hidden-xs">
+    <ng-include src="'app/order/createOrder/templates/orderSummary.html'"></ng-include>
+</div>

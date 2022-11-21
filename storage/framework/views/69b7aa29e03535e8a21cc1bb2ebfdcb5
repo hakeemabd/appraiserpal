@@ -1,0 +1,44 @@
+<?php
+$isNew = isset($promoCode->id) ? false : true;
+?>
+
+
+<?php $__env->startSection('breadcrumb'); ?>
+
+    <a href="<?php echo e(route('admin:order.index')); ?>" class="breadcrumb">Orders</a>
+    <a class="breadcrumb"><?php echo ($isNew) ? 'Create' : 'Update ' . $promoCode->id; ?></a>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+
+    <?php echo Form::open([
+        'class' => 'form jvalidate-form',
+    ]); ?>
+
+
+    <?php echo Form::materialText('code', ((!$isNew) ? $promoCode->code : str_random(\App\Models\PromoCode::CODE_LENGTH))); ?>
+
+    <?php echo Form::materialNumber('percent', (!$isNew) ? $promoCode->percent : null); ?>
+
+    <?php echo Form::materialNumber('count', (!$isNew) ? $promoCode->count : null); ?>
+
+
+    <?php echo Form::submit(($isNew) ? 'Create' : 'Update', ['class' => 'btn btn-success']); ?>
+
+
+    <?php echo Form::close(); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('scripts'); ?>
+<script>
+    CJMA.DI.get('form').addForm({
+        form: '.form',
+        errorMessage: 'Something went wrong',
+        successUrl: '<?php echo route('admin:promoCode.index'); ?>',
+        baseUrl: '<?php echo route('admin:promoCode.store', ['id' => ($isNew) ? false : $promoCode->id]); ?>'
+    });
+</script>
+<?php $__env->appendSection(); ?>
+<?php echo $__env->make('layouts.page', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

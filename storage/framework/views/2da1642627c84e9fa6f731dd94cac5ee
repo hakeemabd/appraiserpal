@@ -1,0 +1,17 @@
+<?php $__env->startSection('form-content'); ?>
+
+    <?php echo Form::hidden('role', $role); ?>
+
+    <?php echo Form::materialText('email', (isset($model)) ? $model->email : null); ?>
+
+    <?php echo Form::materialPassword('password', null); ?>
+
+    <?php echo Form::materialText('first_name', (isset($model)) ? $model->first_name : null); ?>
+
+    <?php echo Form::materialText('last_name', (isset($model)) ? $model->last_name : null); ?>
+
+    <?php echo Form::materialTel('mobile_phone', (isset($model)) ? $model->mobile_phone : null); ?>
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('user.entity', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

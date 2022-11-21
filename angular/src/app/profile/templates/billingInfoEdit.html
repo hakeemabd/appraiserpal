@@ -1,0 +1,117 @@
+<div class="panel billing-info">
+    <div class="panel-body">
+        <form name="billingInfoForm" class="form-validation form-horizontal" novalidate>
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    <h3>Default Payment Method:</h3>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label"></label>
+                        <div class="col-md-9">
+                            <select class="form-control " name="paymentMethod">
+                                <option value="card">Credit Card (Authorize.Net)</option>
+                                <option value="paypal">PayPal</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    <h3>Credit Card Details:</h3>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Card Number</label>
+                        <div class="col-md-9">
+                            <input type="text"
+                                   name="cardNumber"
+                                   class="form-control"
+                                   ng-model="billingInfoCtrl.billingInfo.card.number"
+                                   placeholder="Credit Card Number"
+                                   ng-maxlength="25"
+                                   cc-number
+                                   required>
+                            <div ng-messages="billingInfoForm.cardNumber.$error" ng-if="billingInfoForm.showValidation">
+                                <div ng-message="required">This filed is required</div>
+                                <div ng-message="ccNumber">Invalid Card Number</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Card Type</label>
+                        <div class="col-md-9">
+                            <ul class="payment-cards">
+                                <li ng-repeat="(key, type) in billingInfoCtrl.cardTypes"
+                                    class="{{key}}"
+                                    ng-class="{'active':billingInfoCtrl.billingInfo.card.type === type}"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Card Valid Throu</label>
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <select name="year"
+                                            class="form-control"
+                                            ng-model="billingInfoCtrl.billingInfo.card.year"
+                                            required>
+                                        <option value="" disabled selected>
+                                            Year
+                                        </option>
+                                        <option ng-repeat="year in billingInfoCtrl.cardYears"
+                                                value="{{year}}">
+                                            {{year}}
+                                        </option>
+                                    </select>
+                                    <div ng-messages="billingInfoForm.year.$error" ng-if="billingInfoForm.showValidation || billingInfoForm.year.$dirty">
+                                        <div ng-message="required">This filed is required</div>
+                                    </div>
+                                </div>
+                                <div class="slash">/</div>
+                                <div class="col-xs-5">
+                                    <select name="month"
+                                            class="form-control"
+                                            ng-model="billingInfoCtrl.billingInfo.card.month"
+                                            required>
+                                        <option value="" disabled selected>
+                                            Month
+                                        </option>
+                                        <option ng-repeat="month in billingInfoCtrl.cardMonths"
+                                                value="{{$index}}">
+                                            {{month}}
+                                        </option>
+                                    </select>
+                                    <div ng-messages="billingInfoForm.month.$error" ng-if="billingInfoForm.showValidation || billingInfoForm.month.$dirty">
+                                        <div ng-message="required">This filed is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label no-wrap">Card CCV Number</label>
+                        <div class="col-md-9">
+                            <input type="text"
+                                   name="ccv"
+                                   class="form-control"
+                                   ng-model="checkoutCtrl.billingInfo.card.ccv"
+                                   placeholder="Card CCV Number"
+                                   ng-maxlength="4"
+                                   cc-cvc
+                                   cc-type="checkoutForm.cardNumber.$ccType"
+                                   required>
+                            <div ng-messages="checkoutForm.ccv.$error" ng-if="checkoutForm.showValidation || checkoutForm.ccv.$dirty">
+                                <div ng-message="required">This filed is required</div>
+                                <div ng-message="ccCvc">Invalid ccv format</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center m-t-lg">
+                        <button class="btn btn-primary btn-lg" ng-click="billingInfoCtrl.submit(billingInfoForm)">SAVE</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>

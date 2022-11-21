@@ -1,0 +1,10 @@
+.modal.file-upload-modal{
+  .btn{
+    max-width: 100%;
+  }
+  [ng-message]{
+    color: red;
+    font-size: 12px;
+    margin-top: -10px;
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "appraiserpal-laravel",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Alexandr Sokolovskiy <alexandr.sokolovskiy@iqria.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "~3.3.6",
+    "jquery.toaster": "git@github.com:scottoffen/jquery.toaster.git#~1.1.0",
+    "jquery": "~2.1.4",
+    "jquery-validation": "~1.14.0",
+    "datatables.net": "~1.10.10",
+    "select2": "~4.0.1",
+    "Swiper": "swiper#~3.3.0",
+    "underscore": "~1.8.3",
+    "Materialize": "materialize#~0.97.5",
+    "moment": "~2.11.1",
+    "datatables.net-responsive": "~2.0.1",
+    "datatables.net-responsive-bs": "~2.0.1",
+    "blueimp-file-upload": "^9.12.3"
+  }
+}

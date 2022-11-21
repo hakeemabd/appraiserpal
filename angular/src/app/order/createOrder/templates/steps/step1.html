@@ -1,0 +1,375 @@
+<progressbar value="createOrderCtrl.formWizard.completePercent" class="progress-xs" type="success"></progressbar>
+<p ng-if="createOrderCtrl.order.software.name">
+    You are using <span class="current-software">{{createOrderCtrl.order.software.name}}</span>.
+    Click <a class="link"
+             ng-click="createOrderCtrl.openSelectSoftwareModal()">here</a> to change application.
+</p>
+<p ng-if="!createOrderCtrl.order.software.name">
+    Click  <a ui-sref="home.order.create.selectSoftware" class="link"
+              ng-click="createOrderCtrl.openSelectSoftwareModal()">here</a> to choose application
+</p>
+<form name="step1Form" novalidate>
+    <!-- Save form in Controller -->
+    <span ng-init="createOrderCtrl.formWizard.forms.step1Form = step1Form" ng-show="false"></span>
+    <h4>1.1 To collect data I use...</h4>
+
+    <div class="m-l-lg btn-group block upload-collect-type">
+        <button
+                class="btn"
+                ng-class="{'btn-primary':createOrderCtrl.order.collectData.type == createOrderCtrl.FILES.COLLECT_DATA_MOBILE}"
+                ng-model="createOrderCtrl.order.collectData.type"
+                btn-radio="createOrderCtrl.FILES.COLLECT_DATA_MOBILE">
+            Wintotal Mobile App
+        </button>
+        <button
+                class="btn"
+                ng-class="{'btn-primary':createOrderCtrl.order.collectData.type == createOrderCtrl.FILES.COLLECT_DATA_MANUAL}"
+                ng-model="createOrderCtrl.order.collectData.type"
+                btn-radio="createOrderCtrl.FILES.COLLECT_DATA_MANUAL">
+            Manuals Download
+        </button>
+    </div>
+    <div class="m-l-lg inline m-b-xs upload-collect-file">
+        <div class="control-label ">
+            <div class="file-upload btn btn-primary"
+                 ng-if="createOrderCtrl.order.collectData.type == createOrderCtrl.FILES.COLLECT_DATA_MOBILE"
+                 ng-class="{'active btn-success':!!createOrderCtrl.order.collectData.file}">
+                <i class="fa fa-cloud-upload text"></i>
+                <span class="text">Upload PDF</span>
+                <i class="fa fa-check text-active"></i>
+                <span class="text-active">{{createOrderCtrl.order.collectData.file.name}}</span>
+                <input type="file"
+                       ngf-select
+                       ng-model="createOrderCtrl.order.collectData.file"
+                       ngf-multiple="false"
+                       ngf-accept="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.COLLECT_DATA_MOBILE].acceptMime"
+                       ngf-pattern="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.COLLECT_DATA_MOBILE].extensions"
+                       ngf-max-size="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.COLLECT_DATA_MOBILE].maxSize"
+                       name="collectDataFile"
+                       ng-required="createOrderCtrl.isFileRequired(createOrderCtrl.order.collectData.file)">
+            </div>
+            <div class="file-upload btn btn-primary"
+                 ng-if="createOrderCtrl.order.collectData.type == createOrderCtrl.FILES.COLLECT_DATA_MANUAL"
+                 ng-class="{'active btn-success':!!createOrderCtrl.order.collectData.file}">
+                <i class="fa fa-cloud-upload text"></i>
+                <span class="text">Upload</span>
+                <i class="fa fa-check text-active"></i>
+                <span class="text-active">{{createOrderCtrl.order.collectData.file.name}}</span>
+                <input type="file"
+                       ngf-select
+                       ng-model="createOrderCtrl.order.collectData.file"
+                       ngf-multiple="false"
+                       ngf-accept="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.COLLECT_DATA_MANUAL].acceptMime"
+                       ngf-pattern="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.COLLECT_DATA_MANUAL].extensions"
+                       ngf-max-size="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.COLLECT_DATA_MANUAL].maxSize"
+                       name="collectDataFile"
+                       ng-required="createOrderCtrl.isFileRequired(createOrderCtrl.order.collectData.file)">
+            </div>
+        </div>
+        <div ng-messages="step1Form.collectDataFile.$error"
+             ng-if="step1Form.showValidation || step1Form.collectDataFile.$dirty">
+            <div ng-message="pattern">Invalid file format</div>
+            <div ng-message="maxSize">Max file size is {{createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.COLLECT_DATA_MANUAL].maxSize|bytes}}</div>
+            <div ng-message="required">This filed is required</div>
+        </div>
+    </div>
+    <h4>1.2. File uploaded contains following elements:</h4>
+
+    <div class="m-l-lg row">
+        <div class="col-md-6">
+            <div class="checkbox">
+                <label class="i-checks">
+                    <input type="checkbox" ng-model="createOrderCtrl.order.files[createOrderCtrl.FILES.INSPECTION_SHEETS].has">
+                    <i></i>
+                    Subject and Inspection info
+                </label>
+            </div>
+            <div class="checkbox">
+                <label class="i-checks">
+                    <input type="checkbox" ng-model="createOrderCtrl.order.files[createOrderCtrl.FILES.SKETCH].has">
+                    <i></i>
+                    Sketches
+                </label>
+            </div>
+            <div class="checkbox">
+                <label class="i-checks">
+                    <input type="checkbox" ng-model="createOrderCtrl.order.files[createOrderCtrl.FILES.CONTRACT].has">
+                    <i></i>
+                    Contract Info
+                </label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="checkbox" ng-if="createOrderCtrl.order.collectData.type == createOrderCtrl.FILES.COLLECT_DATA_MANUAL">
+                <label class="i-checks">
+                    <input type="checkbox" ng-model="createOrderCtrl.order.files[createOrderCtrl.FILES.MSL].has">
+                    <i></i>
+                    MLS Sheet for Subject and Comparables
+                </label>
+            </div>
+            <div class="checkbox" ng-if="createOrderCtrl.order.collectData.type == createOrderCtrl.FILES.COLLECT_DATA_MANUAL">
+                <label class="i-checks">
+                    <input type="checkbox" ng-model="createOrderCtrl.order.files[createOrderCtrl.FILES.MC1004].has">
+                    <i></i>
+                    1004MC export
+                </label>
+            </div>
+            <div class="checkbox" ng-if="createOrderCtrl.order.collectData.type == createOrderCtrl.FILES.COLLECT_DATA_MOBILE">
+                <label class="i-checks">
+                    <input type="checkbox" ng-model="createOrderCtrl.order.files[createOrderCtrl.FILES.COMPARABLE_INFO].has">
+                    <i></i>
+                    Comparable info
+                </label>
+            </div>
+        </div>
+
+    </div>
+
+    <h4>1.3. I would like to use a clone file:</h4>
+    <div class="m-l col-md-4">
+        <select name="account"
+                class="form-control"
+                ng-options="clone as clone.label for clone in createOrderCtrl.cloneFiles | filter:{software_id: createOrderCtrl.order.software.id}:true"
+                ng-model="createOrderCtrl.order.clone"
+                required>
+            <option value="" disabled>Choose clone file</option>
+        </select>
+        <input  type="hidden" name="account" ng-model="createOrderCtrl.order.clone.label" required>
+        <div ng-messages="step1Form.account.$error" ng-if="step1Form.showValidation || step1Form.account.$dirty">
+            <div ng-message="required">This filed is required</div>
+        </div>
+    </div>
+    <div class="fix-clear"></div>
+    <div>
+        <h4>1.4. Upload files:</h4>
+        <div class="row">
+            <div class="m-l-lg col-md-8">
+                <div class="panel panel-default">
+                    <table class="table table-striped m-b-none upload-files">
+                        <tbody>
+                        <tr ng-show="!createOrderCtrl.order.files[createOrderCtrl.FILES.INSPECTION_SHEETS].has">
+                            <td class="col-md-8">
+                                Subject and Inspection info
+                            </td>
+                            <td class="col-md-2">
+                                <div class="file-upload btn btn-primary "
+                                     ng-class="{'active btn-success':!!createOrderCtrl.order.files[createOrderCtrl.FILES.INSPECTION_SHEETS].file}">
+                                    <i class="fa fa-cloud-upload text"></i>
+                                    <span class="text hidden-xs">Upload</span>
+                                    <i class="fa fa-check text-active"></i>
+                                    <span class="hidden-xs">{{createOrderCtrl.order.files[createOrderCtrl.FILES.INSPECTION_SHEETS].file.name}}</span>
+                                    <input type="file"
+                                           ngf-select
+                                           ng-model="createOrderCtrl.order.files[createOrderCtrl.FILES.INSPECTION_SHEETS].file"
+                                           ngf-multiple="false"
+                                           ngf-accept="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.INSPECTION_SHEETS].acceptMime"
+                                           ngf-pattern="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.INSPECTION_SHEETS].extensions"
+                                           ngf-max-size="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.INSPECTION_SHEETS].maxSize"
+                                           name="inspectionSheetsFile"
+                                           ng-required="createOrderCtrl.isFileRequired(createOrderCtrl.order.files[createOrderCtrl.FILES.INSPECTION_SHEETS].file) &&
+                                                        !createOrderCtrl.order.files[createOrderCtrl.FILES.INSPECTION_SHEETS].has">
+                                </div>
+                                <div ng-messages="step1Form.inspectionSheetsFile.$error"
+                                     ng-if="step1Form.showValidation || step1Form.inspectionSheetsFile.$dirty">
+                                    <div ng-message="pattern">Invalid file format</div>
+                                    <div ng-message="maxSize">Max file size is {{::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.INSPECTION_SHEETS].maxSize|bytes}}</div>
+                                    <div ng-message="required">This filed is required</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr ng-show="!createOrderCtrl.order.files[createOrderCtrl.FILES.CONTRACT].has">
+                            <td class="col-md-8">
+                                Contract Info
+                            </td>
+                            <td class="col-md-2">
+                                <div class="file-upload btn btn-primary "
+                                     ng-class="{'active btn-success':!!createOrderCtrl.order.files[createOrderCtrl.FILES.CONTRACT].file}">
+                                    <i class="fa fa-cloud-upload text"></i>
+                                    <span class="text hidden-xs">Upload</span>
+                                    <i class="fa fa-check text-active"></i>
+                                    <span class="hidden-xs">{{createOrderCtrl.order.files[createOrderCtrl.FILES.CONTRACT].file.name}}</span>
+                                    <input type="file"
+                                           ngf-select
+                                           ng-model="createOrderCtrl.order.files[createOrderCtrl.FILES.CONTRACT].file"
+                                           ngf-multiple="false"
+                                           ngf-accept="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.CONTRACT].acceptMime"
+                                           ngf-pattern="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.CONTRACT].extensions"
+                                           ngf-max-size="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.CONTRACT].maxSize"
+                                           name="contractFile"
+                                           ng-required="createOrderCtrl.isFileRequired(createOrderCtrl.order.files[createOrderCtrl.FILES.CONTRACT].file) &&
+                                                        !createOrderCtrl.order.files[createOrderCtrl.FILES.CONTRACT].has">
+                                </div>
+                                <div ng-messages="step1Form.contractFile.$error"
+                                     ng-show="step1Form.showValidation || step1Form.contractFile.$dirty">
+                                    <div ng-message="pattern">Invalid file format</div>
+                                    <div ng-message="maxSize">Max file size is {{::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.CONTRACT].maxSize|bytes}}</div>
+                                    <div ng-message="required">This filed is required</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr ng-show="!createOrderCtrl.order.files[createOrderCtrl.FILES.SKETCH].has">
+                            <td class="col-md-8">
+                                Sketches
+                            </td>
+                            <td class="col-md-2">
+                                <div class="file-upload btn btn-primary "
+                                     ng-class="{'active btn-success':!!createOrderCtrl.order.files[createOrderCtrl.FILES.SKETCH].file}">
+                                    <i class="fa fa-cloud-upload text"></i>
+                                    <span class="text hidden-xs">Upload</span>
+                                    <i class="fa fa-check text-active"></i>
+                                    <span class="hidden-xs">{{createOrderCtrl.order.files[createOrderCtrl.FILES.SKETCH].file.name}}</span>
+                                    <input type="file"
+                                           ngf-select
+                                           ng-model="createOrderCtrl.order.files[createOrderCtrl.FILES.SKETCH].file"
+                                           ngf-multiple="false"
+                                           ngf-accept="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.SKETCH].acceptMime"
+                                           ngf-pattern="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.SKETCH].extensions"
+                                           ngf-max-size="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.SKETCH].maxSize"
+                                           name="sketchesFile"
+                                           ng-required="createOrderCtrl.isFileRequired(createOrderCtrl.order.files[createOrderCtrl.FILES.SKETCH].file) &&
+                                                        !createOrderCtrl.order.files[createOrderCtrl.FILES.SKETCH].has">
+                                </div>
+                                <div ng-messages="step1Form.sketchesFile.$error"
+                                     ng-show="step1Form.showValidation || step1Form.sketchesFile.$dirty">
+                                    <div ng-message="pattern">Invalid file format</div>
+                                    <div ng-message="maxSize">Max file size is {{::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.SKETCH].maxSize|bytes}}</div>
+                                    <div ng-message="required">This filed is required</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr ng-show="!createOrderCtrl.order.files[createOrderCtrl.FILES.COMPARABLE_INFO].has &&
+                           createOrderCtrl.order.collectData.type == createOrderCtrl.FILES.COLLECT_DATA_MOBILE">
+                            <td class="col-md-8">
+                                Comparable Info
+                            </td>
+                            <td class="col-md-2">
+                                <div class="file-upload btn btn-primary "
+                                     ng-class="{'active btn-success':!!createOrderCtrl.order.files[createOrderCtrl.FILES.COMPARABLE_INFO].file}">
+                                    <i class="fa fa-cloud-upload text"></i>
+                                    <span class="text hidden-xs">Upload</span>
+                                    <i class="fa fa-check text-active"></i>
+                                    <span class="hidden-xs">{{createOrderCtrl.order.files[createOrderCtrl.FILES.COMPARABLE_INFO].file.name}}</span>
+                                    <input type="file"
+                                           ngf-select
+                                           ng-model="createOrderCtrl.order.files[createOrderCtrl.FILES.COMPARABLE_INFO].file"
+                                           ngf-multiple="false"
+                                           ngf-accept="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.COMPARABLE_INFO].acceptMime"
+                                           ngf-pattern="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.COMPARABLE_INFO].extensions"
+                                           ngf-max-size="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.COMPARABLE_INFO].maxSize"
+                                           name="comparableInfoFile"
+                                           ng-required="createOrderCtrl.isFileRequired(createOrderCtrl.order.files[createOrderCtrl.FILES.COMPARABLE_INFO].file) &&
+                                                        !createOrderCtrl.order.files[createOrderCtrl.FILES.COMPARABLE_INFO].has &&
+                                                        createOrderCtrl.order.collectData.type == createOrderCtrl.FILES.COLLECT_DATA_MOBILE">
+                                </div>
+                                <div ng-messages="step1Form.comparableInfoFile.$error"
+                                     ng-show="step1Form.showValidation || step1Form.comparableInfoFile.$dirty">
+                                    <div ng-message="pattern">Invalid file format</div>
+                                    <div ng-message="maxSize">Max file size is {{::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.COMPARABLE_INFO].maxSize|bytes}}</div>
+                                    <div ng-message="required">This filed is required</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr ng-show="!createOrderCtrl.order.files[createOrderCtrl.FILES.MC1004].has &&
+                           createOrderCtrl.order.collectData.type == createOrderCtrl.FILES.COLLECT_DATA_MANUAL">
+                            <td class="col-md-8">
+                                1004MC export
+                            </td>
+                            <td class="col-md-2">
+                                <div class="file-upload btn btn-primary"
+                                     ng-class="{'active btn-success':!!createOrderCtrl.order.files[createOrderCtrl.FILES.MC1004].file}">
+                                    <i class="fa fa-cloud-upload text"></i>
+                                    <span class="text hidden-xs">Upload</span>
+                                    <i class="fa fa-check text-active"></i>
+                                    <span class="text-active hidden-xs">{{createOrderCtrl.order.files[createOrderCtrl.FILES.MC1004].file.name}}</span>
+                                    <input type="file"
+                                           ngf-select
+                                           ng-model="createOrderCtrl.order.files[createOrderCtrl.FILES.MC1004].file"
+                                           ngf-multiple="false"
+                                           ngf-accept="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.MC1004].acceptMime"
+                                           ngf-pattern="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.MC1004].extensions"
+                                           ngf-max-size="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.MC1004].maxSize"
+                                           name="MCExportFile"
+                                           ng-required="createOrderCtrl.isFileRequired(createOrderCtrl.order.files[createOrderCtrl.FILES.MC1004].file) &&
+                                                        !createOrderCtrl.order.files[createOrderCtrl.FILES.MC1004].has &&
+                                                        createOrderCtrl.order.collectData.type == createOrderCtrl.FILES.COLLECT_DATA_MANUAL">
+                                </div>
+                                <div ng-messages="step1Form.MCExportFile.$error"
+                                     ng-show="step1Form.showValidation || step1Form.MCExportFile.$dirty">
+                                    <div ng-message="pattern">Invalid file format</div>
+                                    <div ng-message="maxSize">Max file size is {{::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.MC1004].maxSize|bytes}}</div>
+                                    <div ng-message="required">This filed is required</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr ng-show="!createOrderCtrl.order.files[createOrderCtrl.FILES.MSL].has &&
+                           createOrderCtrl.order.collectData.type == createOrderCtrl.FILES.COLLECT_DATA_MANUAL">
+                            <td class="col-md-8">
+                                MLS Sheet for Subject and Comparables
+                            </td>
+                            <td class="col-md-2">
+                                <div class="file-upload btn btn-primary"
+                                     ng-class="{'active btn-success':!!createOrderCtrl.order.files[createOrderCtrl.FILES.MSL].file}">
+                                    <i class="fa fa-cloud-upload text"></i>
+                                    <span class="text hidden-xs">Upload</span>
+                                    <i class="fa fa-check text-active"></i>
+                                    <span class="hidden-xs">{{createOrderCtrl.order.files[createOrderCtrl.FILES.MSL].file.name}}</span>
+                                    <input type="file"
+                                           ngf-select
+                                           ng-model="createOrderCtrl.order.files[createOrderCtrl.FILES.MSL].file"
+                                           ngf-multiple="false"
+                                           ngf-accept="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.MSL].acceptMime"
+                                           ngf-pattern="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.MSL].extensions"
+                                           ngf-max-size="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.MSL].maxSize"
+                                           name="MLSSheetsFile"
+                                           ng-required="createOrderCtrl.isFileRequired(createOrderCtrl.order.files[createOrderCtrl.FILES.MSL].file) &&
+                                                        !createOrderCtrl.order.files[createOrderCtrl.FILES.MSL].has &&
+                                                        createOrderCtrl.order.collectData.type == createOrderCtrl.FILES.COLLECT_DATA_MANUAL">
+                                </div>
+                                <div ng-messages="step1Form.MLSSheetsFile.$error"
+                                     ng-show="step1Form.showValidation || step1Form.MLSSheetsFile.$dirty">
+                                    <div ng-message="pattern">Invalid file format</div>
+                                    <div ng-message="maxSize">Max file size is {{::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.MSL].maxSize|bytes}}</div>
+                                    <div ng-message="required">This filed is required</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-8">
+                                Miscellaneous<br>
+                                <span class="notice">To upload several files, please, put them into the same folder and select all at once</span>
+                            </td>
+                            <td class="col-md-2">
+                                <div class="file-upload btn btn-primary"
+                                     ng-class="{'active btn-success':!!createOrderCtrl.order.miscellaneousFiles}">
+                                    <i class="fa fa-cloud-upload text"></i>
+                                    <span class="text hidden-xs">Upload</span>
+                                    <i class="fa fa-check text-active"></i>
+                                    <input type="file"
+                                           ngf-select
+                                           ng-model="createOrderCtrl.order.miscellaneousFiles"
+                                           ngf-multiple="true"
+                                           ngf-accept="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.MISCELLANEOUS].acceptMime"
+                                           ngf-pattern="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.MISCELLANEOUS].extensions"
+                                           ngf-max-size="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.MISCELLANEOUS].maxSize"
+                                           name="miscellaneousFiles">
+                                </div>
+                                <div ng-messages="step1Form.miscellaneousFiles.$error"
+                                     ng-show="step1Form.showValidation || step1Form.miscellaneousFiles.$dirty">
+                                    <div ng-message="pattern">Invalid file format</div>
+                                    <div ng-message="maxSize">Max file size is {{::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.MSL].maxSize|bytes}}</div>
+                                    <div ng-message="required">This filed is required</div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<progressbar ng-show="createOrderCtrl.order.uploadProgress" value="createOrderCtrl.order.uploadProgress" class="progress-xxs m-t-sm"></progressbar>
+<div class="m-t">
+    <button ng-disabled="createOrderCtrl.order.uploadProgress" class="btn btn-default float-right" ng-click="createOrderCtrl.goToNextStep()">Next</button>
+</div>
+<div class="fix-clear"></div>

@@ -1,0 +1,26 @@
+<div class="modal-header">
+    <h3 class="modal-title">Software Settings</h3>
+</div>
+<div class="modal-body" cj-stop-event="touchend">
+    <p>Select software application you're using. You will have to do it just this once:</p>
+
+    <div class="software-wrapper row">
+        <div class="panel panel-default col-lg-2"
+             ng-repeat="software in selectSoftwareController.softwareList"
+             ng-click="selectSoftwareController.selectSoftware(software)">
+            <div class="panel-body">
+                <div class="logo" style="background-image: url('{{software.location}}')"></div>
+            </div>
+        </div>
+        <div class="fix-clear"></div>
+    </div>
+    <div class="fix-clear"></div>
+    <p>
+        <a class="link" ng-click="isCollapsed = !isCollapsed">Learn how to save 5% on each report link</a>
+        <div collapse="!isCollapsed">
+            Any user can use the total mobile app regardless of the appraisal software used for reports.
+            Collect data using the total app and save 5% on each report! Want to download the total app?
+            Click here <a href="http://www.alamode.com/appraiser/total-for-mobile/" class="link" target="_blank">here</a>
+        </div>
+    </p>
+</div>

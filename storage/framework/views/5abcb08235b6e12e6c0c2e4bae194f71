@@ -1,0 +1,54 @@
+<?php $__env->startSection('styles'); ?>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link href="<?php echo e(asset('build/styles/vendor.css')); ?>" rel="stylesheet" type="text/css">
+<link href="<?php echo e(asset('build/styles/app.css')); ?>" rel="stylesheet" type="text/css">
+<?php $__env->appendSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+    <div class="container card" style="max-width: 80%; padding: 20px; margin-top: 50px;">
+        <h2>Recover password</h2>
+        <?php echo Form::open(['route' => 'customer:changePassword', 'class' => 'auth-form']); ?>
+
+
+        <?php echo Form::hidden('email', $email); ?>
+
+        <?php echo Form::hidden('code', $code); ?>
+
+
+
+        <div class="form-field">
+            <?php echo Form::label('password', 'New password'); ?>
+
+            <?php echo Form::password('password',
+            ['class' => 'form-control form-control-small form-control-base form-control-grey']); ?>
+
+        </div>
+
+        <div class="form-field">
+            <?php echo Form::label('password_confirmation', 'Confirm it'); ?>
+
+            <?php echo Form::password('password_confirmation',
+            ['class' => 'form-control form-control-small form-control-base form-control-grey']); ?>
+
+        </div>
+
+        <div class="form-field">
+            <?php echo Form::submit('Change password', array('class' => 'btn btn-small btn-primary')); ?>
+
+        </div>
+
+        <?php echo Form::close(); ?>
+
+    </div>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('scripts'); ?>
+<script type="text/javascript">
+    CJMA.DI.get('form').addForm({
+        form: '.auth-form',
+        successUrl: '/',
+        errorMessage: 'Can\'t change password.'
+    });
+</script>
+<?php $__env->appendSection(); ?>
+
+<?php echo $__env->make('layout.main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,95 @@
+<div class="modal-header">
+    <h3 class="modal-title">Upload Report Sample File</h3>
+</div>
+<div class="modal-body" cj-stop-event="touchend">
+    <form name="uploadReportSampleForm" class="m-l-md form-validation" novalidate>
+        <div class="row m-b">
+            <div class="col-md-6">
+                <h4>Set title for your sample file:</h4>
+                <input type="text" name="label" class="form-control" ng-model="uploadReportSampleCtrl.sample.label"
+                       required>
+
+                <div ng-messages="uploadReportSampleForm.label.$error"
+                     ng-if="uploadReportSampleForm.showValidation || uploadReportSampleForm.label.$dirty">
+                    <div ng-message="required">This filed is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="m-b inline file-upload-inline-wrapper">
+            <div class="file-upload btn btn-primary"
+                 ng-class="{'active btn-success':!!uploadReportSampleCtrl.sample.file}">
+                <i class="fa fa-cloud-upload text"></i>
+                <span class="text">SELECT SAMPLE FILE</span>
+                <i class="fa fa-check text-active"></i>
+                <span class="text-active">{{uploadReportSampleCtrl.sample.file.name}}</span>
+                <input type="file"
+                       ngf-select
+                       ng-model="uploadReportSampleCtrl.sample.file"
+                       ngf-multiple="false"
+                       ngf-accept="uploadReportSampleCtrl.sampleFileUploadConfig.acceptMime"
+                       ngf-pattern="uploadReportSampleCtrl.sampleFileUploadConfig.extensions"
+                       ngf-max-size="uploadReportSampleCtrl.sampleFileUploadConfig.maxSize"
+                       name="sampleFile"
+                       required>
+            </div>
+            <div ng-messages="uploadReportSampleForm.sampleFile.$error"
+                 ng-if="uploadReportSampleForm.showValidation || uploadReportSampleForm.sampleFile.$dirty">
+                <div ng-message="required">This filed is required</div>
+                <div ng-message="pattern">Invalid file format</div>
+                <div ng-message="maxSize">Max file size is
+                    {{uploadReportSampleCtrl.sampleFileUploadConfig.maxSize|bytes}}
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="checkbox">
+                <label class="i-checks">
+                    <input type="checkbox" ng-model="uploadCloneFileCtrl.license"
+                           ng-class="{'ng-touched':uploadReportSampleForm.showValidation}" required>
+                    <i></i>
+                    License copy / License number
+                </label>
+            </div>
+            <div class="checkbox">
+                <label class="i-checks">
+                    <input type="checkbox" ng-model="uploadCloneFileCtrl.personalInfo"
+                           ng-class="{'ng-touched':uploadReportSampleForm.showValidation}" required>
+                    <i></i>
+                    Personal information
+                </label>
+            </div>
+            <div class="checkbox">
+                <label class="i-checks">
+                    <input type="checkbox" ng-model="uploadCloneFileCtrl.borrowerInfo"
+                           ng-class="{'ng-touched':uploadReportSampleForm.showValidation}" required>
+                    <i></i>
+                    Borrower information
+                </label>
+            </div>
+            <div class="checkbox">
+                <label class="i-checks">
+                    <input type="checkbox" ng-model="uploadCloneFileCtrl.lenderInfo"
+                           ng-class="{'ng-touched':uploadReportSampleForm.showValidation}" required>
+                    <i></i>
+                    Lender information
+                </label>
+            </div>
+        </div>
+        <p class="checking-info">By checking these options you guarantee that your sample file does not contain said information.
+            AppraiserPal will not be liable for any private information disclosed in your sample file.</p>
+    </form>
+    <progressbar ng-show="uploadReportSampleCtrl.progress" value="uploadReportSampleCtrl.progress"
+                 class="progress-xxs m-t-sm"></progressbar>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default float-left"
+            ng-disabled="uploadReportSampleCtrl.progress"
+            ng-click="uploadReportSampleCtrl.cancel(uploadReportSampleForm)">
+        Cancel
+    </button>
+    <button class="btn btn-success float-right"
+            ng-disabled="uploadReportSampleCtrl.progress"
+            ng-click="uploadReportSampleCtrl.ok(uploadReportSampleForm)">
+        Upload
+    </button>
+</div>

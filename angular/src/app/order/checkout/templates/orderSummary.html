@@ -1,0 +1,91 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h3>Order Summary</h3>
+        <div class="row">
+            <div class="panel col-lg-5 order-total-panel">
+                <div class="panel-body">
+                    <h2>TOTAL: <span class="total">{{checkoutCtrl.order.orderTransaction.amount|currency}}</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="panel order-summary-checkout">
+            <div class="panel-body row">
+                <div class="col-lg-4 m-b">
+                    <h4>Information</h4>
+                    <table class="table order-info">
+                        <tbody>
+                        <tr class="row">
+                            <td class="col-md-6">
+                                <b>Order title:</b>
+                            </td>
+                            <td class="col-md-6">
+                                {{checkoutCtrl.order.title}}
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td class="col-md-6">
+                                <b>Effective date:</b>
+                            </td>
+                            <td class="col-md-6">
+                                {{checkoutCtrl.order.effectiveDate | date:'M/d/yy'}}
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td class="col-md-6">
+                                <b>Assignment Type:</b>
+                            </td>
+                            <td class="col-md-6">
+                                {{checkoutCtrl.order.assignmentType | capitalize}}
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td class="col-md-6">
+                                <b>Financing:</b>
+                            </td>
+                            <td class="col-md-6">
+                                {{checkoutCtrl.order.financing | capitalize}}
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td class="col-md-6">
+                                <b>Occupancy:</b>
+                            </td>
+                            <td class="col-md-6">
+                                {{checkoutCtrl.order.occupancy | capitalize}}
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td class="col-md-6">
+                                <b>Property rights:</b>
+                            </td>
+                            <td class="col-md-6">
+                                {{checkoutCtrl.order.propertyRightAppraised | capitalize}}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-lg-3 m-b">
+                    <h4>Photos</h4>
+                    <ul class="unmarked">
+                        <li ng-repeat="label in checkoutCtrl.labels" ng-if="checkoutCtrl.getLabelCountInPhotos(label)">
+                            {{label.name}} ({{checkoutCtrl.getLabelCountInPhotos(label)}})
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-5 m-b">
+                    <h4>Attachments</h4>
+                    <ul class="unmarked">
+                        <li class="overflow-ellipsis" ng-repeat="attachment in checkoutCtrl.order.files" ng-if="!attachment.collectDataType || attachment.collectDataType === checkoutCtrl.order.collectData.type">
+                            <b>{{attachment.label}}:</b>
+                            <cj-file-link ng-if="attachment.file" file="attachment.file"
+                                          label="{{attachment.file.name}}">
+                            </cj-file-link>
+                            <span ng-if="!attachment.file">&nbsp;none</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

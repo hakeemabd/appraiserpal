@@ -1,0 +1,12 @@
+<?php $__env->startSection('body'); ?>
+Comments need approval. Sign into <a class="text-primary" href="<?php echo e($host); ?>" target="_blank">link</a>.
+<br>
+<br>
+<br>
+Appraisers Solutions
+<br>
+support@appraiserssolutions.com
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('admin.emails.layout', ['hasAction' => false], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

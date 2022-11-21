@@ -1,0 +1,104 @@
+<progressbar value="createOrderCtrl.formWizard.completePercent" class="progress-xs" type="success"></progressbar>
+<form name="step4Form" class="form-validation" novalidate>
+    <!-- Save form in Controller -->
+    <span ng-init="createOrderCtrl.formWizard.forms.step4Form = step4Form" ng-show="false"></span>
+
+    <div class="m-b">
+        <div class="form-group">
+            <label class="checkbox i-checks">
+                <input type="radio"
+                       ng-class="{'ng-touched':step4Form.showValidation}"
+                       ng-model="createOrderCtrl.order.adjustmentSheetsType"
+                       value="{{createOrderCtrl.ADJUSTMENT_TYPE.NONE}}"
+                       name="sheets" required><i></i>
+                Do not add adjustments to my report
+            </label>
+            <label class="checkbox i-checks">
+                <input type="radio"
+                       ng-class="{'ng-touched':step4Form.showValidation}"
+                       ng-model="createOrderCtrl.order.adjustmentSheetsType"
+                       value="{{createOrderCtrl.ADJUSTMENT_TYPE.REGRESSION}}"
+                       name="sheets" required><i></i>
+                Add a regression analysis to my report (Free!)
+            </label>
+            <label class="checkbox i-checks">
+                <input type="radio"
+                       ng-class="{'ng-touched':step4Form.showValidation}"
+                       ng-model="createOrderCtrl.order.adjustmentSheetsType"
+                       value="{{createOrderCtrl.ADJUSTMENT_TYPE.OWN}}"
+                       name="sheets" required><i></i>
+                Upload adjustment sheets and add them to my report
+            </label>
+        </div>
+    </div>
+    <div class="m-l-lg" ng-if="createOrderCtrl.order.adjustmentSheetsType == createOrderCtrl.ADJUSTMENT_TYPE.OWN"
+                        ng-init="download=!!createOrderCtrl.order.adjustmentSheets;fill=!!createOrderCtrl.order.adjustmentSheets">
+        <div class="checkbox">
+            <label class="i-checks">
+                <input type="checkbox"
+                       ng-model="download"
+                       ng-class="{'ng-touched':step4Form.showValidation}"
+                       disabled
+                       required>
+                <i></i>
+                <a href="/files/Adjustment%20Sheet.xlsx" class="adj-download-link" download ng-click="download = true">
+                </a>
+                <a href="/files/Adjustment%20Sheet.xlsx" download ng-click="download = true">
+                    <div class="inline">
+                        Download sample
+                        <i class="fa fa-download inline-upload-button" ></i>
+                    </div>
+                </a>
+            </label>
+        </div>
+        <div class="checkbox">
+            <label class="i-checks">
+                <input type="checkbox"
+                       ng-class="{'ng-touched':step4Form.showValidation}"
+                       ng-model="fill"
+                       ng-disabled="!download"
+                       required>
+                <i></i>
+                Fill it in
+            </label>
+        </div>
+        <div class="checkbox">
+            <label class="i-checks">
+                <input type="checkbox"
+                       ng-checked="createOrderCtrl.order.adjustmentSheets"
+                       ng-class="{'ng-touched':step4Form.showValidation}"
+                       ng-model="upload"
+                       disabled
+                       ng-required="!createOrderCtrl.order.adjustmentSheets">
+                <i></i>
+                Upload your custom sheet
+            </label>
+            <div class="file-upload inline inline-upload-button adj-upload-button"
+                 ng-if="fill && download"
+                 ng-class="{'success':!!createOrderCtrl.order.adjustmentSheets}">
+                <i class="fa fa-upload"></i>
+                <input type="file"
+                       ngf-select
+                       ng-model="createOrderCtrl.order.adjustmentSheets"
+                       ngf-multiple="false"
+                       ngf-accept="createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.ADJUSTMENT_SHEETS].acceptMime"
+                       ngf-pattern="createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.ADJUSTMENT_SHEETS].extensions"
+                       ngf-max-size="createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.ADJUSTMENT_SHEETS].maxSize"
+                       name="adjustmentSheets"
+                       required>
+                <div ng-messages="step4Form.adjustmentSheets.$error"
+                     ng-if="step4Form.showValidation || step4Form.adjustmentSheets.$dirty">
+                    <div ng-message="pattern">Invalid file format</div>
+                    <div ng-message="maxSize">Max file size is {{createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.ADJUSTMENT_SHEETS].maxSize|bytes}}</div>
+                    <div ng-message="required">This filed is required</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <progressbar ng-show="createOrderCtrl.order.uploadProgress" value="createOrderCtrl.order.uploadProgress" class="progress-xxs m-t-sm"></progressbar>
+    <div>
+        <button ng-disabled="createOrderCtrl.order.uploadProgress" class="btn btn-default float-left" ng-click="createOrderCtrl.goToPrevStep()">Prev</button>
+        <button ng-disabled="createOrderCtrl.order.uploadProgress" class="btn btn-default float-right" ng-click="createOrderCtrl.goToNextStep()">Next</button>
+    </div>
+    <div class="fix-clear"></div>
+</form>

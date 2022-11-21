@@ -1,0 +1,169 @@
+<div class="panel panel-default orderSummary">
+    <i class="fa fa-times hidden-lg hidden-md hide-icon" ng-mousedown="createOrderCtrl.close()"></i>
+    <div class="panel-heading">
+        ORDER SUMMARY <span class="total-price">{{createOrderCtrl.order.price | currency}}</span>
+    </div>
+    <div class="panel-body">
+        <div class="tree-node tree-node-content">
+            <ol class="steps">
+                <li ng-if="createOrderCtrl.formWizard.progressStep > 0">
+                    <div class="list-group-item bg-primary">
+                        <i class="fa fa-plus" ng-class="{'fa-plus': collapse, 'fa-minus':!collapse }"
+                           ng-click="collapse = !collapse"></i>
+                        {{createOrderCtrl.getStepTitle(1)}}
+                        <a class="float-right back-forward" data-nodrag ng-click="createOrderCtrl.goToStep(1)"><span
+                                class="fa fa-step-backward"></span></a>
+                    </div>
+                    <ol ng-hide="collapse">
+                        <li>
+                            1.1. For the data collection I use
+                            <b ng-show="createOrderCtrl.order.collectData.type === createOrderCtrl.FILES.COLLECT_DATA_MOBILE">Wintotal Mobile App</b>
+                            <b ng-show="createOrderCtrl.order.collectData.type === createOrderCtrl.FILES.COLLECT_DATA_MANUAL">Manuals Download</b>
+                            <cj-file-link ng-if="createOrderCtrl.order.collectData.file"
+                                          file="createOrderCtrl.order.collectData.file" label="File"></cj-file-link>
+                        </li>
+                        <li class="comas" ng-if="createOrderCtrl.order.collectData.file && createOrderCtrl.hasSomethingInCollectDataFile()">
+                            1.2 I have
+                            <b ng-repeat="uploadFile in createOrderCtrl.order.files"
+                                          ng-if="uploadFile.has && (!uploadFile.collectDataType || uploadFile.collectDataType === createOrderCtrl.order.collectData.type) ">
+                                {{uploadFile.label}}
+                            </b>
+                            &nbsp;
+                            in the file above
+                        </li>
+                        <li ng-if="createOrderCtrl.order.clone.file || createOrderCtrl.order.clone.path">
+                            1.3 I would like to use &nbsp;
+                            <cj-file-link file="createOrderCtrl.order.clone.file || createOrderCtrl.order.clone.path"
+                                          label="{{createOrderCtrl.order.software.name |capitalize}} clone file">
+                            </cj-file-link>
+                        </li>
+                        <li class="comas" ng-if="createOrderCtrl.hasUploadFiles()">
+                            1.4 My uploads are:
+
+                            <cj-file-link ng-repeat="uploadFile in createOrderCtrl.order.files"
+                                          ng-if="uploadFile.file && !uploadFile.has && (!uploadFile.collectDataType || uploadFile.collectDataType === createOrderCtrl.order.collectData.type)"
+                                          file="uploadFile.file"
+                                          label="{{uploadFile.label}}">
+                            </cj-file-link>
+                            <cj-file-link ng-repeat="uploadFile in createOrderCtrl.order.miscellaneousFiles"
+                                          file="uploadFile"
+                                          label="Miscellaneous({{uploadFile.name}})">
+                            </cj-file-link>
+                        </li>
+                    </ol>
+                </li>
+                <li ng-if="createOrderCtrl.formWizard.progressStep > 1">
+                    <div class="list-group-item bg-primary">
+                        <i class="fa fa-plus" ng-class="{'fa-plus': collapse, 'fa-minus':!collapse }"
+                           ng-click="collapse = !collapse"></i>
+                        {{createOrderCtrl.getStepTitle(2)}}
+                        <a class="float-right back-forward" data-nodrag ng-click="createOrderCtrl.goToStep(2)"><span
+                                class="fa fa-step-backward"></span></a>
+                    </div>
+                    <ol ng-hide="collapse">
+                        <li ng-repeat="comporable in createOrderCtrl.order.comparables">
+                            {{comporable.address1}}
+                            {{comporable.address2}}
+                            {{comporable.city}}
+                            {{createOrderCtrl.getTextByValue(createOrderCtrl.states, comporable.state)}}
+                            {{comporable.zip}}
+                            <cj-file-link ng-if="comporable.photo"
+                                          file="comporable.photo"
+                                          label="photo">
+                            </cj-file-link>
+                        </li>
+                    </ol>
+                </li>
+                <li ng-if="createOrderCtrl.formWizard.progressStep > 2">
+                    <div class="list-group-item bg-primary">
+                        <i class="fa fa-plus" ng-class="{'fa-plus': collapse, 'fa-minus':!collapse }"
+                           ng-click="collapse = !collapse"></i>
+                        {{createOrderCtrl.getStepTitle(3)}}
+                        <a class="float-right back-forward" data-nodrag ng-click="createOrderCtrl.goToStep(3)"><span
+                                class="fa fa-step-backward"></span></a>
+                    </div>
+                    <ol ng-hide="collapse">
+                        <li ng-if="createOrderCtrl.order.title">
+                            <b>Title:</b> {{createOrderCtrl.order.title}}
+                        </li>
+                        <li ng-if="createOrderCtrl.order.effectiveDate">
+                            <b>Effective Date:</b> {{createOrderCtrl.order.effectiveDate | date:'M/d/yy'}}
+                        </li>
+                        <li ng-if="createOrderCtrl.order.reportType">
+                            <b>Report:</b> {{createOrderCtrl.getTextByValue(createOrderCtrl.reportTypes,
+                            createOrderCtrl.order.reportType)}}
+                        </li>
+                        <li ng-if="createOrderCtrl.order.reportSample.label">
+                            <b>Sample:</b>
+                            <cj-file-link file="createOrderCtrl.order.reportSample.file || createOrderCtrl.order.reportSample.path"
+                                          label="{{createOrderCtrl.order.reportSample.label}}">
+                            </cj-file-link>
+                        </li>
+                        <li ng-if="createOrderCtrl.order.assignmentType">
+                            <b>Assignment type:</b> {{createOrderCtrl.order.assignmentType | capitalize}}
+                        </li>
+                        <li ng-if="createOrderCtrl.order.financing">
+                            <b>Financing:</b> {{createOrderCtrl.order.financing | capitalize}}
+                        </li>
+                        <li ng-if="createOrderCtrl.order.occupancy">
+                            <b>Occupancy:</b> {{createOrderCtrl.order.occupancy | capitalize}}
+                        </li>
+                        <li ng-if="createOrderCtrl.order.propertyRightAppraised">
+                            <b>Property rights appraised:</b> {{createOrderCtrl.order.propertyRightAppraised |
+                            capitalize}}
+                        </li>
+                        <li ng-if="createOrderCtrl.order.standardOrderInstruction">
+                            <b>Standard Order Instructions:</b> {{createOrderCtrl.order.standardOrderInstruction}}
+                        </li>
+                        <li ng-if="createOrderCtrl.order.customOrderInstruction">
+                            <b>Specific Order Instructions:</b> {{createOrderCtrl.order.customOrderInstruction}}
+                        </li>
+                    </ol>
+                </li>
+                <li ng-if="createOrderCtrl.formWizard.progressStep > 3">
+                    <div class="list-group-item bg-primary">
+                        <i class="fa fa-plus" ng-class="{'fa-plus': collapse, 'fa-minus':!collapse }"
+                           ng-click="collapse = !collapse"></i>
+                        {{createOrderCtrl.getStepTitle(4)}}
+                        <a class="float-right back-forward" data-nodrag ng-click="createOrderCtrl.goToStep(4)"><span
+                                class="fa fa-step-backward"></span></a>
+                    </div>
+                    <ol ng-hide="collapse">
+                        <li ng-if="createOrderCtrl.order.adjustmentSheetsType">
+                            <span ng-if="createOrderCtrl.order.adjustmentSheetsType === createOrderCtrl.ADJUSTMENT_TYPE.REGRESSION">
+                                Regression Analysis
+                            </span>
+                            <span ng-if="createOrderCtrl.order.adjustmentSheetsType === createOrderCtrl.ADJUSTMENT_TYPE.OWN">
+                                Custom Sheets &nbsp;
+                                <cj-file-link ng-if="createOrderCtrl.order.adjustmentSheets"
+                                              file="createOrderCtrl.order.adjustmentSheets"
+                                              label="file">
+                                </cj-file-link>
+                            </span>
+                        </li>
+                    </ol>
+                </li>
+                <li ng-if="createOrderCtrl.formWizard.progressStep > 4">
+                    <div class="list-group-item bg-primary">
+                        <i class="fa fa-plus" ng-class="{'fa-plus': collapse, 'fa-minus':!collapse }"
+                           ng-click="collapse = !collapse"></i>
+                        {{createOrderCtrl.getStepTitle(5)}}
+                        <a class="float-right back-forward" data-nodrag ng-click="createOrderCtrl.goToStep(5)"><span
+                                class="fa fa-step-backward"></span></a>
+                    </div>
+                    <ol ng-hide="collapse" ng-if="createOrderCtrl.order.photos">
+                        <li class="comas" ng-if="createOrderCtrl.order.photos | has:{label:{}}">
+                            My photos are:
+                            <cj-file-link ng-repeat="photo in createOrderCtrl.order.photos"
+                                          ng-if="photo.label"
+                                          file="photo.file"
+                                          label="{{photo.label.name}}">
+                            </cj-file-link>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+</div>

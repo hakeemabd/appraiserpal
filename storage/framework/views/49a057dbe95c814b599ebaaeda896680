@@ -1,0 +1,42 @@
+<?php echo Form::open([
+'route' => 'customer:register',
+'class' => 'registration-form',
+'id' => 'registrationForm'
+]); ?>
+
+
+<div class="form-field">
+    <?php echo Form::label('email', 'Email address (username)'); ?>
+
+    <?php echo Form::email('email', null, array ('class' => 'form-control form-control-small form-control-grey')); ?>
+
+</div>
+
+<div class="form-field">
+    <?php echo Form::label('mobile_phone', 'Cell phone number'); ?>
+
+    <?php echo Form::tel('mobile_phone', null, array ('class' => 'form-control form-control-small form-control-grey')); ?>
+
+</div>
+
+<div class="form-field">
+    <?php echo Form::label('password', 'Password'); ?>
+
+    <?php echo Form::password('password', array ('class' => 'form-control form-control-small form-control-grey')); ?>
+
+</div>
+
+<div class="form-field">
+    <?php echo Form::label('password_confirmation', 'Confirm password'); ?>
+
+    <?php echo Form::password('password_confirmation', array ('class' => 'form-control form-control-small form-control-grey')); ?>
+
+</div>
+
+<div class="form-field">
+    <?php echo Form::submit('Register', array('class' => 'btn btn-small form-placement-right')); ?>
+
+</div>
+
+<?php echo Form::close(); ?>
+

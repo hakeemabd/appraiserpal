@@ -1,0 +1,21 @@
+$nv-item-space: 8px;
+
+.main-nav {
+  #nav-mobile {
+    & > li {
+      & > a {
+        @include breakpoint-materialize(desktop) {
+          padding: 0 $nv-item-space;
+        }
+      }
+
+      .dropdown-button {
+        i {
+          @include breakpoint-materialize(desktop) {
+            margin-left: $nv-item-space;
+          }
+        }
+      }
+        }
+    }
+}

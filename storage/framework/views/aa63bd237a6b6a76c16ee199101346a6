@@ -1,0 +1,36 @@
+<?php $__env->startSection('breadcrumb'); ?>
+
+    <a class="breadcrumb">Payments Due</a>
+    <form class="right">
+        <div class="input-field">
+            <input id="search" type="search" required>
+            <label for="search"><i class="material-icons">search</i></label>
+            <i class="material-icons">close</i>
+        </div>
+    </form>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+    <table class="centered striped datagrid" data-source="<?php echo e(route('admin:payments', ['status' => 'due'])); ?>">
+        <thead>
+        <tr>
+            <th data-index="col_title">Title</th>
+            <th data-index="col_worker">Worker</th>
+            <th data-index="col_date">Date</th>
+            <th data-index="col_cost">Cost($)</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+    </table>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('scripts'); ?>
+<script type="text/javascript">
+    var datatables = null;
+
+    datatables = CJMA.DI.get('datagrid').addGrid({responsive: true, actions: true})
+</script>
+<?php $__env->appendSection(); ?>
+<?php echo $__env->make('layouts.page', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

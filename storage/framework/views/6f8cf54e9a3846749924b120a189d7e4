@@ -1,0 +1,52 @@
+<?php $__env->startSection('breadcrumb'); ?>
+
+    <a href="<?php echo e(route('admin:comment.index')); ?>" class="breadcrumb">Comments</a>
+    <form class="right">
+        <div class="input-field">
+            <input id="search" type="search" required>
+            <label for="search"><i class="material-icons">search</i></label>
+            <i class="material-icons">close</i>
+        </div>
+    </form>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+    <table class="centered stripe datagrid" data-source="<?php echo e(route('admin:comment.pending')); ?>">
+        <thead>
+        <tr>
+            <th data-index="col_comment_worker">Worker</th>
+            <th data-index="col_comment_order">Order Id</th>
+            <th data-index="col_comment_content">Content</th>
+        </tr>
+        </thead>
+    </table>
+
+    <div id="comment-edit-modal" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Edit assignment - <span></span></h4>
+            <form class="group-comment jvalidate-form"
+                  action="<?php echo e(route('admin:comment.edit')); ?>">
+                <?php echo Form::materialText("col_comment_content", '', null); ?>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a class="modal-action waves-effect waves-green btn">Save</a>
+        </div>
+    </div>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('scripts'); ?>
+<script type="text/javascript">
+CJMA.DI.get('datagrid').addGrid({
+        search: '#search',
+        responsive: true
+    });
+    
+    /*document.cookie = "comments=0";
+    document.getElementById("newComments").style.display = "none";*/
+</script>
+
+<?php $__env->appendSection(); ?>
+<?php echo $__env->make('layouts.page', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

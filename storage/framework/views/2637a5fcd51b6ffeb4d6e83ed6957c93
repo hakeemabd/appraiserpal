@@ -1,0 +1,6 @@
+<?php $__env->startSection('content'); ?>
+    <h1>Error with your activation!</h1>
+    <h3><?php echo e($error); ?></h3>
+    <a href="<?php echo e(route('worker:landing')); ?>">Home page</a>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.public', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

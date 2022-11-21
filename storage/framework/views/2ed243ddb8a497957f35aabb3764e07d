@@ -1,0 +1,49 @@
+<?php $__env->startSection('form-content'); ?>
+
+    <?php echo Form::hidden('role', $role); ?>
+
+    <?php echo Form::materialText('email', (isset($model)) ? $model->email : null); ?>
+
+    <?php echo Form::materialPassword('password', null); ?>
+
+    <?php echo Form::materialText('first_name', (isset($model)) ? $model->first_name : null); ?>
+
+    <?php echo Form::materialText('last_name', (isset($model)) ? $model->last_name : null); ?>
+
+    <?php echo Form::materialTel('mobile_phone', (isset($model)) ? $model->mobile_phone : null); ?>
+
+    <?php echo Form::materialTel('work_phone', (isset($model)) ? $model->work_phone : null); ?>
+
+    <?php echo Form::materialNumber('license_number', (isset($model)) ? $model->license_number : null); ?>
+
+    <div class="input-field col s8 m9 offset-s2 offset-m1 offset-l2 l8"><div class="divider"></div></div>
+    <?php echo Form::materialText('address_line_1', (isset($model)) ? $model->address_line_1 : null); ?>
+
+    <?php echo Form::materialText('address_line_2', (isset($model)) ? $model->address_line_2 : null); ?>
+
+    <?php echo Form::materialText('city', (isset($model)) ? $model->city : null); ?>
+
+    <?php echo Form::materialUsState('state', (isset($model)) ? $model->state : null); ?>
+
+    <?php echo Form::materialText('zip', (isset($model)) ? $model->zip : null); ?>
+
+    <div class="input-field col s8 m9 offset-s2 offset-m1 offset-l2 l8"><div class="divider"></div></div>
+    <?php echo Form::materialCheckbox('auto_comments', 1, (isset($model)) ? $model->auto_comments : null); ?>
+
+    <?php echo Form::materialCheckbox('auto_invite', 1, (isset($model)) ? $model->auto_invite : null); ?>
+
+    <?php echo Form::materialCheckbox('auto_delivery', 1, (isset($model)) ? $model->auto_delivery : null); ?>
+
+    <?php echo Form::materialCheckbox('email_notification', 1, (isset($model)) ? $model->email_notification : null); ?>
+
+    <?php echo Form::materialCheckbox('sms_notification', 1, (isset($model)) ? $model->sms_notification : null); ?>
+
+    <?php echo Form::materialCheckbox('confirmed', 1, (isset($model)) ? $model->confirmed : null, ['label' => 'Published']); ?>
+
+    <?php echo Form::materialNumber('delayed_payment', (isset($model)) ? $model->delayed_payment : null, empty($model->stripe_id) ? ['disabled' => 'disabled'] : []); ?>
+
+    <?php echo Form::materialTextarea('notes', (isset($model)) ? $model->notes : null); ?>
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('user.entity', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

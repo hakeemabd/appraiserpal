@@ -1,0 +1,26 @@
+  <div class="panel panel-default panel-list">
+    <div class="panel-heading">
+      <select
+        class="form-control"
+        ng-options="item as item.name for item in cloneFileManagerCtrl.softwareList track by item.id" ng-model="cloneFileManagerCtrl.currentSoftware">
+        <option value="" disabled>Add new</option>
+      </select>
+    </div>
+    <div class="panel-body">
+      <div class="row wrapper">
+        <div class="panel panel-default">
+          <div class="table-responsive">
+              <table class="table table-striped b-t b-light custom-table" cellspacing="0" width="100%"  datatable="cloneFileManagerCtrl.options" ao-column-defs="cloneFileManagerCtrl.columns" aa-data="cloneFileManagerCtrl.data">
+                <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>File</th>
+                  <th></th>
+                </tr>
+                </thead>
+              </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

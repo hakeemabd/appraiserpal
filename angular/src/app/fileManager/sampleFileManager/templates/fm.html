@@ -1,0 +1,27 @@
+<div class="panel panel-default panel-list">
+  <div class="panel-heading">
+    <select
+      class="form-control"
+      ng-options="item as item.text for item in sampleFileManagerCtrl.reportTypesList track by item.value"
+      ng-model="sampleFileManagerCtrl.currentReportType">
+      <option value="" disabled>Add new</option>
+    </select>
+  </div>
+  <div class="panel-body">
+    <div class="row wrapper">
+      <div class="panel panel-default">
+        <div class="table-responsive">
+          <table class="table table-striped b-t b-light custom-table" cellspacing="0" width="100%"  datatable="sampleFileManagerCtrl.options" ao-column-defs="sampleFileManagerCtrl.columns" aa-data="sampleFileManagerCtrl.data">
+            <thead>
+            <tr>
+              <th>Category</th>
+              <th>File</th>
+              <th></th>
+            </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

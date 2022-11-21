@@ -1,0 +1,99 @@
+<div class="modal-header">
+    <h3 class="modal-title">Upload Clone File</h3>
+</div>
+<div class="modal-body" cj-stop-event="touchend">
+    <form name="uploadCloneFileForm" class="m-l-md form-validation" novalidate>
+        <div class="row m-b">
+            <div class="col-md-6">
+                <h4>Set title for your clone file:</h4>
+                <input type="text" name="label"
+                       class="form-control"
+                       ng-model="uploadCloneFileCtrl.clone.label"
+                       popover="Clone file title"
+                       popover-trigger="focus"
+                       required>
+                <div ng-messages="uploadCloneFileForm.label.$error"
+                     ng-if="uploadCloneFileForm.showValidation || uploadCloneFileForm.label.$dirty">
+                    <div ng-message="required">This filed is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="m-b inline file-upload-inline-wrapper">
+            <div class="file-upload btn btn-primary"
+                 ng-class="{'active btn-success':!!uploadCloneFileCtrl.clone.file}">
+                <i class="fa fa-cloud-upload text"></i>
+                <span class="text">SELECT CLONE FILE</span>
+                <i class="fa fa-check text-active"></i>
+                <span class="text-active">{{uploadCloneFileCtrl.clone.file.name}}</span>
+                <input type="file"
+                       ngf-select
+                       ng-model="uploadCloneFileCtrl.clone.file"
+                       ngf-multiple="false"
+                       ngf-accept="uploadCloneFileCtrl.cloneFileUploadConfig.acceptMime"
+                       ngf-pattern="uploadCloneFileCtrl.cloneFileUploadConfig.extensions"
+                       ngf-max-size="uploadCloneFileCtrl.cloneFileUploadConfig.maxSize"
+                       name="cloneFile"
+                       required>
+            </div>
+            <div ng-messages="uploadCloneFileForm.cloneFile.$error"
+                 ng-if="uploadCloneFileForm.showValidation || uploadCloneFileForm.cloneFile.$dirty">
+                <div ng-message="required">This filed is required</div>
+                <div ng-message="pattern">Invalid file format</div>
+                <div ng-message="maxSize">Max file size is {{uploadCloneFileCtrl.cloneFileUploadConfig.maxSize|bytes}}
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="checkbox">
+                <label class="i-checks">
+                    <input type="checkbox" ng-model="uploadCloneFileCtrl.license"
+                           ng-class="{'ng-touched':uploadCloneFileForm.showValidation}" required>
+                    <i></i>
+                    License copy / License number
+                </label>
+            </div>
+            <div class="checkbox">
+                <label class="i-checks">
+                    <input type="checkbox" ng-model="uploadCloneFileCtrl.personalInfo"
+                           ng-class="{'ng-touched':uploadCloneFileForm.showValidation}" required>
+                    <i></i>
+                    Personal information
+                </label>
+            </div>
+            <div class="checkbox">
+                <label class="i-checks">
+                    <input type="checkbox" ng-model="uploadCloneFileCtrl.borrowerInfo"
+                           ng-class="{'ng-touched':uploadCloneFileForm.showValidation}" required>
+                    <i></i>
+                    Borrower information
+                </label>
+            </div>
+            <div class="checkbox">
+                <label class="i-checks">
+                    <input type="checkbox" ng-model="uploadCloneFileCtrl.lenderInfo"
+                           ng-class="{'ng-touched':uploadCloneFileForm.showValidation}" required>
+                    <i></i>
+                    Lender information
+                </label>
+            </div>
+        </div>
+        <p class="checking-info">By checking these options you guarantee that your sample file does not contain said information.
+            AppraiserPal will not be liable for any private information disclosed in your sample file.</p>
+
+    </form>
+    <progressbar ng-show="uploadCloneFileCtrl.progress" value="uploadCloneFileCtrl.progress"
+                 class="progress-xxs m-t-sm"></progressbar>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default float-left"
+            ng-disabled="uploadCloneFileCtrl.progress"
+            ng-click="uploadCloneFileCtrl.cancel(uploadCloneFileForm)">
+        Cancel
+    </button>
+    <button class="btn btn-success float-right"
+            ng-disabled="uploadCloneFileCtrl.progress"
+            ng-click="uploadCloneFileCtrl.ok(uploadCloneFileForm)">
+        Upload
+    </button>
+
+</div>

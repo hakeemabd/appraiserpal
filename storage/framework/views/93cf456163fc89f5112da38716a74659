@@ -1,0 +1,23 @@
+<?php $__env->startSection('breadcrumb'); ?>
+
+    <a href="<?php echo e(route('admin:user.index')); ?>" class="breadcrumb">Users</a>
+    <span class="breadcrumb breadcrumb-etc">...</span>
+    <a href="<?php echo e(route('admin:usersList', ['role' => $role])); ?>" class="breadcrumb"> <?php echo e(ucfirst($role).'s'); ?></a>
+    <a class="breadcrumb"><?php if(isset($model)): ?> Edit <?php else: ?> Create <?php endif; ?></a>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('scripts'); ?>
+
+
+<script>
+    CJMA.DI.get('form').addForm({
+        baseUrl: '/user',
+        modelId: <?php echo e(isset($model) ? $model->id : 'null'); ?>,
+        successUrl: '<?php echo e(route('admin:usersList', ['role' => $role])); ?>',
+        errorMessage: 'Saving user failed. Please correct validation errors.'
+    });
+</script>
+
+<?php $__env->appendSection(); ?>
+<?php echo $__env->make('layouts.entity', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

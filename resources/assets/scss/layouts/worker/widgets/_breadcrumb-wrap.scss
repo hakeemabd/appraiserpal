@@ -1,0 +1,28 @@
+.breadcrumb-wrap {
+
+  .breadcrumb {
+    @include breakpoint-materialize(mobile) {
+      display: none;
+      font-size: 14px;
+    }
+
+    &:first-child {
+      @include breakpoint-materialize(mobile) {
+        display: inline-block;
+      }
+    }
+
+    &:last-child {
+      @include breakpoint-materialize(mobile) {
+        display: inline-block;
+      }
+    }
+
+    &-etc {
+      display: none;
+      @include breakpoint-materialize(mobile) {
+        display: inline-block;
+      }
+    }
+    }
+}

@@ -1,0 +1,116 @@
+<div class="row">
+    <div class="col-md-6 vcenter">
+        <h3>Credit Card Information</h3>
+        <div ng-if="!checkoutCtrl.hasCard">
+            <div class="form-group">
+                <label class="col-md-3 control-label">Card Number</label>
+                <div class="col-md-9">
+                    <input type="text"
+                           name="cardNumber"
+                           class="form-control"
+                           ng-model="checkoutCtrl.billingInfo.card.number"
+                           placeholder="Credit Card Number"
+                           ng-maxlength="25"
+                           cc-number
+                           required>
+                    <div ng-messages="checkoutForm.cardNumber.$error" ng-if="checkoutForm.showValidation">
+                        <div ng-message="required">This filed is required</div>
+                        <div ng-message="ccNumber">Invalid Card Number</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Card Type</label>
+                <div class="col-md-9">
+                    <ul class="payment-cards">
+                        <li ng-repeat="(key, type) in checkoutCtrl.cardTypes"
+                            class="{{key}}"
+                            ng-class="{'active':checkoutCtrl.billingInfo.card.type === type}"></li>
+                    </ul>
+                    <input type="hidden"
+                           name="cardType"
+                           class="form-control"
+                           ng-model="checkoutCtrl.billingInfo.card.type"
+                           required>
+                    <div ng-messages="checkoutForm.cardType.$error" ng-if="checkoutForm.showValidation || checkoutForm.cardType.$dirty">
+                        <div ng-message="required">This filed is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Card Valid Throu</label>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <select name="year"
+                                    class="form-control"
+                                    ng-model="checkoutCtrl.billingInfo.card.year"
+                                    required>
+                                <option value="" disabled selected>
+                                    Year
+                                </option>
+                                <option ng-repeat="year in checkoutCtrl.cardYears"
+                                        value="{{year}}">
+                                    {{year}}
+                                </option>
+                            </select>
+                            <div ng-messages="checkoutForm.year.$error" ng-if="checkoutForm.showValidation || checkoutForm.year.$dirty">
+                                <div ng-message="required">This filed is required</div>
+                            </div>
+                        </div>
+                        <div class="slash">/</div>
+                        <div class="col-xs-5">
+                            <select name="month"
+                                    class="form-control"
+                                    ng-model="checkoutCtrl.billingInfo.card.month"
+                                    required>
+                                <option value="" disabled selected>
+                                    Month
+                                </option>
+                                <option ng-repeat="month in checkoutCtrl.cardMonths"
+                                        value="{{$index}}">
+                                    {{month}}
+                                </option>
+                            </select>
+                            <div ng-messages="checkoutForm.month.$error" ng-if="checkoutForm.showValidation || checkoutForm.month.$dirty">
+                                <div ng-message="required">This filed is required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label no-wrap">Card CCV Number</label>
+                <div class="col-md-9">
+                    <input type="text"
+                           name="ccv"
+                           class="form-control"
+                           ng-model="checkoutCtrl.billingInfo.card.ccv"
+                           placeholder="Card CCV Number"
+                           ng-maxlength="4"
+                           cc-cvc
+                           cc-type="checkoutForm.cardNumber.$ccType"
+                           required>
+                    <div ng-messages="checkoutForm.ccv.$error" ng-if="checkoutForm.showValidation || checkoutForm.ccv.$dirty">
+                        <div ng-message="required">This filed is required</div>
+                        <div ng-message="ccCvc">Invalid ccv format</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="checkoutCtrl.hasCard">
+            <span>Card</span>
+            <span class="m-l-md">**** **** **** {{checkoutCtrl.currentUser.last_four}}</span>
+            <span ng-repeat="(key, type) in checkoutCtrl.cardTypes"
+                class="payment-card {{key}} m-l-md"
+                ng-if="checkoutCtrl.currentUser.card_type === type">
+            </span>
+            <button class="btn btn-primary m-l-md" ng-click="checkoutCtrl.hasCard = false">CHANGE</button>
+        </div>
+
+    </div>
+    <div class="col-md-6 hidden-xs vcenter text-center " ng-if="!checkoutCtrl.hasCard">
+        <img src="/images/checkout/cvv.gif" alt="">
+    </div>
+</div>

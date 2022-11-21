@@ -1,0 +1,20 @@
+{
+  "private": true,
+  "devDependencies": {
+    "gulp": "^3.8.8",
+    "gulp-sass": "^2.1.1"
+  },
+  "dependencies": {
+    "bootstrap-sass": "^3.0.0",
+    "glob": "^6.0.3",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-install": "~0.6.0",
+    "gulp-replace": "^0.5.4",
+    "gulp-run": "*",
+    "gulp-sass": "^2.1.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "laravel-elixir": "^4.0.0",
+    "laravel-elixir-sass-compass": "^0.4.0"
+  }
+}

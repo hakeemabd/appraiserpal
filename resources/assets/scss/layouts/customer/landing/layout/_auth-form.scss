@@ -1,0 +1,65 @@
+.navbar {
+    .popover-form-wrap, .popover-content {
+        padding: 10px;
+        @include transition-property(all);
+        @include transition-duration(200ms);
+
+        .recoverForm {
+            display: none;
+        }
+
+        h4 {
+            margin: 0;
+        }
+
+        label {
+            margin: 0;
+        }
+
+        .btn-small {
+            height: 32px;
+            padding: 0.5em 1em;
+            border: none;
+            border-radius: 3px;
+            background-color: $secondary-color;
+            font-size: 14px;
+            font-weight: 400;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+            line-height: 1;
+            color: #FFF;
+
+            &:hover, &:focus, &:active {
+                color: #fff;
+                outline: none;
+                background-color: $secondary-hover-color;
+            }
+        }
+
+        a {
+            text-decoration: underline;
+            color: #8a8a8a;
+
+            &:hover, &:focus {
+                color: #8a8a8a;
+                text-decoration: none;
+            }
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+
+    &.stuck {
+        .popover-form-wrap, .popover-content {
+            .btn-small {
+                color: #FFF;
+            }
+        }
+    }
+}
+.popover {
+    min-width: 320px;
+}

@@ -1,0 +1,17 @@
+<?php $__env->startSection('body'); ?>
+
+    <h1>Hello!</h1>
+
+    <p class="lead">You have requested a password reset</p>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('action'); ?>
+    <p>Please follow <a
+                href="<?php echo e(route('worker:changePasswordForm', ['email' => $user->email, 'code' => $reminder->code])); ?>"
+                target="_blank">this
+            link</a> to reset your password</p>
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('emails.layout', ['title' => 'Recover password', 'hasAction' => true], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

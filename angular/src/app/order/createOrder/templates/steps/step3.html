@@ -1,0 +1,237 @@
+<progressbar value="createOrderCtrl.formWizard.completePercent" class="progress-xs" type="success"></progressbar>
+<form name="step3Form" class="form-validation" novalidate>
+    <!-- Save form in Controller -->
+    <span ng-init="createOrderCtrl.formWizard.forms.step3Form = step3Form" ng-show="false"></span>
+
+    <p>Complete information about your order:</p>
+    <div class="m-b">
+        <input type="text"
+               name="title"
+               class="form-control"
+               ng-model="createOrderCtrl.order.title"
+               placeholder="Title *"
+               popover="Enter the subject property address"
+               popover-trigger="focus"
+               ng-maxlength="100"
+               required>
+        <div ng-messages="step3Form.title.$error" ng-if="step3Form.showValidation || step3Form.title.$dirty">
+            <div ng-message="required">This filed is required</div>
+            <div ng-message="maxlength">This filed is required</div>
+        </div>
+    </div>
+    <div class="m-b">
+        <div class="input-group" ng-init="opened=false" >
+            <input type="text"
+                   name="effectiveDate"
+                   class="form-control"
+                   placeholder="Effective Date *"
+                   datepicker-popup="MM/dd/yyyy"
+                   ng-model="createOrderCtrl.order.effectiveDate"
+                   is-open="opened"
+                   popover="Enter the effective date of the appraisal"
+                   popover-trigger="focus"
+                   required/>
+            <span class="input-group-btn" ng-click="opened=!opened">
+                <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+
+        <div ng-messages="step3Form.effectiveDate.$error"
+             ng-if="step3Form.showValidation || step3Form.effectiveDate.$dirty">
+            <div ng-message="required">This filed is required</div>
+            <div ng-message="date">Invalid date</div>
+        </div>
+    </div>
+    <div class="m-b">
+        <select name="reportType"
+                class="form-control"
+                ng-model="createOrderCtrl.order.reportType"
+                popover="Select the appropriate report form"
+                popover-trigger="focus"
+                required>
+            <option value="" disabled selected>
+                Report Type
+            </option>
+            <option ng-repeat="reportType in createOrderCtrl.reportTypes"
+                    value="{{::reportType.value}}">
+                {{::reportType.text}}
+            </option>
+        </select>
+        <div ng-messages="step3Form.reportType.$error" ng-if="step3Form.showValidation || step3Form.reportType.$dirty">
+            <div ng-message="required">This filed is required</div>
+        </div>
+    </div>
+    <div class="m-b">
+        <select class="form-control"
+                ng-options="reportSample as reportSample.label for reportSample in createOrderCtrl.reportSamples | filter:{report_type_id: createOrderCtrl.order.reportType}"
+                ng-model="createOrderCtrl.order.reportSample"
+                popover="Choose or upload sample for the report that we follow"
+                popover-trigger="focus"
+                ng-disabled="!createOrderCtrl.order.reportType || !createOrderCtrl.reportSamples">
+            <option value="" disabled selected>Report Sample</option>
+        </select>
+        <div ng-messages="step3Form.reportSample.$error" ng-if="step3Form.showValidation || step3Form.reportSample.$dirty">
+            <div ng-message="required">This filed is required</div>
+        </div>
+    </div>
+    <div class="m-b row">
+        <div class="form-group">
+            <label class="col-lg-3 col-sm-12 control-label">Assignment Type:</label>
+            <div class="col-lg-9 col-sm-12">
+                <label class="checkbox-inline i-checks col-sm-4 col-xs-12">
+                    <input type="radio"
+                           ng-class="{'ng-touched':step3Form.showValidation}"
+                           ng-model="createOrderCtrl.order.assignmentType"
+                           value="purchase"
+                           name="assignmentType" required><i></i>
+                    Purchase
+                </label>
+                <label class="checkbox-inline i-checks col-sm-4 col-xs-12">
+                    <input type="radio"
+                           ng-class="{'ng-touched':step3Form.showValidation}"
+                           ng-model="createOrderCtrl.order.assignmentType"
+                           value="refinance"
+                           name="assignmentType" required><i></i>
+                    Refinance
+                </label>
+                <label class="checkbox-inline i-checks col-sm-4 col-xs-12">
+                    <input type="radio"
+                           ng-class="{'ng-touched':step3Form.showValidation}"
+                           ng-model="createOrderCtrl.order.assignmentType"
+                           value="other"
+                           name="assignmentType" required><i></i>
+                    Other
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="m-b row">
+        <div class="form-group">
+            <label class="col-lg-3 col-sm-12 control-label">Financing:</label>
+            <div class="col-lg-9 col-sm-12">
+                <label class="checkbox-inline i-checks col-sm-4 col-xs-12">
+                    <input type="radio"
+                           ng-class="{'ng-touched':step3Form.showValidation}"
+                           ng-model="createOrderCtrl.order.financing"
+                           name="financing"
+                           value="conventional" required><i></i>
+                    Conventional
+                </label>
+                <label class="checkbox-inline i-checks col-sm-4 col-xs-12">
+                    <input type="radio"
+                           ng-class="{'ng-touched':step3Form.showValidation}"
+                           ng-model="createOrderCtrl.order.financing"
+                           name="financing"
+                           value="fha" required><i></i>
+                    FHA
+                </label>
+                <label class="checkbox-inline i-checks col-sm-4 col-xs-12">
+                    <input type="radio"
+                           ng-class="{'ng-touched':step3Form.showValidation}"
+                           ng-model="createOrderCtrl.order.financing"
+                           name="financing"
+                           value="other" required><i></i>
+                    Other
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="m-b row">
+        <div class="form-group">
+            <label class="col-lg-3 col-sm-12 control-label">Occupancy:</label>
+            <div class="col-lg-9 col-sm-12">
+                <label class="checkbox-inline i-checks col-sm-4 col-xs-12">
+                    <input type="radio"
+                           ng-class="{'ng-touched':step3Form.showValidation}"
+                           ng-model="createOrderCtrl.order.occupancy"
+                           value="owner"
+                           name="occupancy" required><i></i>
+                    Owner
+                </label>
+                <label class="checkbox-inline i-checks col-sm-4 col-xs-12">
+                    <input type="radio"
+                           ng-class="{'ng-touched':step3Form.showValidation}"
+                           ng-model="createOrderCtrl.order.occupancy"
+                           value="tenant"
+                           name="occupancy" required><i></i>
+                    Tenant
+                </label>
+                <label class="checkbox-inline i-checks col-sm-4 col-xs-12">
+                    <input type="radio"
+                           ng-class="{'ng-touched':step3Form.showValidation}"
+                           ng-model="createOrderCtrl.order.occupancy"
+                           value="vacant"
+                           name="occupancy" required><i></i>
+                    Vacant
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="m-b row">
+        <div class="form-group">
+            <label class="col-lg-3 col-sm-12 control-label">Property Rights Appraised:</label>
+            <div class="col-lg-9 col-sm-12">
+                <label class="checkbox-inline i-checks col-sm-4 col-xs-12">
+                    <input type="radio"
+                           ng-class="{'ng-touched':step3Form.showValidation}"
+                           ng-model="createOrderCtrl.order.propertyRightAppraised"
+                           value="free simple"
+                           name="propertyRightAppraised" required><i></i>
+                    Fee Simple
+                </label>
+                <label class="checkbox-inline i-checks col-sm-4 col-xs-12">
+                    <input type="radio"
+                           ng-class="{'ng-touched':step3Form.showValidation}"
+                           ng-model="createOrderCtrl.order.propertyRightAppraised"
+                           value="leasehold"
+                           name="propertyRightAppraised" required><i></i>
+                    Leasehold
+                </label>
+                <label class="checkbox-inline i-checks col-sm-4 col-xs-12">
+                    <input type="radio"
+                           ng-class="{'ng-touched':step3Form.showValidation}"
+                           ng-model="createOrderCtrl.order.propertyRightAppraised"
+                           value="other"
+                           name="propertyRightAppraised" required><i></i>
+                    Other
+                </label>
+            </div>
+        </div>
+    </div>
+    <h4>Order Instructions</h4>
+    <div class="m-b form-group">
+        <textarea class="form-control"
+                  placeholder="Standard instruction: Some instructions that are pre-filled from the previous orders or the same field from the general information"
+                  rows="5"
+                  name="standardOrderInstruction"
+                  ng-model="createOrderCtrl.order.standardOrderInstruction"
+                  popover="Is there anything in particular that we should keep in mind when writing your reports?  Any standard instruction to follow?"
+                  popover-trigger="focus"
+                  required
+        ></textarea>
+        <div ng-messages="step3Form.standardOrderInstruction.$error"
+             ng-if="step3Form.showValidation || step3Form.standardOrderInstruction.$dirty">
+            <div ng-message="required">This filed is required</div>
+        </div>
+    </div>
+    <div class="m-b form-group">
+        <textarea class="form-control"
+                  placeholder="Specific Order Instructions here"
+                  rows="5"
+                  name="customOrderInstruction"
+                  ng-model="createOrderCtrl.order.customOrderInstruction"
+                  popover="Enter any order specific instructions that you would like us to know for this report ONLY....Ex. The sales price, upgrades and/or repairs needed to the subject property, or a discrepancy in the public records GLA, etc. Whatever you think is helpful to the typer..."
+                  popover-trigger="focus">
+        </textarea>
+        <div ng-messages="step3Form.customOrderInstruction.$error"
+             ng-if="step3Form.showValidation || step3Form.customOrderInstruction.$dirty">
+            <div ng-message="required">This filed is required</div>
+        </div>
+    </div>
+    <progressbar ng-show="createOrderCtrl.order.uploadProgress" value="createOrderCtrl.order.uploadProgress" class="progress-xxs m-t-sm"></progressbar>
+    <div>
+        <button ng-disabled="createOrderCtrl.order.uploadProgress" class="btn btn-default float-left" ng-click="createOrderCtrl.goToPrevStep()">Prev</button>
+        <button ng-disabled="createOrderCtrl.order.uploadProgress" class="btn btn-default float-right" ng-click="createOrderCtrl.goToNextStep()">Next</button>
+    </div>
+    <div class="fix-clear"></div>
+</form>

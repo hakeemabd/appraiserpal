@@ -1,0 +1,99 @@
+@font-size-cards: 15px;
+
+.payment-cards {
+  margin: 0;
+  padding: 0;
+  li {
+    font-size: @font-size-cards; // <=== Edit this to change the size of cards
+    display: inline-block;
+    margin-right: .25em;
+    background-image: url(http://imgh.us/payment-cards2.svg);
+    background-size: 23.077em;
+    background-repeat: no-repeat;
+    width: 4.165em;
+    height: 2.74em;
+    transition: background .1s ease-out;
+    zoom: 1;
+
+    &:last-child {
+      margin-left: 0;
+    }
+
+    /* Visa */
+    &.visa {
+      background-position: -.07em -3.07em;
+      &.active,
+      &:hover {
+        background-position: -.07em -.142em;
+      }
+    }
+
+    /* Mastercard */
+    &.mastercard {
+      background-position: -4.756em -3.07em;
+      &.active,
+      &:hover {
+        background-position: -4.756em -.142em;
+      }
+    }
+
+    /* American Express */
+    &.amex {
+      background-position: -9.44em -3.07em;
+      &.active,
+      &:hover {
+        background-position: -9.44em -.142em;
+      }
+    }
+
+    /* Discover */
+    &.discover {
+      background-position: -14.13em -3.07em;
+      &.active,
+      &:hover {
+        background-position: -14.13em -.142em;
+      }
+    }
+
+    /* PayPal */
+    &.paypal {
+      background-position: -18.79em -3.07em;
+      &.active,
+      &:hover {
+        background-position: -18.79em -.142em;
+      }
+    }
+  }
+}
+.modernizrno-svg {
+  .payment-cards li {
+    background-image: url(http://i.imgur.com/x76gBSp.png);
+  }
+
+  &.modernizrno-backgroundsize .payment-cards li {
+    font-size: @font-size-cards;
+    height: 3.8em;
+    width: 5.2em;
+    background-image: url(http://i.imgur.com/x76gBSp.png);
+    cursor: pointer;
+  }
+}
+.payment-card{
+  width: 50px;
+  height: 35px;
+  display: inline-block;
+  background: url(http://i76.imgup.net/accepted_c22e0.png) no-repeat;
+  vertical-align: middle;
+  &.visa {
+    background-position: -5px -5px;
+  }
+  &.mastercard {
+    background-position: -55px -5px;
+  }
+  &.discover {
+    background-position: -105px -5px;
+  }
+  &.amex {
+    background-position: -155px -5px;
+  }
+}

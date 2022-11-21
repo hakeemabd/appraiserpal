@@ -1,0 +1,16 @@
+<?php $__env->startSection('body'); ?>
+    <img src="<?php echo $message->embed(public_path() . '/images/Appraiser.png'); ?>"
+         style="display: block; margin-right: auto;" width="100">
+    <hr/>
+    <?php echo $task; ?>
+
+    <br>
+    <br>
+    <br>
+    Appraiser Pal Support
+    <br>
+    info@appraiserpal.com
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('admin.emails.layout', ['hasAction' => false], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

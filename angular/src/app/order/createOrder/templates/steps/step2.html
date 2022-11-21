@@ -1,0 +1,113 @@
+<progressbar value="createOrderCtrl.formWizard.completePercent" class="progress-xs" type="success"></progressbar>
+<form name="step2Form" class="form-validation" novalidate
+      ng-init="createOrderCtrl.formWizard.forms.step2Form = step2Form">
+    <!-- Save form in Controller -->
+    <span ng-init="createOrderCtrl.formWizard.forms.step2Form = step2Form" ng-show="false"></span>
+
+    <p class="m-b">Set up your comparables by indicating address and uploading one photo for each location:</p>
+    <div class="panel panel-default" ng-repeat="comparableItem in createOrderCtrl.order.comparables">
+        <div class="panel-body">
+            <i class="fa fa-times remove-comparable" ng-if="$index"
+               ng-click="createOrderCtrl.removeComparableByIndex($index)"></i>
+            <div class="m-b-sm">
+                <input type="text" name="address1{{$index}}" class="form-control" ng-model="comparableItem.address1"
+                       placeholder="Address" ng-maxlength="100" required>
+                <div class="float-left" ng-messages="step2Form['address1' + $index].$error"
+                     ng-if="step2Form.showValidation || step2Form['address1' + $index].$dirty">
+                    <div ng-message="required">This filed is required</div>
+                    <div ng-message="maxlenght">Max address length is 100 characters</div>
+                </div>
+            </div>
+            <div class="m-b-sm">
+                <input type="text" name="address2{{$index}}" class="form-control " ng-model="comparableItem.address2"
+                       placeholder="Address2" ng-maxlength="100">
+                <div class="float-left" ng-messages="step2Form['address2' + $index].$error"
+                     ng-if="step2Form.showValidation || step2Form['address2' + $index].$dirty">
+                    <div ng-message="required">This filed is required</div>
+                    <div ng-message="maxlenght">Max address length is 100 characters</div>
+                </div>
+            </div>
+            <div class="fix-clear"></div>
+            <div class="row">
+                <div class="col-md-6 m-b">
+                    <input type="text" name="city{{$index}}" class="form-control " ng-model="comparableItem.city"
+                           placeholder="City" ng-maxlength="50" required>
+                    <div class="float-left" ng-messages="step2Form['city' + $index].$error"
+                         ng-if="step2Form.showValidation || step2Form['city' + $index].$dirty">
+                        <div ng-message="required">This filed is required</div>
+                        <div ng-message="maxlenght">Max address length is 100 characters</div>
+                    </div>
+                </div>
+                <div class="col-md-3 m-b-md">
+                    <select name="state{{$index}}"
+                            class="form-control"
+                            ng-model="comparableItem.state"
+                            required>
+                        <option value="" disabled selected>
+                            State
+                        </option>
+                        <option ng-repeat="state in createOrderCtrl.states"
+                                value="{{::state.value}}">
+                            {{::state.text}}
+                        </option>
+                    </select>
+                    <div class="float-left" ng-messages="step2Form['state' + $index].$error"
+                         ng-if="step2Form.showValidation || step2Form['state' + $index].$dirty">
+                        <div ng-message="required">This filed is required</div>
+                    </div>
+                </div>
+                <div class="col-md-3 m-b">
+                    <input type="text" name="zip{{$index}}" class="form-control " ng-model="comparableItem.zip"
+                           placeholder="ZIP" ng-maxlength="10" required>
+                    <div class="float-left" ng-messages="step2Form['zip' + $index].$error"
+                         ng-if="step2Form.showValidation || step2Form['zip' + $index].$dirty">
+                        <div ng-message="required">This filed is required</div>
+                        <div ng-message="maxlenght">Max address length is 100 characters</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6 text-center m-b">
+                    <img class="image-preview" ngf-thumbnail="comparableItem.photo.path || comparableItem.photo || '/images/default-no-image.png'" >
+                    <i class="fa fa-times remove-image-icon" ng-show="comparableItem.photo" ng-click="comparableItem.photo = null"></i>
+                </div>
+                <div class="col-sm-12 col-md-offset-2 col-md-4  text-center">
+                    <div>
+                        <div class="file-upload btn btn-primary"
+                             ng-class="{'active btn-success':!!comparableItem.photo}">
+                            <i class="fa fa-cloud-upload text"></i>
+                            <span class="text">Upload photo</span>
+                            <i class="fa fa-check text-active"></i>
+                            <span class="text-active">Change Photo</span>
+                            <input type="file"
+                                   ngf-select
+                                   ng-model="comparableItem.photo"
+                                   ngf-multiple="false"
+                                   name="photo{{$index}}"
+                                   ngf-pattern="'image/*'"
+                                   ngf-accept="'image/*'"
+                                   ng-required="!comparableItem.photo.id">
+                        </div>
+                        <div ng-messages="step2Form['photo' + $index].$error"
+                             ng-if="step2Form.showValidation || step2Form['photo' + $index].$dirty">
+                            <div ng-message="pattern">You can upload only images</div>
+                            <div ng-message="required">This filed is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fix-clear"></div>
+        </div>
+
+
+    </div>
+    <button class="btn btn-primary" ng-click="createOrderCtrl.addComparables()">Add more</button>
+    <progressbar ng-show="createOrderCtrl.order.uploadProgress" value="createOrderCtrl.order.uploadProgress" class="progress-xxs m-t-sm"></progressbar>
+    <div class="m-t">
+        <button ng-disabled="createOrderCtrl.order.uploadProgress" class="btn btn-default float-left" ng-click="createOrderCtrl.goToPrevStep()">Prev</button>
+        <button ng-disabled="createOrderCtrl.order.uploadProgress" class="btn btn-default float-right" ng-click="createOrderCtrl.goToNextStep()">Next</button>
+    </div>
+    <div class="fix-clear"></div>
+
+</form>

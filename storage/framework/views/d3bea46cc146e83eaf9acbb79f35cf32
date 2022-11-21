@@ -1,0 +1,39 @@
+<?php $__env->startSection('breadcrumb'); ?>
+    <a href="<?php echo e(route('admin:pages')); ?>" class="breadcrumb">Pages</a>
+    <form class="right">
+        <div class="input-field">
+            <input id="search" type="search" required>
+            <label for="search"><i class="material-icons">search</i></label>
+            <i class="material-icons">close</i>
+        </div>
+    </form>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+    <?php /*data-source="<?php echo e(route('admin:order.data')); ?>" datagrid*/ ?>
+    <table class="centered datagrid" data-source="<?php echo e(route('admin:pages.data')); ?>">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th data-index="page_name">Page Name</th>
+            <th data-index="page_slug">Page Slug</th>
+        </tr>
+        </thead>
+    </table>
+    <?php /*<div class="fixed-action-btn">*/ ?>
+        <?php /*<a href="<?php echo e(route('admin:pages.addnew')); ?>" class="btn-floating btn-large pink waves-effect">*/ ?>
+            <?php /*<i class="large material-icons">add</i>*/ ?>
+        <?php /*</a>*/ ?>
+    <?php /*</div>*/ ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('scripts'); ?>
+    <script type="text/javascript">
+        CJMA.DI.get('datagrid').addGrid({
+            search: '#search',
+            responsive: true
+        });
+    </script>
+
+<?php $__env->appendSection(); ?>
+
+<?php echo $__env->make('layouts.page', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

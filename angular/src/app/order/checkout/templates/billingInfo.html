@@ -1,0 +1,123 @@
+<div class="row">
+    <div class="col-md-6 vcenter">
+        <h3>Billing Information</h3>
+        <div class="form-group">
+            <label class="col-md-3 control-label">First Name</label>
+            <div class="col-md-9">
+                <input type="text"
+                       name="firstName"
+                       class="form-control"
+                       ng-model="checkoutCtrl.billingInfo.firstName"
+                       placeholder="First Name"
+                       ng-maxlength="100"
+                       required>
+                <div ng-messages="checkoutForm.firstName.$error" ng-if="checkoutForm.showValidation || checkoutForm.firstName.$dirty">
+                    <div ng-message="required">This filed is required</div>
+                    <div ng-message="maxlength">This filed is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Last Name</label>
+            <div class="col-md-9">
+                <input type="text"
+                       name="lastName"
+                       class="form-control"
+                       ng-model="checkoutCtrl.billingInfo.lastName"
+                       placeholder="Last Name"
+                       ng-maxlength="100"
+                       required>
+                <div ng-messages="checkoutForm.lastName.$error" ng-if="checkoutForm.showValidation || checkoutForm.lastName.$dirty">
+                    <div ng-message="required">This filed is required</div>
+                    <div ng-message="maxlength">This filed is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Address Line 1</label>
+            <div class="col-md-9">
+                <input type="text"
+                       name="address1"
+                       class="form-control"
+                       ng-model="checkoutCtrl.billingInfo.address1"
+                       placeholder="Address Line 1"
+                       ng-maxlength="100"
+                       required>
+                <div ng-messages="checkoutForm.address1.$error" ng-if="checkoutForm.showValidation || checkoutForm.address1.$dirty">
+                    <div ng-message="required">This filed is required</div>
+                    <div ng-message="maxlength">This filed is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Address Line 2</label>
+            <div class="col-md-9">
+                <input type="text"
+                       name="address2"
+                       class="form-control"
+                       ng-model="checkoutCtrl.billingInfo.address2"
+                       placeholder="Address Line 2"
+                       ng-maxlength="100">
+                <div ng-messages="checkoutForm.address2.$error" ng-if="checkoutForm.showValidation || checkoutForm.address2.$dirty">
+                    <div ng-message="required">This filed is required</div>
+                    <div ng-message="maxlength">This filed is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">City</label>
+            <div class="col-md-9">
+                <input type="text"
+                       name="city"
+                       class="form-control"
+                       ng-model="checkoutCtrl.billingInfo.city"
+                       placeholder="City"
+                       ng-maxlength="100"
+                       required>
+                <div ng-messages="checkoutForm.city.$error" ng-if="checkoutForm.showValidation || checkoutForm.city.$dirty">
+                    <div ng-message="required">This filed is required</div>
+                    <div ng-message="maxlength">This filed is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">State</label>
+            <div class="col-md-9">
+                <select name="state"
+                        class="form-control"
+                        ng-model="checkoutCtrl.billingInfo.state"
+                        required>
+                    <option value="" disabled selected>
+                        State
+                    </option>
+                    <option ng-repeat="state in checkoutCtrl.states"
+                            value="{{state.value}}">
+                        {{state.text}}
+                    </option>
+                </select>
+                <div ng-messages="checkoutForm.state.$error" ng-if="checkoutForm.showValidation || checkoutForm.state.$dirty">
+                    <div ng-message="required">This filed is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">ZIP Code</label>
+            <div class="col-md-9">
+                <input type="text"
+                       name="zip"
+                       class="form-control"
+                       ng-model="checkoutCtrl.billingInfo.zip"
+                       placeholder="ZIP Code"
+                       ng-maxlength="100"
+                       required>
+                <div ng-messages="checkoutForm.zip.$error" ng-if="checkoutForm.showValidation || checkoutForm.zip.$dirty">
+                    <div ng-message="required">This filed is required</div>
+                    <div ng-message="maxlength">This filed is required</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 vcenter text-center">
+        <img src="/images/checkout/authorize-net-logo.gif" alt="">
+    </div>
+</div>

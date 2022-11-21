@@ -1,0 +1,92 @@
+.link {
+  color: blue;
+  &:hover {
+    text-decoration: underline;
+    color: blue;
+  }
+  &.file-link:before {
+    content: " ";
+  }
+}
+
+.file-upload {
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  input[type='file'] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+  }
+  span{
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+}
+
+.fix-clear {
+  clear: both;
+}
+
+[ng-message] {
+  color: @brand-danger;
+  text-align: center;
+  font-size: 12px;
+}
+
+.i-checks {
+  input.ng-invalid.ng-touched + i {
+    border-color: @brand-danger !important;
+  }
+}
+
+textarea {
+  resize: none;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.btn-lg {
+  width: 150px;
+}
+
+.relative {
+  position: relative;
+}
+
+.col-centered {
+  float: none;
+  margin: 0 auto;
+}
+.no-wrap{
+  white-space: nowrap;
+}
+.row .vcenter {
+  /* Medium devices (desktops, 992px and up) */
+  @media (min-width: @screen-md-min) {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+  }
+}
+.clickable {
+  @media (min-width: @screen-sm-min) {
+    cursor:pointer;
+  }
+
+}

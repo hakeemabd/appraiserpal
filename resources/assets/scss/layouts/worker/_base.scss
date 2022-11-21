@@ -1,0 +1,15 @@
+.container-custom {
+  padding: 0 25px;
+
+  @include breakpoint-materialize(tablet) {
+    padding: 0 15px;
+  }
+
+  @include breakpoint-materialize(mobile) {
+    padding: 0 10px;
+  }
+}
+
+a i {
+  cursor: pointer;
+}

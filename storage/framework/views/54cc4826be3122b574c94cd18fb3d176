@@ -1,0 +1,35 @@
+<?php $__env->startSection('styles'); ?>
+
+
+<?php $__env->appendSection(); ?>
+
+<?php $__env->startSection('angular-scripts'); ?>
+<script type="text/javascript">
+    var FILE_UPLOAD_CONFIG = <?php echo json_encode($uploadConfig, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES); ?>;
+    var STRIPE_KEY = <?php echo json_encode(App\Helpers\StripeHelper::getStripeKey()); ?>;
+</script>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript" src="<?php echo e(asset('build/scripts/vendor.js')); ?>"></script>
+<script type="text/javascript" src="<?php echo e(asset('build/scripts/app.js')); ?>"></script>
+<?php $__env->appendSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+    <div class="container">
+        <!-- uiView:  -->
+        <div class="app-content-body fade-in-up" style="padding-bottom: 0;"><!-- uiView:  -->
+            <div class="fade-in-down ">
+                <div class="hbox hbox-auto-xs hbox-auto-sm ">
+                    <div class="col">
+                        <?php echo $__env->make('widgets.profileHeader', ['profile' => $user], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hidden" id="editProfileTpl">
+        <?php echo $__env->make('profile.editProfile', ['profile' => $user], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    </div>
+    <div ui-view=""></div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layout.authorized', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,138 @@
+<progressbar value="createOrderCtrl.formWizard.completePercent" class="progress-xs" type="success"></progressbar>
+<div>
+    <p>Assign labels by selecting them from the list under a photo, or by drag-n-dropping label name on a photo:</p>
+    <form name="step5Form" class="form-validation" novalidate>
+        <!-- Save form in Controller -->
+        <span ng-init="createOrderCtrl.formWizard.forms.step5Form = step5Form" ng-show="false"></span>
+        <div class="relative"
+             ngf-drop="createOrderCtrl.onSelectPhotos($newFiles, $files, $file, $duplicateFiles, $invalidFiles, $event, step5Form.photos)"
+             ngf-drag-over-class="'dragover'"
+             ngf-change="createOrderCtrl.onSelectPhotos($newFiles, $files, $file, $duplicateFiles, $invalidFiles, $event, step5Form.photos)"
+             ngf-accept="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.PHOTO].acceptMime"
+             ngf-pattern="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.PHOTO].extensions"
+             ngf-max-size="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.PHOTO].maxSize"
+             ngf-multiple="true"
+             ngf-keep="true">
+            <button class="btn m-b-xs w-xs btn-default labels"
+                    ng-if="createOrderCtrl.order.photos"
+                    ng-init="createOrderCtrl.showLabels = false"
+                    ng-mousedown="createOrderCtrl.showLabels = !createOrderCtrl.showLabels">
+                Labels
+            </button>
+            <div class="m-l-md">
+                <div class="m-b inline">
+                    <div class="file-upload btn btn-primary m-b">
+                        <i class="fa fa-cloud-upload text"></i>
+                        <span class="text">Upload Images</span>
+                        <input type="file"
+                               ngf-select="createOrderCtrl.onSelectPhotos($newFiles, $files, $file, $duplicateFiles, $invalidFiles, $event, step5Form.photos)"
+                               ng-model="createOrderCtrl.order.photos"
+                               ngf-multiple="true"
+                               ngf-accept="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.PHOTO].acceptMime"
+                               ngf-pattern="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.PHOTO].extensions"
+                               ngf-max-size="::createOrderCtrl.filesUploadConfig[createOrderCtrl.FILES.PHOTO].maxSize"
+                               ngf-keep="true"
+                               name="photos"
+                               ng-required="!createOrderCtrl.order.photos">
+                    </div>
+
+                    <div ng-messages="step5Form.photos.$error"
+                         ng-if="step5Form.showValidation || step5Form.photos.$dirty">
+                        <div ng-message="pattern">You can upload only images</div>
+                        <div ng-message="required">This filed is required</div>
+                    </div>
+                </div>
+                <img class="drag-drop-image" src="/images/drag-and-drop-file-upload.png" ng-if="!createOrderCtrl.order.photos">
+                <div class="panel panel-default photos-preview-panel" ng-if="createOrderCtrl.order.photos">
+                    <div class="panel-body">
+                        <div>
+                            <div class="m-b text-center main-preview">
+                                <div jqyoui-droppable data-drop="true"
+                                     ng-model="createOrderCtrl.order.photos[createOrderCtrl.mainPhoto].label"
+                                     class="photo-main-preview"
+                                     ngf-background="createOrderCtrl.order.photos[createOrderCtrl.mainPhoto].file.path ||
+                                                    createOrderCtrl.order.photos[createOrderCtrl.mainPhoto].file">
+                                    <img ngf-src="createOrderCtrl.order.photos[createOrderCtrl.mainPhoto].file.path ||
+                                                    createOrderCtrl.order.photos[createOrderCtrl.mainPhoto].file">
+                                </div>
+                                <i class="fa fa-times remove-image-icon"
+                                   ng-click="createOrderCtrl.removePhotoByIndex(createOrderCtrl.mainPhoto)"></i>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-6 col-centered">
+                                    <ui-select ng-model="createOrderCtrl.order.photos[createOrderCtrl.mainPhoto].label"
+                                               theme="bootstrap"
+                                               tagging
+                                               reset-search-input="false"
+                                               on-select="createOrderCtrl.onSelectLabel($item, $select)">
+                                        <ui-select-match placeholder="New Label">{{$select.selected.name}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="label in createOrderCtrl.labels"
+                                                           refresh-delay="0">
+                                            <div>{{::label.name}}</div>
+                                        </ui-select-choices>
+
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-t-lg row">
+                            <div class="col-md-4 col-sm-6 col-xs-12 m-b-lg photo-preview-item"
+                                 ng-repeat="photo in createOrderCtrl.order.photos"
+                                 jqyoui-droppable data-drop="true"
+                                 ng-model="photo.label">
+                                <div class="image-preview"
+                                     ngf-background="photo.file.path || photo.file"
+                                     ng-click="createOrderCtrl.mainPhoto = $index">
+                                    <img ngf-src="photo.file.path || photo.file">
+                                    <div class="photo-label-wrapper">
+                                        <div class="photo-label">{{createOrderCtrl.order.photos[$index].label.name}}</div>
+                                    </div>
+                                </div>
+                                <i class="fa fa-times remove-image-icon"
+                                   ng-click="createOrderCtrl.removePhotoByIndex($index)"></i>
+                                <input type="text"
+                                       name="photo{{$index}}"
+                                       ng-model="createOrderCtrl.order.photos[$index].label"
+                                       ng-show="false"
+                                       required>
+                                <div ng-messages="step5Form['photo' + $index].$error"
+                                     ng-if="step5Form.showValidation || step5Form['photo' + $index].$dirty">
+                                    <div ng-message="required">Select label for this image</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="panel panel-default labels-panel" ng-class="{'opened':createOrderCtrl.showLabels}"
+                     ng-if="createOrderCtrl.order.photos">
+                    <div class="panel-body">
+                        <div class="text-center m-b"><b>Labels</b><i class="fa fa-times visible-xs hide-icon"
+                                                                     ng-mousedown="createOrderCtrl.showLabels = false"></i>
+                        </div>
+                        <div class="label-item"
+                             jqyoui-draggable="{placeholder:'keep'}"
+                             data-jqyoui-options="{helper: 'clone', appendTo:'body'}"
+                             drag="true"
+                             data-value="{{label.id}}"
+                             ng-repeat="label in createOrderCtrl.labels track by $index"
+                             ng-model="label">
+                            {{label.name}}
+                            <i ng-if="label.canDelete" class="fa fa-times remove-label-icon"
+                               ng-click="createOrderCtrl.removeLabelByIndex($index)"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <progressbar ng-show="createOrderCtrl.order.uploadProgress" value="createOrderCtrl.order.uploadProgress" class="progress-xxs m-t-sm"></progressbar>
+        <div>
+            <button ng-disabled="createOrderCtrl.order.uploadProgress" class="btn btn-default float-left" ng-click="createOrderCtrl.goToPrevStep()">Prev</button>
+            <button ng-disabled="createOrderCtrl.order.uploadProgress" class="btn btn-default float-right" ng-click="createOrderCtrl.reset5StepForm();createOrderCtrl.goToNextStep()">Finish</button>
+        </div>
+        <div class="fix-clear"></div>
+    </form>
+
+
+</div>

@@ -1,0 +1,10 @@
+<?php $__env->startSection('body'); ?>
+This order is complete and needs to be sent to customer. Login to <a class="text-primary" href="<?php echo e($host); ?>" target="_blank">admin site</a>.
+<br>
+<br>
+<br>
+Appraisers Solutions
+<br>
+support@appraiserssolutions.com
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.emails.layout', ['hasAction' => false], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

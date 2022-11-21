@@ -1,0 +1,69 @@
+header {
+    &.un-conflict-wrapper {
+        font-family: 'Source Sans Pro', sans-serif;
+
+        @import "bootstrap/forms";
+        @import "bootstrap/navbar";
+        @import "bootstrap/dropdowns";
+        @import "../landing/legacy/refactored/hero-header";
+        @import "../landing/legacy/refactored/nav";
+        @import "../components/btn";
+
+        .navbar-brand {
+            height: auto;
+
+            .logo-nav {
+                max-height: 100%;
+                max-width: 200px;
+            }
+        }
+
+        .navbar-collapse {
+            padding-top: 35px;
+        }
+
+        @media (min-width: 992px) {
+            .navbar-default {
+                background-color: transparent;
+            }
+
+            .navbar-default .btn {
+                border: 1px solid #fff;
+                background-color: transparent;
+                padding: .75em 1.5em;
+            }
+
+            .navbar-default .btn:hover {
+                background-color: #fa5454 !important;
+            }
+
+            .navbar-brand {
+                padding: 0;
+            }
+        }
+
+        .navbar-nav {
+            li {
+                a {
+                    display: inline-block;
+                    border: none;
+                    @include box-shadow(none);
+                }
+            }
+        }
+
+        .dropdown {
+            padding: 10px 15px;
+            line-height: 1.9;
+
+            li {
+                text-align: center;
+            }
+
+            .btn-skillet {
+                color: #4c4c4c;
+            }
+        }
+
+    }
+}

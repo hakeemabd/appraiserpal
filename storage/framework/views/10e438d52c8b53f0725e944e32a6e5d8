@@ -1,0 +1,26 @@
+<?php $__env->startSection('breadcrumb'); ?>
+
+    <a href="<?php echo e(route('admin:workerGroup.index')); ?>" class="breadcrumb">Worker Groups</a>
+    <a class="breadcrumb"><?php if(isset($model)): ?> Edit <?php echo e($model->name); ?> <?php else: ?> Create <?php endif; ?></a>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('form-content'); ?>
+    <?php echo Form::materialText('name', (isset($model)) ? $model->name : null, ['label' => 'Title']); ?>
+
+    <?php echo Form::materialNumber('sort', (isset($model)) ? $model->sort : null, ['label' => 'Sequence']); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('scripts'); ?>
+<script>
+    CJMA.DI.get('form').addForm({
+        baseUrl: '/workerGroup',
+        modelId: <?php echo e(isset($model) ? $model->id : 'null'); ?>,
+        successUrl: '<?php echo e(route('admin:workerGroup.index')); ?>',
+        errorMessage: 'Saving group failed. Please correct validation errors.'
+    });
+</script>
+
+<?php $__env->appendSection(); ?>
+<?php echo $__env->make('layouts.entity', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

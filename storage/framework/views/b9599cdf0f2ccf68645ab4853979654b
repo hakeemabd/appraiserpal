@@ -1,0 +1,26 @@
+<?php $__env->startSection('body'); ?>
+You are now ready to receive orders! When you receive an order by email, just login to
+<a href="<?php echo e($host); ?>">appraiserssolutions.com</a> to accept the order and time given to complete the order.
+<br>
+<br>
+Thank you, we appreciate you!
+<br>
+<br>
+<br>
+Appraisers Solutions
+<br>
+support@appraiserssolutions.com
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('action'); ?>
+    <p>Please activate your account by visiting <a
+                href="<?php echo e(route('worker:confirmSignup', ['email' => $user->email, 'code' => $activation->code])); ?>"
+                target="_blank">this
+            link</a></p>
+    <p>If you have troubles clicking the link, copy and paste this in your browser:<br/>
+        <?php echo e(route('worker:confirmSignup', ['email' => $user->email, 'code' => $activation->code])); ?>
+
+    </p>
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('emails.layout', ['title' => 'Welcome', 'hasAction' => true], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

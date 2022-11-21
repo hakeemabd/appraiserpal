@@ -1,0 +1,52 @@
+<a class="waves-effect waves-light btn modal-trigger">{{uploadFileCtrl.btnTitle}}</a>
+
+<div class="modal file-upload-modal">
+    <div class="modal-content">
+        <h4>Upload File</h4>
+        <form name="uploadFileForm">
+            <div class="row m-b">
+                <div class="input-field col s12 l9 field-error">
+                    <label>Set title for your clone file:</label>
+                    <input type="text" name="label"
+                           class="form-control"
+                           ng-class="{'invalid':uploadFileForm.label.$error.required && (uploadFileForm.$submitted || uploadFileForm.label.$dirty)}"
+                           ng-model="uploadFileCtrl.file.label"
+                           required>
+                    <div ng-messages="uploadFileForm.label.$error"
+                         ng-if="uploadFileForm.$submitted || uploadFileForm.label.$dirty">
+                        <div ng-message="required">This filed is required</div>
+                    </div>
+                </div>
+                <div class="col s12 l3 file-field input-field">
+                    <div class="btn">
+                        <span ng-if="!uploadFileCtrl.file.file">SELECT FILE</span>
+                        <span class="truncate" ng-if="uploadFileCtrl.file.file">{{uploadFileCtrl.file.file.name}}</span>
+                        <input type="file"
+                               ngf-select
+                               ng-model="uploadFileCtrl.file.file"
+                               ngf-multiple="false"
+                               ngf-accept="uploadCloneFileCtrl.cloneFileUploadConfig.acceptMime"
+                               ngf-pattern="uploadCloneFileCtrl.cloneFileUploadConfig.extensions"
+                               ngf-max-size="uploadCloneFileCtrl.cloneFileUploadConfig.maxSize"
+                               name="file"
+                               required>
+                    </div>
+                    <div ng-messages="uploadFileForm.file.$error"
+                         class="center-align"
+                         ng-if="uploadFileForm.$submitted || uploadFileForm.file.$dirty">
+                        <div ng-message="required">This filed is required</div>
+                        <div ng-message="pattern">Invalid file format</div>
+                        <div ng-message="maxSize">Max file size is {{uploadCloneFileCtrl.cloneFileUploadConfig.maxSize|bytes}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="progress" ng-if="uploadFileCtrl.uploadProgress">
+            <div class="determinate" ng-style="{width: uploadFileCtrl.uploadProgress + '%'}"></div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="btn waves-effect" ng-click="uploadFileCtrl.submitForm(uploadFileForm)">Upload</a>
+    </div>
+</div>

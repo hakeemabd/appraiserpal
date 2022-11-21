@@ -1,0 +1,21 @@
+@import "compass/css3";
+@import "lib/material";
+@import "lib/jquery.datatables";
+@import "layouts/customer/lib/swiper";
+//mixins
+@import "mixins/breakpoints-materialize";
+//legacy
+@import "layouts/admin/legacy/main";
+//base
+@import "layouts/admin/base";
+//widgets
+@import "layouts/admin/widgets/main-nav";
+@import "layouts/admin/widgets/jvalidate-form";
+@import "layouts/admin/widgets/order-table";
+@import "layouts/admin/widgets/breadcrumb-wrap";
+@import "layouts/admin/widgets/loader";
+@import "layouts/admin/widgets/datagrid";
+@import "layouts/customer/widgets/object-slider";
+@import "layouts/admin/widgets/slider-view";
+@import "layouts/admin/widgets/card-info";
+@import "layouts/admin/widgets/fixes.scss";

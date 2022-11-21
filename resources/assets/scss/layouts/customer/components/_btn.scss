@@ -1,0 +1,13 @@
+.btn {
+    &-small {
+        height: 32px;
+        padding: 0.5em 1em;
+    }
+
+    &-skillet {
+        padding: 0;
+        border: none;
+        background: none;
+        outline: 0;
+    }
+}

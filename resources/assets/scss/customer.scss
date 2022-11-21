@@ -1,0 +1,19 @@
+@import "compass/css3";
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+
+@import "layouts/customer/landing/variables";
+@import "mixins/bootstrap_breakpoints";
+@import "layouts/customer/lib/jquery.datatables";
+@import "layouts/customer/lib/select2/core";
+@import "layouts/customer/lib/swiper";
+
+@import "layouts/customer/components/img-sim";
+
+@import "layouts/customer/widgets/custom-table";
+@import "layouts/customer/widgets/header-nav";
+@import "layouts/customer/widgets/object-slider";
+@import "layouts/customer/widgets/link-list";
+@import "layouts/customer/widgets/panel-list";
+@import "layouts/customer/widgets/panel-popup";
+@import "layouts/customer/widgets/form";

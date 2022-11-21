@@ -1,0 +1,100 @@
+form {
+
+    .form {
+        &-field {
+            position: relative;
+            min-width: 220px;
+            padding-bottom: 10px;
+            @include clearfix;
+
+            &:last-child, &.without-padding {
+                padding-bottom: 0;
+            }
+
+            &.field-error {
+                padding-bottom: 18px;
+            }
+
+            label {
+                font-weight: normal;
+                color: #4c4c4c;
+
+                &::after {
+                    content: attr(data-error);
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    display: block;
+                    font-size: 12px;
+                    color: $primary-danger;
+                }
+            }
+
+            textarea {
+                min-height: 150px;
+            }
+
+            .select2 {
+                display: block;
+                width: 100% !important;
+                height: 34px;
+
+                .select2-selection__arrow b {
+                    margin-top: 2px;
+
+                }
+
+                .select2-selection {
+                    height: 34px;
+
+                    .select2-selection__rendered {
+                        line-height: 34px;
+                    }
+                }
+            }
+        }
+
+        &-placement {
+            &-right {
+                float: right;
+            }
+        }
+
+        &-control {
+            &-small {
+                height: 32px;
+                padding: 0 0.55em;
+            }
+
+            &-base {
+                width: 250px;
+            }
+
+            &-grey {
+                border: 1px solid #ccc;
+
+                &:hover, &:focus, &:active {
+                    border: 1px solid darken(#ccc, 20%);
+                }
+            }
+
+            &-error, &.invalid {
+                border: 1px solid $primary-danger;
+                color: $primary-danger;
+
+                &:hover, &:focus, &:active {
+                    border: 1px solid darken($primary-danger, 20%);
+                }
+            }
+
+            &-valid, &.valid {
+                border: 1px solid $primary-success;
+                color: $primary-success;
+
+                &:hover, &:focus, &:active {
+                    border: 1px solid darken($primary-success, 5%);
+                }
+            }
+        }
+    }
+}

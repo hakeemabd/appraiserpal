@@ -1,0 +1,106 @@
+@import "logos.less";
+@import "orderSummary.less";
+
+.modal-content {
+  ._border-radius(0);
+}
+
+.total-price {
+  float: right;
+}
+
+.software-wrapper {
+  .flex-display();
+  .justify-content(center);
+  .flex-wrap(wrap);
+  min-height: 150px;
+  .panel {
+    margin: 0 0 10px 10px;
+    width: 153px;
+  }
+  .panel, .panel-body {
+    padding: 0;
+    height: 100%;
+  }
+  .panel-body {
+    .logo {
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 150px;
+    }
+  }
+}
+
+.current-software {
+  color: green;
+}
+
+.order-form-wizard {
+  .file-upload {
+    max-width: 200px;
+    width: 100%;
+  }
+  ul.nav {
+    display: none;
+  }
+}
+
+.i-checks input:checked + i {
+  border-color: @brand-primary;
+  &:before {
+    background-color: @brand-primary;
+  }
+}
+
+.image-preview {
+  max-width: 90%;
+  max-height: 200px;
+}
+
+.remove-image-icon, .remove-comparable, .remove-label-icon {
+  vertical-align: top;
+  color: @brand-danger;
+}
+
+.remove-comparable, .hide-icon {
+  float: right;
+  margin: -18px -15px 0 0;
+}
+
+.hide-icon {
+  font-size: 20px;
+}
+
+.info-btn {
+  font-size: 16px;
+}
+
+.upload-collect-type {
+  .btn {
+    width: 150px;
+  }
+}
+
+.inline-upload-button {
+  vertical-align: middle;
+  margin-left: 10px;
+  font-size: 20px;
+  &.success {
+    color: @brand-success;
+  }
+}
+
+.file-upload-inline-wrapper {
+  max-width: 200px;
+  .file-upload {
+    max-width: 100%;
+  }
+}
+.dragover{
+  ._box-shadow(0 0 30px 0 @brand-primary);
+}
+.checking-info{
+  font-size: 12px;
+}
+
+

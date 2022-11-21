@@ -1,0 +1,28 @@
+.jvalidate-form {
+    margin-top: 20px;
+
+    .input-field {
+        margin-top: 2rem;
+
+        label {
+            z-index: auto;
+        }
+
+        &.field-error {
+            label {
+                width: 100%;
+
+                &::after {
+                    display: none;
+                    font-size: 0.8rem;
+                }
+
+                &.active {
+                    &::after {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}

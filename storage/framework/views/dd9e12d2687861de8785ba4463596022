@@ -1,0 +1,24 @@
+<?php $__env->startSection('content'); ?>
+    <div class="wapper_content">
+        <p class="title_contents">Privacy Policy</p>
+        <span id="docs-internal-guid-dfd612bb-d9f7-b88e-8433-940482d61641"><span
+                    style="font-family: 'Times New Roman';"> </span>
+<p dir="ltr" style="line-height:1.767272727272724;margin-top:0pt;margin-bottom:0pt;"><span
+            style="font-size: 15px; white-space: pre-wrap; line-height: 1.76727272727272; font-family: 'Times New Roman';"><br></span></p>
+<p dir="ltr" style="line-height:1.767272727272724;margin-top:0pt;margin-bottom:0pt;"><span
+            style="font-size: 15px; white-space: pre-wrap; line-height: 1.76727272727272; font-family: 'Times New Roman';">We ask for certain information such as your username, real name, address, phone number, license number and e-mail address when you register for an Appraiser Pal account, or if you correspond with us. We may also retain any messages you send through the Service, and may collect information you provide in User Content you post to the Service. We use this information to operate, maintain, and provide to you the features and functionality of the Service.</span></p>
+<span style="font-family: 'Times New Roman';"><br> </span>
+<p dir="ltr" style="line-height:1.767272727272724;margin-top:0pt;margin-bottom:0pt;"><span
+            style="font-size: 15px; font-weight: bold; vertical-align: baseline; white-space: pre-wrap; font-family: 'Times New Roman';">Third Party Accounts</span></p>
+<p dir="ltr" style="line-height:1.767272727272724;margin-top:0pt;margin-bottom:0pt;"><span
+            style="font-size: 15px; vertical-align: baseline; white-space: pre-wrap; font-family: 'Times New Roman';">You will be able to connect your Appraiser Pal account to third party accounts. By connecting your Appraiser Pal account to your third party account, you acknowledge and agree that you are consenting to the continuous release of information about you to others (in accordance with your privacy settings on those third party sites). If you do not want information about you to be shared in this manner, do not use this feature.</span></p>
+<span style="font-family: 'Times New Roman';"><br> </span>
+<p dir="ltr" style="line-height:1.767272727272724;margin-top:0pt;margin-bottom:0pt;"><span
+            style="font-size: 15px; font-weight: bold; vertical-align: baseline; white-space: pre-wrap; font-family: 'Times New Roman';">Links to third party sites/Third party services</span></p>
+<p dir="ltr" style="line-height:1.767272727272724;margin-top:0pt;margin-bottom:0pt;"><span
+            style="font-size: 15px; vertical-align: baseline; white-space: pre-wrap; font-family: 'Times New Roman';">AppraiserPal.com may contain links to other websites ("Linked Sites"). The Linked Sites are not under the control of Appraiser Pal and Appraiser Pal is not responsible for the contents of any Linked Site, including without limitation any link contained in a Linked Site, or any changes or updates to a Linked Site. Appraiser Pal is providing these links to you only as a convenience, and the inclusion of any link does not imply endorsement by Appraiser Pal of the site or any association with its operators.</span></p>
+<p dir="ltr" style="line-height:1.767272727272724;margin-top:0pt;margin-bottom:0pt;"><span
+            style="font-size: 15px; vertical-align: baseline; white-space: pre-wrap; font-family: 'Times New Roman';">Certain services made available via AppraiserPal.com are delivered by third party sites and organizations. By using any product, service or functionality originating from the AppraiserPal.com domain, you hereby acknowledge and consent that Appraiser Pal may share such information and data with any third party with whom Appraiser Pal has a contractual relationship to provide the requested product, service or functionality on behalf of AppraiserPal.com users and customers. &nbsp;There are confidentiality agreements made with any third party that AppraiserPal.com shares such information.`</span></p>
+<span style="font-family: 'Times New Roman';"><br></span><br></span></div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

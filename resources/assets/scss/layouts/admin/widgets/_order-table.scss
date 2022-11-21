@@ -1,0 +1,21 @@
+table.orders {
+    tr {
+        &.new {
+            background-color: color("blue", "lighten-4");
+        }
+        &.assigning {
+            background-color: color("yellow", "lighten-4");
+        }
+        &.inviting {
+            background-color: color("purple", "lighten-4");
+        }
+
+        &.finished {
+            background-color: color("teal", "lighten-5");
+        }
+
+        &.late {
+            background-color: color("red", "lighten-5");
+        }
+    }
+}

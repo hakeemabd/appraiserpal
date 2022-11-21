@@ -1,0 +1,44 @@
+<?php
+$isNew = isset($reportType->id) ? false : true;
+?>
+
+
+<?php $__env->startSection('breadcrumb'); ?>
+
+    <a href="<?php echo e(route('admin:order.index')); ?>" class="breadcrumb">Orders</a>
+    <a class="breadcrumb"><?php echo ($isNew) ? 'Create' : 'Update ' . $reportType->name; ?></a>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+
+    <?php echo Form::open([
+        'class' => 'form jvalidate-form',
+    ]); ?>
+
+
+    <?php echo Form::materialText('name', ((!$isNew) ? $reportType->name : null)); ?>
+
+    <?php echo Form::materialNumber('current_price', (!$isNew) ? $reportType->current_price : null); ?>
+
+    <?php echo Form::materialNumber('old_price', (!$isNew) ? $reportType->old_price : null); ?>
+
+
+    <?php echo Form::submit(($isNew) ? 'Create' : 'Update', ['class' => 'btn btn-success']); ?>
+
+
+    <?php echo Form::close(); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('scripts'); ?>
+<script>
+    CJMA.DI.get('form').addForm({
+        form: '.form',
+        errorMessage: 'Something went wrong',
+        successUrl: '<?php echo route('admin:reportType.index'); ?>',
+        baseUrl: '<?php echo route('admin:reportType.store', ['id' => ($isNew) ? false : $reportType->id]); ?>'
+    });
+</script>
+<?php $__env->appendSection(); ?>
+<?php echo $__env->make('layouts.page', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

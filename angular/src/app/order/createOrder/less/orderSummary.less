@@ -1,0 +1,28 @@
+.orderSummary {
+  ol {
+    list-style: none;
+    padding-left: 0;
+    ol {
+      padding-left: 20px;
+    }
+    &.steps {
+      li {
+        margin-bottom: 10px;
+        word-wrap: break-word;
+      }
+
+    }
+  }
+  li.comas > * {
+    &:after {
+      content: ',';
+    }
+    &:last-child:after {
+      content: '';
+    }
+  }
+  .list-group-item {
+    background-color: @brand-primary;
+  }
+
+}

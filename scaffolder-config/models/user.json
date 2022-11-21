@@ -1,0 +1,214 @@
+{
+    "modelLabel": "",
+    "tableName": "users",
+    "skipMigration": true,
+    "skipModel": true,
+    "skipController": true,
+    "skipViews": true,
+    "fields": [
+        {
+            "name": "mobile_phone",
+            "validations": "required",
+            "type": {
+                "db": "string",
+                "ui": "text"
+            },
+            "modifiers": "",
+            "foreignKey": "",
+            "index": "none",
+            "hideInListings": false
+        },
+        {
+            "name": "work_phone",
+            "validations": "",
+            "type": {
+                "db": "string",
+                "ui": "text"
+            },
+            "modifiers": "",
+            "foreignKey": "",
+            "index": "none",
+            "hideInListings": true
+        },
+        {
+            "name": "address_line_1",
+            "validations": "",
+            "type": {
+                "db": "string",
+                "ui": "text"
+            },
+            "modifiers": "",
+            "foreignKey": "",
+            "index": "none",
+            "hideInListings": true
+        },
+        {
+            "name": "address_line_2",
+            "validations": "",
+            "type": {
+                "db": "string",
+                "ui": "text"
+            },
+            "modifiers": "",
+            "foreignKey": "",
+            "index": "none",
+            "hideInListings": true
+        },
+        {
+            "name": "state",
+            "validations": "",
+            "type": {
+                "db": "string",
+                "ui": "text"
+            },
+            "modifiers": "",
+            "foreignKey": "",
+            "index": "none",
+            "hideInListings": true
+        },
+        {
+            "name": "zip",
+            "validations": "digits_between:5,10",
+            "type": {
+                "db": "string",
+                "ui": "text"
+            },
+            "modifiers": "",
+            "foreignKey": "",
+            "index": "none",
+            "hideInListings": true
+        },
+        {
+            "name": "license_number",
+            "validations": "required|digits:10",
+            "type": {
+                "db": "string",
+                "ui": "text"
+            },
+            "modifiers": "",
+            "foreignKey": "",
+            "index": "none",
+            "hideInListings": true
+        },
+        {
+            "name": "flat_fee",
+            "validations": "required|numeric",
+            "type": {
+                "db": "string",
+                "ui": "text"
+            },
+            "modifiers": "",
+            "foreignKey": "",
+            "index": "none",
+            "hideInListings": false
+        },
+        {
+            "name": "first_turnaround",
+            "validations": "required|numeric",
+            "type": {
+                "db": "string",
+                "ui": "text"
+            },
+            "modifiers": "",
+            "foreignKey": "",
+            "index": "none",
+            "hideInListings": true
+        },
+        {
+            "name": "next_turnaround",
+            "validations": "required|numeric",
+            "type": {
+                "db": "string",
+                "ui": "text"
+            },
+            "modifiers": "",
+            "foreignKey": "",
+            "index": "none",
+            "hideInListings": true
+        },
+        {
+            "name": "auto_comments",
+            "validations": "required",
+            "type": {
+                "db": "boolean",
+                "ui": "text"
+            },
+            "modifiers": "",
+            "foreignKey": "",
+            "index": "none",
+            "hideInListings": true
+        },
+        {
+            "name": "auto_orders",
+            "validations": "required",
+            "type": {
+                "db": "boolean",
+                "ui": "text"
+            },
+            "modifiers": "",
+            "foreignKey": "",
+            "index": "none",
+            "hideInListings": true
+        },
+        {
+            "name": "paypal_email",
+            "validations": "email",
+            "type": {
+                "db": "string",
+                "ui": "text"
+            },
+            "modifiers": "",
+            "foreignKey": "",
+            "index": "none",
+            "hideInListings": true
+        },
+        {
+            "name": "bank_name",
+            "validations": "",
+            "type": {
+                "db": "string",
+                "ui": "text"
+            },
+            "modifiers": "",
+            "foreignKey": "",
+            "index": "none",
+            "hideInListings": true
+        },
+        {
+            "name": "account_number",
+            "validations": "digits_between:10,12",
+            "type": {
+                "db": "string",
+                "ui": "text"
+            },
+            "modifiers": "",
+            "foreignKey": "",
+            "index": "none",
+            "hideInListings": true
+        },
+        {
+            "name": "routing_number",
+            "validations": "digits:9",
+            "type": {
+                "db": "string",
+                "ui": "text"
+            },
+            "modifiers": "",
+            "foreignKey": "",
+            "index": "none",
+            "hideInListings": true
+        },
+        {
+            "name": "confirmed",
+            "validations": "",
+            "type": {
+                "db": "boolean",
+                "ui": "text"
+            },
+            "modifiers": "",
+            "foreignKey": "",
+            "index": "none",
+            "hideInListings": true
+        }
+    ]
+}

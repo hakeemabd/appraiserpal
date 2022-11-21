@@ -1,0 +1,42 @@
+header {
+    &.hero-section {
+        nav {
+            ul.nav {
+                li {
+                    .dropdown {
+                        padding: 10px 15px;
+                        line-height: 1.9;
+
+                        .btn-skillet {
+                            color: #ffffff;
+                        }
+                    }
+                }
+            }
+
+            .navbar-brand {
+                height: auto;
+
+                .logo-nav, .logo-head {
+                    max-width: 200px;
+                }
+            }
+
+            .navbar-collapse {
+                padding-top: 35px;
+            }
+
+            &.stuck {
+                ul.nav {
+                    li {
+                        .dropdown {
+                            .btn-skillet {
+                                color: #4c4c4c;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

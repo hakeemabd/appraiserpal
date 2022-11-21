@@ -1,0 +1,10 @@
+<?php $__env->startSection('scripts'); ?>
+<script type="text/javascript">
+    //###formatter:off
+    var FILE_UPLOAD_CONFIG = <?php echo json_encode($uploadConfig, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES); ?>;
+    var STRIPE_KEY = <?php echo json_encode(App\Helpers\StripeHelper::getStripeKey()); ?>;
+
+    //###formatter:on
+</script>
+<?php $__env->appendSection(); ?>
+<?php echo $__env->make('layout.angular', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

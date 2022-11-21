@@ -1,0 +1,120 @@
+.labels {
+  transform: rotate(90deg);
+  position: absolute;
+  left: 0;
+  top: 93px;
+  margin-left: -44px;
+  display: none;
+  @media only screen and (max-width: @screen-sm) {
+    display: inline-block;
+  }
+}
+
+.labels-panel {
+  position: absolute;
+  display: none;
+  z-index: 5;
+  border-left: none;
+  top: 64px;
+  left: -15px;
+  direction: rtl;
+  overflow-y: auto;
+  max-height: 90%;
+  max-width: 150px;
+  .panel-body {
+    direction: ltr;
+  }
+  &.opened {
+    display: inline-block;
+  }
+  @media only screen and (min-width: @screen-sm) {
+    display: inline-block;
+    max-width: 23%;
+  }
+}
+
+.label-item {
+  cursor: url("/images/movecursor.png"), move;
+  border: 1px solid #dee5e7;
+  padding: 10px 10px;
+  margin-bottom: 10px;
+  &.ui-draggable {
+    background-color: white;
+  }
+  .remove-label-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+.photo-main-preview {
+  max-width: 97%;
+  text-align: center;
+}
+
+.photo-preview-item {
+  margin-left: auto;
+  margin-right: auto;
+  .remove-image-icon {
+    float: right;
+  }
+  .image-preview {
+    @media only screen and (max-width: @screen-xs) {
+      max-width: 85%;
+    }
+  }
+}
+
+.photos-preview-panel {
+  width: 80%;
+  margin-left: 21.5%;
+  @media only screen and (max-width: @screen-sm) {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+div.image-preview, .photo-main-preview {
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: inline-block;
+  min-width: 85%;
+  min-height: 50px;
+  background-image: url('https://camo.githubusercontent.com/9b83e235aadc0f0233a6954393cbb691b4dfb4fb/687474703a2f2f692e696d6775722e636f6d2f514c34756238352e676966');
+  background-position: center;
+  img {
+    visibility: hidden;
+    max-width: 100%;
+    max-height: 80vh;
+  }
+}
+
+.main-preview {
+  .remove-image-icon {
+    margin: -4px -1em 0 0;
+    font-size: 1.3em;
+  }
+}
+
+.photo-label-wrapper {
+  position: absolute;
+  bottom: 5px;
+  width: 100%;
+  text-align: center;
+  .photo-label {
+    display: inline-block;
+    width: 85%;
+    background-color: white;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+.drag-drop-image {
+  width: 100%;
+}
+
+

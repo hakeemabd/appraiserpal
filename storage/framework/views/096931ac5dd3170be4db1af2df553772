@@ -1,0 +1,50 @@
+<?php
+$profileInfo = [
+        'Name' => $user->fullName,
+        'License #' => $user['license_number'],
+        'Cell Phone' => $user['mobile_phone'],
+        'Work Phone' => $user['work_phone'],
+        'Address' => (!empty($user['address_line_1']) ? $user['address_line_1'] . ' ' : '') .
+                (!empty($user['address_line_2']) ? $user['address_line_2'] . ', ' : '') .
+                (!empty($user['city']) ? $user['city'] . ' ' : '') .
+                (!empty($user['state']) ? $user['state'] . ', ' : '') .
+                (!empty($user['zip']) ? $user['zip'] : ''),
+        'Standard Instruction' => $user['standard_instructions']
+];
+?>
+
+
+<?php $__env->startSection('content'); ?>
+    <div class="container">
+        <!-- uiView:  -->
+        <div class="app-content-body fade-in-up "><!-- uiView:  -->
+            <div class="fade-in-down ">
+                <div class="hbox hbox-auto-xs hbox-auto-sm ">
+                    <div class="col">
+                        <?php echo $__env->make('widgets.profileHeader', ['profile' => $user], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                        <div class="padder wrapper">
+                            <div class="row">
+                                <?php foreach($profileInfo as $fieldName => $fieldValue): ?>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading"><?php echo e($fieldName); ?></div>
+                                        <div class="panel-body">
+                                            <?php echo e(!empty($fieldValue)?$fieldValue:'Please add your ' . $fieldName); ?>
+
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                            <div class="row">
+                                <a href="javascript:void(0);" id="editProfile" class="btn btn-primary pull-right">Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hidden" id="editProfileTpl">
+        <?php echo $__env->make('profile.editProfile', ['profile' => $user], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    </div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.authorized', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

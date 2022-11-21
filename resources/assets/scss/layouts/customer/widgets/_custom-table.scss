@@ -1,0 +1,18 @@
+.custom-table {
+    thead {
+        border-bottom: 2px solid rgba(#58666E, 0.35);
+    }
+
+    tbody {
+        tr {
+            @include transition-property(background);
+            @include transition-duration(200ms);
+
+            &:hover {
+                td {
+                    background: rgba(#7266ba, 0.2);
+                }
+            }
+        }
+    }
+}

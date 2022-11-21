@@ -1,0 +1,10 @@
+# gem "appraiser pal"
+source 'https://rubygems.org'
+gem 'sass'
+gem 'compass'
+gem 'bootstrap-sass'
+gem 'sass-rails'
+gem 'materialize-sass'
+gem 'execjs'
+gem 'rvm-capistrano'
+gem 'capistrano'

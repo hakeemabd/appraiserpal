@@ -1,0 +1,64 @@
+<?php
+function getOrderFirstImageUrl($invitation)
+{
+    $image = $invitation->order->firstImage()->first();
+    if ($image) {
+        return $image->getImageUrl(\App\Models\Attachment::IMG_SMALL);
+    }
+    else {
+        return \App\Models\Attachment::DEFAULT_IMAGE;
+    }
+}
+?>
+
+<?php $__env->startSection('content'); ?>
+
+    <div class="col s12 m8 l9">
+        <div class="card">
+            <div class="card-content">
+                <?php if(sizeof($invitations) > 0): ?>
+                    <span class="card-title">New invitations</span>
+                    <ul class="collection">
+                        <?php foreach($invitations as $invitation): ?>
+                            <li class="collection-item avatar">
+                                <img src="<?php echo e(getOrderFirstImageUrl($invitation)); ?>" alt="" class="circle">
+                                <span class="title"><a href="<?php echo e(route('worker:order.show', ['order' => $invitation->order])); ?>"><?php echo e($invitation->order->title); ?></a></span>
+                                <p> You have <strong><?php echo e($invitation->getTurnAroundTime()); ?></strong> to complete task as <strong><?php echo e($invitation->group->name); ?></strong></p>
+                                <span class="secondary-content">
+                                    <a href="<?php echo e(route('worker:invitation.reject', ['code' => $invitation->code])); ?>"
+                                       class="tooltiped" data-tooltip="Reject invitation"><i
+                                            class="material-icons">highlight_off</i></a>
+                                    <a href="<?php echo e(route('worker:invitation.accept', ['code' => $invitation->code])); ?>"
+                                       class="tooltiped" data-tooltip="Accept invitation"><i
+                                            class="material-icons">send</i></a>
+                                </span>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php else: ?>
+                    <p>No new invitations</p>
+                <?php endif; ?>
+            </div>
+
+        </div>
+    </div>
+    <div class="col s12 m4 l3">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Availability</span>
+                <div class="switch">
+                    <label>
+                        Off
+                        <input data-source="/availability" id="availability" type="checkbox"
+                               <?php if(Sentinel::check()->available): ?> checked=""<?php endif; ?>>
+                        <span class="lever"></span>
+                        On
+                    </label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.page', ['breadcumb' => false, 'search' => false], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

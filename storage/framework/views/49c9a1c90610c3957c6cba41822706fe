@@ -1,0 +1,14 @@
+<?php $__env->startSection('content'); ?>
+
+    <form class="entity-form jvalidate-form row">
+
+        <?php echo $__env->yieldContent('form-content'); ?>
+
+        <div class="col s12 center-align action-btn-margin">
+            <button type="submit" class="waves-effect btn">Save</button>
+        </div>
+
+    </form>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.page', ['search' => false], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
