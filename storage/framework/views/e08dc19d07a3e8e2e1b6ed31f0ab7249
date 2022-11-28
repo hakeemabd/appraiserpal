@@ -1,0 +1,15 @@
+<div id="<?php echo e($id); ?>">
+    <div class="swiper-container object-slider">
+        <div class="swiper-wrapper">
+            <?php foreach($slides as $slide): ?>
+                <div class="swiper-slide">
+                    <img class="img-sim" data-img="<?php echo e($slide->getImageUrl(App\Models\Attachment::IMG_SOURCE)); ?>"
+                         src = '<?php echo e($slide->getImageUrl(App\Models\Attachment::IMG_SOURCE)); ?>'>
+                    <h5 class="h5"><?php echo e($slide->formatLabel()); ?></h5>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <div class="swiper-button-next swiper-button-black"></div>
+    <div class="swiper-button-prev swiper-button-black"></div>
+</div>

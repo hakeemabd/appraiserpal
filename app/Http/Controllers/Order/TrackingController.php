@@ -91,6 +91,7 @@ class TrackingController extends Controller
      */
     public function index()
     {
+        // echo 'efwr';
         if (Sentinel::check()->inRole('administrator') || Sentinel::check()->inRole('sub-admin')) {
             $newComments = $this->commentRepository->getCountPendingComments();
             $response = new \Illuminate\Http\Response(view('order.index'));
@@ -109,6 +110,7 @@ class TrackingController extends Controller
             'customer_id' => null,
             'status' => null,
         ]))->all();
+
         return Datatables::of($orders)
             ->addColumn('transaction_status', [$this, 'renderTransaction'])
             ->addColumn('rendered_status', [$this, 'renderStatus'])
@@ -128,6 +130,7 @@ class TrackingController extends Controller
                     }
                 }
                 return '';
+
             })
             ->setRowClass(function ($row) {
                 $classNames = [$row->status, $row->transaction->status, $row->group_status];
@@ -227,24 +230,24 @@ class TrackingController extends Controller
         if (!$model->transaction) {
             return '';
         }
-        if (!empty(Sentinel::check()) && Sentinel::check()->inRole('administrator')) {
-            $tpl = "<span>$[amount]</span><br /><span class='[status]'>[Status]</span>";
-            $search = ['[amount]', '[status]', '[Status]'];
-            $replace = [
-                money_format('%i', $model->transaction->amount),
-                $model->transaction->status,
-                ucfirst($model->transaction->status),
-            ];
-        } else {
-            $tpl = "<span class='[status]'>[Status]</span>";
-            $search = ['[status]', '[Status]'];
-            $replace = [
-                $model->transaction->status,
-                ucfirst($model->transaction->status),
-            ];
-        }
+        // if (!empty(Sentinel::check()) && Sentinel::check()->inRole('administrator')) {
+        //     $tpl = "<span>$[amount]</span><br /><span class='[status]'>[Status]</span>";
+        //     $search = ['[amount]', '[status]', '[Status]'];
+        //     $replace = [
+        //         money_format('%i', $model->transaction->amount),
+        //         $model->transaction->status,
+        //         ucfirst($model->transaction->status),
+        //     ];
+        // } else {
+        //     $tpl = "<span class='[status]'>[Status]</span>";
+        //     $search = ['[status]', '[Status]'];
+        //     $replace = [
+        //         $model->transaction->status,
+        //         ucfirst($model->transaction->status),
+        //     ];
+        // }
 
-        return str_replace($search, $replace, $tpl);
+        // return str_replace($search, $replace, $tpl);
     }
 
     /**

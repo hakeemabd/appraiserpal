@@ -51,6 +51,7 @@ class ManageController extends Controller
      */
     public function index()
     {
+        print_r('fd');
         $uploadConfig = $this->attachmentRepository->getUploadConfig();
         $configType = 'any';
         $user = $this->userRepository->find(Sentinel::getUser()->id);
@@ -69,17 +70,19 @@ class ManageController extends Controller
         }
 
 
-//        $subscriptionObject = $this->userRepository->getStripeSubscriptionDetails($user->stripe_subscription, env('STRIPE_API_SECRET'));
-//
-//        if($user->onTrial()){
-//
-//        }
-//
-//        $totalTransactions = $this->transactionRepository->getTotalTransactions($user, $subscriptionObject);
-//        $quotaExceeded = $this->transactionRepository->checkExceeded($user->stripe_plan, $totalTransactions);
-//        $remainingQuota = $this->transactionRepository->getRemainingQuota($user->stripe_plan, $totalTransactions);
+        //        $subscriptionObject = $this->userRepository->getStripeSubscriptionDetails($user->stripe_subscription, env('STRIPE_API_SECRET'));
+        //
+        //        if($user->onTrial()){
+        //
+        //        }
+        //
+        //        $totalTransactions = $this->transactionRepository->getTotalTransactions($user, $subscriptionObject);
+        //        $quotaExceeded = $this->transactionRepository->checkExceeded($user->stripe_plan, $totalTransactions);
+        //        $remainingQuota = $this->transactionRepository->getRemainingQuota($user->stripe_plan, $totalTransactions);
 
-        return view('order.dashboard', compact(
+        return view(
+            'order.dashboard',
+            compact(
                 'uploadConfig',
                 'configType',
                 'user',
@@ -87,11 +90,11 @@ class ManageController extends Controller
                 'remainingOrders'
             )
         );
-//        ,
-//        'totalTransactions',
-//                'quotaExceeded',
-//                'remainingQuota',
-//                'user'
+        //        ,
+        //        'totalTransactions',
+        //                'quotaExceeded',
+        //                'remainingQuota',
+        //                'user'
     }
 
 
@@ -165,6 +168,7 @@ class ManageController extends Controller
     public function getOrdersData()
     {
         $orders = $this->orderRepository->getCustomerOrders();
+
         return Datatables::of($orders)
             ->editColumn('customerStatus', function ($model) {
                 return '<span class="' . OrderViewHelper::getStatusWrapCls($model->status) . '">' . $model->customerStatus . '</span>';
@@ -172,11 +176,16 @@ class ManageController extends Controller
             ->addColumn('paid', function ($model) {
                 $ret = '';
                 if ($model->transaction) {
-                    $ret = "<span>$" . money_format('%i', $model->transaction->amount) . "</span>
-<span>" . ucfirst($model->transaction->status) . "</span>";
+                    // dd($model->transaction);
+                    $ret="<span>$00</span>
+                        <span> $00 </span>";
+                //     $ret = "<span>$" . money_format('%i', $model->transaction->amount) . "</span>
+                //    <span>" . ucfirst($model->transaction->status) . "</span>";
+                   /* newCommentabd */
                 }
                 return $ret;
             })
+
             ->addColumn('action', function ($model) {
                 $actions = [];
                 $icons = [

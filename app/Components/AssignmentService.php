@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: konst
@@ -15,6 +16,7 @@ use App\Exceptions\NoWorkersInvitationException;
 use App\Exceptions\OrderInvitationException;
 use App\Models\Invitation;
 use App\Models\Order;
+use App\Models\Bid;
 use App\Models\HistoryLog;
 use App\User;
 use App\Repositories\WorkerGroupRepository;
@@ -56,24 +58,28 @@ class AssignmentService
         if ($groupId) {
             $tags[] = 'group_' . $groupId;
         }
-//        return Cache::tags($tags)->rememberForever('assignments', function () use ($orderId, $groupId) {
+        //        return Cache::tags($tags)->rememberForever('assignments', function () use ($orderId, $groupId) {
         $condition = DB::table($this->assignmentTable)->where('order_id', $orderId);
         if ($groupId !== null) {
             $condition->where('group_id', $groupId);
         }
         if ($userId !== null) {
+
             $condition->where('user_id', $userId);
         }
         return $condition->get();
-//        });
+        //        });
     }
 
     public function inviteManually($orderId, $groupId, $users)
     {
+
         $assignments = $this->getAssignments($orderId, $groupId);
+
         if (!$assignments || !$assignments[0]) {
             throw new OrderInvitationException();
         }
+
         $assignment = $assignments[0];
         //prohibit any invitations if users are assigned
         if ($assignment->user_id) {
@@ -123,7 +129,7 @@ class AssignmentService
         } else {
             DB::table($this->assignmentTable)->insert($data);
         }
-//        Cache::tags(['order_' . $orderId])->forget('assignments');
+        //        Cache::tags(['order_' . $orderId])->forget('assignments');
         return (object)$data;
     }
 
@@ -180,6 +186,7 @@ class AssignmentService
         event(new StatusChanged($invitation->order_id));
     }
 
+
     public function finishOrder($orderId, $groupId, $userId)
     {
         $this->assignWorker($orderId, $groupId, $userId, Order::WORK_STATUS_FINISHED);
@@ -202,10 +209,22 @@ class AssignmentService
         event(new StatusChanged($orderId));
     }
 
+    public function bidSave($invitation)
+    {
+        dd($invitation);
+
+        $bidData = new Bid();
+        $bidData->user_id = $invitation->user_id;
+        $bidData->order_id = $invitation->order_id;
+        $bidData->group_id = $invitation->user_id;
+        $bidData->bid_amount = '456';
+        $bidData->save();
+    }
+
     public function reworkingOrder($orderId, $groupId, $userId)
     {
-//        $this->assignWorker($orderId, $groupId, $userId, Order::WORK_STATUS_FINISHED);
-//        event(new StatusChanged($orderId));
+        //        $this->assignWorker($orderId, $groupId, $userId, Order::WORK_STATUS_FINISHED);
+        //        event(new StatusChanged($orderId));
         $order = Order::find($orderId);
         if ($order->status !== Order::STATUS_REWORKING) {
             $order->status = Order::STATUS_REWORKING;
@@ -291,14 +310,13 @@ class AssignmentService
             }
         }
         if ($groupId !== null) {
-//            Cache::tags(['order_' . $orderId])->forget('assignments');
+            //            Cache::tags(['order_' . $orderId])->forget('assignments');
             return $this->assignWorker($orderId, $groupId, null, Order::WORK_STATUS_ASSIGNING);
-
         }
         foreach ($this->workerGroupRepository->allSorted() as $group) {
             $assignments[] = $this->assignWorker($orderId, $group->id, null, Order::WORK_STATUS_INVITING);
         }
-//        Cache::tags(['order_' . $orderId])->forget('assignments');
+        //        Cache::tags(['order_' . $orderId])->forget('assignments');
         return $assignments;
     }
 
@@ -361,7 +379,7 @@ class AssignmentService
      */
     public function invitationsTimedOut($orderId, $groupId)
     {
-        $invitationTimeout = 15;//todo: take from config when system settings are ready.
+        $invitationTimeout = 15; //todo: take from config when system settings are ready.
         $invitation = $this->invitationService->getLatestInvitation($orderId, $groupId);
         if (!$invitation) { //if there are no invitations that are valid for this order and group
             return true;
@@ -378,13 +396,13 @@ class AssignmentService
      */
     protected function processOnholdAssignment($assignment)
     {
-//        $assignments = $this->getAssignments($assignment->order_id);
-//        $groupOrderId = array_search($assignment, $assignments);
-//        if($groupOrderId == 1) {
-//            $order = Order::find($assignment->order_id);
-//            $order->status = Order::STATUS_REWORKING;
-//            $order->save();
-//        }
+        //        $assignments = $this->getAssignments($assignment->order_id);
+        //        $groupOrderId = array_search($assignment, $assignments);
+        //        if($groupOrderId == 1) {
+        //            $order = Order::find($assignment->order_id);
+        //            $order->status = Order::STATUS_REWORKING;
+        //            $order->save();
+        //        }
         $this->assignWorker(
             $assignment->order_id,
             $assignment->group_id,
@@ -419,9 +437,9 @@ class AssignmentService
         // we can't change order status in this case...
         // we cat change it when the main loop finishes without break;s meaning everythig is processed
         //@todo: probably need to check if he is the last one...
-//        $order = Order::find($assignment->order_id);
-//        $order->status = Order::STATUS_DONE;
-//        $order->save();
+        //        $order = Order::find($assignment->order_id);
+        //        $order->status = Order::STATUS_DONE;
+        //        $order->save();
         return true;
     }
 

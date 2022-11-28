@@ -23,6 +23,7 @@ class AdminDashboardController extends Controller
      */
     public function index()
     {
+        // echo 'sdf';
         if (Sentinel::check()->inRole('administrator') || Sentinel::check()->inRole('sub-admin')) {
             $newComments = $this->commentRepository->getCountPendingComments();
             $response = new \Illuminate\Http\Response(view('order.index'));

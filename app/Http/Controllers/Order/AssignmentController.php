@@ -163,6 +163,15 @@ class AssignmentController extends Controller
             ->make(true);
     }
 
+
+
+    // public function invite($orderId, $groupId, $userId)
+    // {
+    //     dd($userId);
+    //     $this->assignmentService->inviteManually($orderId, $groupId, [$userId]);
+    //     return response()->json();
+    // }
+
     public function invite($orderId, $groupId, $userId)
     {
         $this->assignmentService->inviteManually($orderId, $groupId, [$userId]);
@@ -214,6 +223,21 @@ class AssignmentController extends Controller
         return response()->json();
     }
 
+
+    public function acceptInvitation($code){
+        $invitation = $this->invitationRepository->getInvitationByCode($code);
+            if (!$invitation) {
+                Session::flash('__msg', [
+                    'type' => 'error',
+                    'text' => 'Could not find the invitation. Have you already accepted it?',
+                ]);
+                return redirect(route('worker:dashboard'));
+            }
+        $this->assignmentService->bidSave($invitation);
+
+
+    }
+
     /**
      * Worker route.
      *
@@ -221,30 +245,33 @@ class AssignmentController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function acceptInvitation($code)
-    {
-        $invitation = $this->invitationRepository->getInvitationByCode($code);
-        if (!$invitation) {
-            Session::flash('__msg', [
-                'type' => 'error',
-                'text' => 'Could not find the invitation. Have you already accepted it?',
-            ]);
-            return redirect(route('worker:dashboard'));
-        }
-        $this->assignmentService->acceptInvitation($invitation);
-        Session::flash('__msg', [
-            'type' => 'success',
-            'text' => 'Successfully accepted invitation to the order <strong>' . $invitation->order->title . '</strong>',
-        ]);
+    /* acceptInvitationOLD */
+    // public function acceptInvitation($code)
+    // {
+    //     $invitation = $this->invitationRepository->getInvitationByCode($code);
+    //     if (!$invitation) {
+    //         Session::flash('__msg', [
+    //             'type' => 'error',
+    //             'text' => 'Could not find the invitation. Have you already accepted it?',
+    //         ]);
+    //         return redirect(route('worker:dashboard'));
+    //     }
+    //     // dd('dfs');
 
-        //cancel others invitations
-        $others = $this->invitationService->getOthersInvitation($invitation->order_id, $invitation->group_id);
-        foreach ($others as $other) {
-            $this->invitationService->cancelInvitation($other->code);
-        }
+    //     $this->assignmentService->acceptInvitation($invitation);
+    //     Session::flash('__msg', [
+    //         'type' => 'success',
+    //         'text' => 'Successfully accepted invitation to the order <strong>' . $invitation->order->title . '</strong>',
+    //     ]);
 
-        return redirect(route('worker:dashboard'));
-    }
+    //     //cancel others invitations
+    //     $others = $this->invitationService->getOthersInvitation($invitation->order_id, $invitation->group_id);
+    //     foreach ($others as $other) {
+    //         $this->invitationService->cancelInvitation($other->code);
+    //     }
+
+    //     return redirect(route('worker:dashboard'));
+    // }
 
     /**
      * Worker route.

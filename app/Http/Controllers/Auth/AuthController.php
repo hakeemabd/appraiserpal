@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: konst
@@ -40,6 +41,7 @@ class AuthController extends Controller
      */
     public function processLogin()
     {
+        //  dd('sdf');
         try {
             $input = Input::all();
             $rules = [
@@ -62,14 +64,15 @@ class AuthController extends Controller
                     'errors' => ['email' => 'Does not exist']
                 ]);
             }
-//            print_r($user);
-//            echo env('ALLOWED_ROLE');
-//            die;
+            //            print_r($user);
+            //            echo env('ALLOWED_ROLE');
+            //            die;
             $allowedRole = env('ALLOWED_ROLE');
             if (env('ALLOWED_ROLE') == 'administrator') {
                 if ($user->inRole('sub-admin')) {
                     $allowedRole = 'sub-admin';
                 }
+
             }
             if (!$user->inRole($allowedRole)) {
                 return Response::json([
@@ -81,7 +84,8 @@ class AuthController extends Controller
             if (Sentinel::authenticate(Input::all(), $remember)) {
                 $newComments = 0;
                 if (Sentinel::check()->inRole('administrator') || Sentinel::check()->inRole('sub-admin')) {
-                    $newComments = Comment::pending()->count();
+                     $newComments = Comment::pending()->count();
+                    //$newComments = 5;
                 };
 
                 if (Sentinel::check()->inRole('customer')) {

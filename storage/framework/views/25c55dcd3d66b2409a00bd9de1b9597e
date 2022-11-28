@@ -1,0 +1,42 @@
+<?php $__env->startSection('breadcrumb'); ?>
+
+    <a href="<?php echo e(route('admin:order.index')); ?>" class="breadcrumb">Orders</a>
+    <a class="breadcrumb">Report Types</a>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+    <div class="col s12">
+        <table class="centered striped datagrid"
+            data-source="<?php echo e(route('admin:reportType.view')); ?>">
+            <thead>
+            <tr>
+                <th data-index="id">Id</th>
+                <th>Name</th>
+                <th data-index="current_price">Current Price</th>
+                <th data-index="old_price">Old Price</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+
+    <div class="fixed-action-btn">
+        <a href="<?php echo e(route('admin:reportTypeCreate')); ?>" class="btn-floating btn-large pink waves-effect">
+            <i class="large material-icons">add</i>
+        </a>
+    </div>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('scripts'); ?>
+<script type="text/javascript">
+    CJMA.DI.get('datagrid').addGrid({
+        success: {
+            'delete': 'Report Type successfully deleted'
+        },
+        error: {
+            'delete': 'Report Type is not deleted'
+        }
+    });
+</script>
+<?php $__env->appendSection(); ?>
+<?php echo $__env->make('layouts.page', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -69,8 +69,8 @@ class OrderRepository extends BaseRepository
             $extra = ['user' => $user->id];
 
             if (!$order->hasTransaction()) {
-                $historyLogRepository->saveLog($order->id, HistoryLog::NEW_ORDER, $extra);
-                event(new CreateOrder($order->id));
+                // $historyLogRepository->saveLog($order->id, HistoryLog::NEW_ORDER, $extra);
+                // event(new CreateOrder($order->id));
                 $transaction = app(TransactionRepository::class);
                 $order->transaction()->save(
                     $transaction->fill($order, $user)

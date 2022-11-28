@@ -25,7 +25,7 @@
                 <div class="modal-body" style="padding-bottom:50px;">
                     <div class="row">
                         <div class="col-sm-12" >
-                            <form role="form" class="form-horizontal auth-form" style="max-width:70%; margin:0 auto;" action="{{ route('customer:login') }}" method="POST">
+                            <form role="form" class="form-horizontal auth-form" style="max-width:70%; margin:0 auto;" action="{{ asset('login') }}" method="POST">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <h2 style="color:#000; text-align:left; margin-bottom:25px;">LOGIN</h2>
                                     <div class="form-group">

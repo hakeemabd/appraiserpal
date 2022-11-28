@@ -1,0 +1,153 @@
+<?php $__env->startSection('breadcrumb'); ?>
+
+    <a href="<?php echo e(route('admin:order.index')); ?>" class="breadcrumb">Orders</a>
+    <a href="<?php echo e(route('admin:order.show', ['order' => $order])); ?>" class="breadcrumb"><?php echo e($order->title); ?></a>
+    <a class="breadcrumb">Assignments</a>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+    <div class="col s12">
+        <ul class="tabs material-tabs">
+            <?php foreach($workerGroups as $group): ?>
+                <li class="tab col s3"><a class="active" href="#gr<?php echo e($group->id); ?>"><?php echo e($group->name); ?></a></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+    <?php foreach($workerGroups as $group): ?>
+        <div id="gr<?php echo e($group->id); ?>" class="col s12">
+            <table class="centered striped datagrid"
+                   data-group-id="<?php echo e($group->id); ?>"
+                   data-source="<?php echo e(route('admin:order.assignments.data', [
+                        'groupId' => $group->id,
+                        'orderId' => $order->id])); ?>">
+                <thead>
+                <tr>
+                    <th data-index="email" data-render="fullName">Full name</th>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>Zip</th>
+                    <th data-index="license_number">License #</th>
+                    <th data-index="fee" data-render="money">Flat fee</th>
+                    <th data-index="second_fee" data-render="money">Secondary fee</th>
+                    <th data-index="first_turnaround" data-render="timeFromMinutes">Initial turnaround</th>
+                    <th data-index="next_turnaround" data-render="timeFromMinutes">Next turnarounds</th>
+                    <th data-index="available" data-render="availability">Availability</th>
+                    <th data-index="assignment_status" data-render="workerStatus">Status</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    <?php endforeach; ?>
+
+    <div id="add-additional-worker-time-modal" class="modal">
+        <div class="modal-content">
+            <h4>Add more time</h4>
+            <form action="<?php echo e(route('admin:order.add.worker.time', ['orderId' => $order->id])); ?>" method="post" class="ajax-form" onsubmit="event.preventDefault();">
+                <input type="hidden" name="group_id" value="">
+                <input type="hidden" name="user_id" value="">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="additional-time-id" value="" type="text" class="validate" name="time" required>
+                        <label for="additional-time-id">Set time</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <button type="submit" class="waves-effect btn">Add</button>
+                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('scripts'); ?>
+<script type="text/javascript">
+    CJMA.DI.get('form').addForm({
+        errorMessage: 'Failed',
+        successUrl: '/order/<?php echo e($order->id); ?>/assignments'
+    });
+
+    CJMA.DI.get('datagrid').addGrid({
+        availabilityRenderer: function (data, type, row) {
+            if (type !== 'display') {
+                return data;
+            }
+            var icons = [];
+            if (row.available) {
+                icons.push('<i class="material-icons teal-text">ic_lightbulb_outline</i>');
+            }
+            else {
+                icons.push('<i class="material-icons red-text">ic_lightbulb_outline</i>');
+            }
+            if (row.worked_before) {
+                icons.push('<i class="material-icons">school</i>');
+            }
+            if (row.feedback_rating > 0) {
+                if (row.feedback_rating >= 4) {
+                    icons.push('<i class="material-icons">ic_star</i>');
+                }
+                else if (row.feedback_rating == 3) {
+                    icons.push('<i class="material-icons">ic_star_half</i>');
+                }
+                else {
+                    icons.push('<i class="material-icons">ic_star_border</i>');
+                }
+            }
+            return icons.join(' ');
+        },
+        workerStatusRenderer: function (data, type, row) {
+            if (type !== 'display') {
+                return data;
+            }
+            var statusText, deadline, status;
+            if (!data) {
+                if (row.invited && row.invited.length > 0) {
+                    statusText = 'Invited';
+                }
+                else {
+                    statusText = 'Not invited';
+                }
+            }
+            else {
+                statusText = data[0].toUpperCase() + data.substr(1);
+            }
+            if (data == 'working') {
+                deadline = moment(row.deadline);
+                status = '<span class="row-tooltip" data-position="top" data-tooltip="' + deadline.fromNow() + '">' + statusText + '</span>';
+                if (deadline.isBefore()) {
+                    status = $(status).addClass('overdue')[0].outerHTML;
+                }
+            }
+            else {
+                status = statusText;
+            }
+            return status;
+        },
+        error: {
+            invite: "Sorry, could not invite the worker(s)",
+            cancel: "Sorry, could not cancel the invitation",
+            unassign: "Sorry, could not unassign user"
+        },
+        success: {
+            invite: "Worker(s) is invited.",
+            cancel: "Invitation canceled.",
+            unassign: "User unassigned. Invite a new one now."
+        },
+        'add timeHandler': function() {
+            var $addAdditionalWorkerTimeModal = $('#add-additional-worker-time-modal');
+            var groupId = $(this).data('group-id');
+            var userId = $(this).data('user-id');
+
+            $("[name=group_id]", $addAdditionalWorkerTimeModal).val(groupId);
+            $("[name=user_id]", $addAdditionalWorkerTimeModal).val(userId);
+
+            $addAdditionalWorkerTimeModal.openModal();
+        }
+    });
+</script>
+<?php $__env->appendSection(); ?>
+<?php echo $__env->make('layouts.page', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

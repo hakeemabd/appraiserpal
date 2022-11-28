@@ -43,11 +43,11 @@ class Subscription
 //            if ($this->userRepository->inTrial($user) && !$user->hasFreeOrders()) {
 //                return redirect(url('/subscription-plans'));
 //            }
-            if (!$this->userRepository->inTrial($user) && !$user->subscribed()) {
-                return redirect(url('/subscription-plans'));
-            } elseif (!$this->userRepository->inTrial($user) && $user->subscribed() && (empty($user->stripe_subscription) || empty($user->stripe_plan))) {
-                return redirect(url('/subscription-plans'));
-            }
+            // if (!$this->userRepository->inTrial($user) && !$user->subscribed()) {
+            //     return redirect(url('/subscription-plans'));
+            // } elseif (!$this->userRepository->inTrial($user) && $user->subscribed() && (empty($user->stripe_subscription) || empty($user->stripe_plan))) {
+            //     return redirect(url('/subscription-plans'));
+            // }
         }
         return $next($request);
     }

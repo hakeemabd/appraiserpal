@@ -28,6 +28,8 @@ class WorkerInvitations extends Criteria
      */
     public function apply($model, Repository $repository)
     {
+        // dd('x');
+
         return $model
             ->with('order', 'order.firstImage', 'group')
             ->where('user_id', $this->userId)

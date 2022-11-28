@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Models\Attachment;
-use Hootlex\Moderation\Moderatable;
+//use Hootlex\Moderation\Moderatable;
 
 class Comment extends Model
 {
-    use Moderatable;
+    // use Moderatable;
     
     const PRIVATE_CHANNEL = 'private';
     const PUBLIC_CHANNEL = 'public';

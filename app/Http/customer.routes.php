@@ -16,7 +16,7 @@ return function () {
 
     Route::post('subscribe', 'Customer\SubscriptionController@subscribe');
 
-    // Route::get('/dashboardaa', 'WorkerDashboardController@dashboard');
+    // Route::get('/dashboard', 'ManageController@index');
 
 
     Route::group([

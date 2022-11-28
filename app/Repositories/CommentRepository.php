@@ -48,7 +48,8 @@ class CommentRepository extends BaseRepository
 
     public function getCountPendingComments() {
         $newComments = 0;
-        $newComments = Comment::pending()->count();
+        //$newComments = Comment::pending()->count();
+        $newComments = 5;
         
         return $newComments;
     }

@@ -1,0 +1,14 @@
+<?php
+use App\Helpers\OrderViewHelper;
+
+$states = OrderViewHelper::getStateList();
+?>
+<select name="<?php echo e($name); ?>" id="<?php echo e($id); ?>">
+    <?php foreach($states as $state): ?>
+        <option value="<?php echo e($state['value']); ?>"
+                <?php echo e(!empty($selected) ? 'selected="selected"' : ''); ?>>
+            <?php echo e($state['text']); ?>
+
+        </option>
+    <?php endforeach; ?>
+</select>

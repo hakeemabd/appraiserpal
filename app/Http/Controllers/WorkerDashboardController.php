@@ -10,12 +10,12 @@ use Illuminate\Http\Request;
 
 class WorkerDashboardController extends Controller
 {
-    // protected $invitationRepository;
+    protected $invitationRepository;
 
-    // public function __construct(InvitationRepository $invitationRepository)
-    // {
-    //     $this->invitationRepository = $invitationRepository;
-    // }
+    public function __construct(InvitationRepository $invitationRepository)
+    {
+        $this->invitationRepository = $invitationRepository;
+    }
 
     /**
      * Display a listing of the resource.
