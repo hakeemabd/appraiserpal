@@ -211,7 +211,6 @@ class AssignmentService
 
     public function bidSave($invitation)
     {
-        dd($invitation);
 
         $bidData = new Bid();
         $bidData->user_id = $invitation->user_id;
