@@ -224,7 +224,7 @@ class AssignmentController extends Controller
     }
 
 
-    public function acceptInvitation($code){
+    public function acceptInvitation(Request $request,$code){
         $invitation = $this->invitationRepository->getInvitationByCode($code);
             if (!$invitation) {
                 Session::flash('__msg', [
@@ -233,7 +233,7 @@ class AssignmentController extends Controller
                 ]);
                 return redirect(route('worker:dashboard'));
             }
-        $this->assignmentService->bidSave($invitation);
+        $this->assignmentService->bidSave($invitation,$request);
 
 
     }

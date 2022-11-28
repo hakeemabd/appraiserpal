@@ -14,7 +14,7 @@ class CreateBidsTable extends Migration
     {
         Schema::create('bids', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->integer('worker_id')->unsigned();
             $table->integer('order_id')->unsigned();
             $table->integer('group_id')->unsigned();
             $table->string('bid_amount');       

@@ -209,14 +209,13 @@ class AssignmentService
         event(new StatusChanged($orderId));
     }
 
-    public function bidSave($invitation)
+    public function bidSave($invitation,$request)
     {
-
         $bidData = new Bid();
-        $bidData->user_id = $invitation->user_id;
+        $bidData->worker_id = $invitation->id;
         $bidData->order_id = $invitation->order_id;
-        $bidData->group_id = $invitation->user_id;
-        $bidData->bid_amount = '456';
+        $bidData->group_id = $invitation->group_id;
+        $bidData->bid_amount = $request->fname;
         $bidData->save();
     }
 

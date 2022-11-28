@@ -11,6 +11,11 @@
         float: left;
         padding-right: 6px;
     }
+
+    .sendBtn {
+        background-color: transparent;
+        border: none;
+    }
 </style>
 <?php
 function getOrderFirstImageUrl($invitation)
@@ -41,13 +46,19 @@ function getOrderFirstImageUrl($invitation)
                                     <strong>{{ $invitation->group->name }}</strong>
                                 </p>
                                 <span class="secondary-content">
-                                    <a href="{{ route('worker:invitation.reject', ['code' => $invitation->code]) }}"
-                                        class="tooltiped" data-tooltip="Reject invitation"><i
-                                            class="material-icons">highlight_off</i></a>
-                                    <a href="{{ route('worker:invitation.accept', ['code' => $invitation->code]) }}"
-                                        class="tooltiped" data-tooltip="Accept invitation"><i
+                                    <form action="{{ route('worker:invitation.accept', ['code' => $invitation->code]) }}">
+
+                                        <a href="{{ route('worker:invitation.reject', ['code' => $invitation->code]) }}"
+                                            class="tooltiped" data-tooltip="Reject invitation"><i
+                                                class="material-icons">highlight_off</i></a>
+                                        <button type="submit" class="sendBtn"><i class="material-icons">send</i></button>
+                                        <span class="bidM">Bid $</span> <input type="text" id="fname"
+                                            autocomplete="off" name="fname" required>
+                                    </form>
+                                    {{-- <a href="{{ route('worker:invitation.accept', ['code' => $invitation->code,'bid_value' =>]) }}"
+                                        class="tooltiped" data-tooltip="Accept invitation" id><i
                                             class="material-icons">send</i></a>
-                                    <span class="bidM">Bid $</span> <input type="text" id="fname" autocomplete="off" name="fname">
+                                    <span class="bidM">Bid $</span> <input type="text" id="fname" autocomplete="off" name="fname"> --}}
 
                                 </span>
                             </li>
@@ -79,3 +90,4 @@ function getOrderFirstImageUrl($invitation)
     </div>
 
 @endsection
+
