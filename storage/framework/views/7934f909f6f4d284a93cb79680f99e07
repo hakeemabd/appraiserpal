@@ -1,3 +1,21 @@
+<style type="text/css">
+    #fname {
+        height: 22px;
+        width: 50px;
+        float: left;
+        margin-right: 19px;
+    }
+
+    .bidM {
+        float: left;
+        padding-right: 6px;
+    }
+
+    .sendBtn {
+        background-color: transparent;
+        border: none;
+    }
+</style>
 <?php
 function getOrderFirstImageUrl($invitation)
 {
@@ -26,12 +44,29 @@ function getOrderFirstImageUrl($invitation)
                                 <span class="title"><a href="<?php echo e(route('worker:order.show', ['order' => $invitation->order])); ?>"><?php echo e($invitation->order->title); ?></a></span>
                                 <p> You have <strong><?php echo e($invitation->getTurnAroundTime()); ?></strong> to complete task as <strong><?php echo e($invitation->group->name); ?></strong></p>
                                 <span class="secondary-content">
+<<<<<<< HEAD
                                     <a href="<?php echo e(route('worker:invitation.reject', ['code' => $invitation->code])); ?>"
                                        class="tooltiped" data-tooltip="Reject invitation"><i
                                             class="material-icons">highlight_off</i></a>
                                     <a href="<?php echo e(route('worker:invitation.accept', ['code' => $invitation->code])); ?>"
                                        class="tooltiped" data-tooltip="Accept invitation"><i
                                             class="material-icons">send</i></a>
+=======
+                                    <form action="<?php echo e(route('worker:invitation.accept', ['code' => $invitation->code])); ?>">
+
+                                        <a href="<?php echo e(route('worker:invitation.reject', ['code' => $invitation->code])); ?>"
+                                            class="tooltiped" data-tooltip="Reject invitation"><i
+                                                class="material-icons">highlight_off</i></a>
+                                        <button type="submit" class="sendBtn"><i class="material-icons">send</i></button>
+                                        <span class="bidM">Bid $</span> <input type="text" id="fname"
+                                            autocomplete="off" name="fname" required>
+                                    </form>
+                                    <?php /* <a href="<?php echo e(route('worker:invitation.accept', ['code' => $invitation->code,'bid_value' =>])); ?>"
+                                        class="tooltiped" data-tooltip="Accept invitation" id><i
+                                            class="material-icons">send</i></a>
+                                    <span class="bidM">Bid $</span> <input type="text" id="fname" autocomplete="off" name="fname"> */ ?>
+
+>>>>>>> 7a82f27ce70d1f25cf44cc9711a7f439be4634fc
                                 </span>
                             </li>
                         <?php endforeach; ?>
@@ -62,4 +97,9 @@ function getOrderFirstImageUrl($invitation)
     </div>
 
 <?php $__env->stopSection(); ?>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 7a82f27ce70d1f25cf44cc9711a7f439be4634fc
 <?php echo $__env->make('layouts.page', ['breadcumb' => false, 'search' => false], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -214,6 +214,21 @@ class AssignmentController extends Controller
         return response()->json();
     }
 
+
+    public function acceptInvitation(Request $request,$code){
+        $invitation = $this->invitationRepository->getInvitationByCode($code);
+            if (!$invitation) {
+                Session::flash('__msg', [
+                    'type' => 'error',
+                    'text' => 'Could not find the invitation. Have you already accepted it?',
+                ]);
+                return redirect(route('worker:dashboard'));
+            }
+        $this->assignmentService->bidSave($invitation,$request);
+
+
+    }
+
     /**
      * Worker route.
      *

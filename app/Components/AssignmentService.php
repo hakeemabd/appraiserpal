@@ -205,6 +205,16 @@ class AssignmentService
         event(new StatusChanged($orderId));
     }
 
+    public function bidSave($invitation,$request)
+    {
+        $bidData = new Bid();
+        $bidData->worker_id = $invitation->id;
+        $bidData->order_id = $invitation->order_id;
+        $bidData->group_id = $invitation->group_id;
+        $bidData->bid_amount = $request->fname;
+        $bidData->save();
+    }
+
     public function reworkingOrder($orderId, $groupId, $userId)
     {
 //        $this->assignWorker($orderId, $groupId, $userId, Order::WORK_STATUS_FINISHED);
