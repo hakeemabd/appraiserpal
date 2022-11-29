@@ -19,7 +19,7 @@
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href='<?php echo e(route('worker:dashboard')); ?>' class='waves-effect'>Dashboard</a></li>
             <li><a href='<?php echo e(route('worker:order.index')); ?>' class='waves-effect'>Orders</a></li>
-            <li><a href='#!' class='waves-effect'>Messages</a></li>
+            <li><a href='<?php echo e(route('worker:messages')); ?>' class='waves-effect'>Messages</a></li>
             <li><a href='#!' class='waves-effect'>Payments</a></li>
             <li><a href='<?php echo e(route('worker:logout')); ?>'
                    class='waves-effect'><strong><?php echo e(\Cartalyst\Sentinel\Laravel\Facades\Sentinel::check()->fullName); ?></strong>
