@@ -27,6 +27,15 @@ return function () {
             'as' => 'dashboard',
             'uses' => 'Order\ManageController@index',
         ]);
+        Route::get('messages', [
+            'as' => 'messages',
+            'uses' => 'CustomerMessageController@index',
+        ]);
+        Route::post('messages.store', [
+            'as' => 'messages.store',
+            'uses' => 'CustomerMessageController@store',
+        ]);
+        
         Route::get('order/create', [
             'as' => 'createOrder',
             'uses' => 'Order\ManageController@create',
