@@ -1,4 +1,4 @@
-@extends('customer.layout.main')
+@extends('layout.main')
 
 @section('content')
     <div style="text-align: left; padding: 10px">

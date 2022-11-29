@@ -27,10 +27,6 @@ return function () {
             'as' => 'dashboard',
             'uses' => 'Order\ManageController@index',
         ]);
-        Route::get('bidmodal', [
-            'uses' => 'Order\ManageController@bidmodal',
-        ])->name('bidmodal');
-
         Route::get('order/create', [
             'as' => 'createOrder',
             'uses' => 'Order\ManageController@create',

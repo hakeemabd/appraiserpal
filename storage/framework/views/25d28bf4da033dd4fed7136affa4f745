@@ -1,11 +1,5 @@
-<style type="text/css">
-    #fname {
-        height: 22px;
-        width: 50px;
-        float: left;
-        margin-right: 19px;
-    }
-
+<<<<<<< HEAD
+=======
     .bidM {
         float: left;
         padding-right: 6px;
@@ -16,13 +10,15 @@
         border: none;
     }
 </style>
+>>>>>>> 7a82f27ce70d1f25cf44cc9711a7f439be4634fc
 <?php
 function getOrderFirstImageUrl($invitation)
 {
     $image = $invitation->order->firstImage()->first();
     if ($image) {
         return $image->getImageUrl(\App\Models\Attachment::IMG_SMALL);
-    } else {
+    }
+    else {
         return \App\Models\Attachment::DEFAULT_IMAGE;
     }
 }
@@ -39,11 +35,8 @@ function getOrderFirstImageUrl($invitation)
                         <?php foreach($invitations as $invitation): ?>
                             <li class="collection-item avatar">
                                 <img src="<?php echo e(getOrderFirstImageUrl($invitation)); ?>" alt="" class="circle">
-                                <span class="title"><a
-                                        href="<?php echo e(route('worker:order.show', ['order' => $invitation->order])); ?>"><?php echo e($invitation->order->title); ?></a></span>
-                                <p> You have <strong><?php echo e($invitation->getTurnAroundTime()); ?></strong> to complete task as
-                                    <strong><?php echo e($invitation->group->name); ?></strong>
-                                </p>
+                                <span class="title"><a href="<?php echo e(route('worker:order.show', ['order' => $invitation->order])); ?>"><?php echo e($invitation->order->title); ?></a></span>
+                                <p> You have <strong><?php echo e($invitation->getTurnAroundTime()); ?></strong> to complete task as <strong><?php echo e($invitation->group->name); ?></strong></p>
                                 <span class="secondary-content">
                                     <form action="<?php echo e(route('worker:invitation.accept', ['code' => $invitation->code])); ?>">
 
@@ -78,7 +71,7 @@ function getOrderFirstImageUrl($invitation)
                     <label>
                         Off
                         <input data-source="/availability" id="availability" type="checkbox"
-                            <?php if(Sentinel::check()->available): ?> checked="" <?php endif; ?>>
+                               <?php if(Sentinel::check()->available): ?> checked=""<?php endif; ?>>
                         <span class="lever"></span>
                         On
                     </label>
@@ -88,7 +81,11 @@ function getOrderFirstImageUrl($invitation)
 
     </div>
 
+<<<<<<< HEAD
+<?php $__env->stopSection(); ?>
+=======
 <?php $__env->stopSection(); ?>
 
+>>>>>>> 7a82f27ce70d1f25cf44cc9711a7f439be4634fc
 
 <?php echo $__env->make('layouts.page', ['breadcumb' => false, 'search' => false], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

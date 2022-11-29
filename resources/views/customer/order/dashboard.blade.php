@@ -1,4 +1,4 @@
-@extends('customer.layout.authorized')
+@extends('layout.authorized')
 <style type="text/css">
     #attachent-check:not(:checked),
     #attachent-check:checked {
@@ -144,7 +144,7 @@
                            data-source="{{ route('customer:getOrdersData') }}" cellspacing="0" width="100%">
                         <thead>
                         <tr>
-                            <th data-priority="1">Addressss</th>
+                            <th data-priority="1">Address</th>
                             <th>Time Left</th>
                             <th>Type</th>
                             <th data-priority="3">Status</th>
@@ -243,26 +243,6 @@
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="testmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>
 @endsection
 
 @push('scripts')

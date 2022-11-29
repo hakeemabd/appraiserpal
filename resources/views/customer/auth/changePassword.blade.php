@@ -1,4 +1,4 @@
-@extends('customer.layout.main')
+@extends('layout.main')
 
 @push('styles')
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
