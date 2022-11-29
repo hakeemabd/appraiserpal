@@ -163,15 +163,6 @@ class AssignmentController extends Controller
             ->make(true);
     }
 
-
-
-    // public function invite($orderId, $groupId, $userId)
-    // {
-    //     dd($userId);
-    //     $this->assignmentService->inviteManually($orderId, $groupId, [$userId]);
-    //     return response()->json();
-    // }
-
     public function invite($orderId, $groupId, $userId)
     {
         $this->assignmentService->inviteManually($orderId, $groupId, [$userId]);
@@ -245,33 +236,30 @@ class AssignmentController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    /* acceptInvitationOLD */
-    // public function acceptInvitation($code)
-    // {
-    //     $invitation = $this->invitationRepository->getInvitationByCode($code);
-    //     if (!$invitation) {
-    //         Session::flash('__msg', [
-    //             'type' => 'error',
-    //             'text' => 'Could not find the invitation. Have you already accepted it?',
-    //         ]);
-    //         return redirect(route('worker:dashboard'));
-    //     }
-    //     // dd('dfs');
+    public function acceptInvitation($code)
+    {
+        $invitation = $this->invitationRepository->getInvitationByCode($code);
+        if (!$invitation) {
+            Session::flash('__msg', [
+                'type' => 'error',
+                'text' => 'Could not find the invitation. Have you already accepted it?',
+            ]);
+            return redirect(route('worker:dashboard'));
+        }
+        $this->assignmentService->acceptInvitation($invitation);
+        Session::flash('__msg', [
+            'type' => 'success',
+            'text' => 'Successfully accepted invitation to the order <strong>' . $invitation->order->title . '</strong>',
+        ]);
 
-    //     $this->assignmentService->acceptInvitation($invitation);
-    //     Session::flash('__msg', [
-    //         'type' => 'success',
-    //         'text' => 'Successfully accepted invitation to the order <strong>' . $invitation->order->title . '</strong>',
-    //     ]);
+        //cancel others invitations
+        $others = $this->invitationService->getOthersInvitation($invitation->order_id, $invitation->group_id);
+        foreach ($others as $other) {
+            $this->invitationService->cancelInvitation($other->code);
+        }
 
-    //     //cancel others invitations
-    //     $others = $this->invitationService->getOthersInvitation($invitation->order_id, $invitation->group_id);
-    //     foreach ($others as $other) {
-    //         $this->invitationService->cancelInvitation($other->code);
-    //     }
-
-    //     return redirect(route('worker:dashboard'));
-    // }
+        return redirect(route('worker:dashboard'));
+    }
 
     /**
      * Worker route.

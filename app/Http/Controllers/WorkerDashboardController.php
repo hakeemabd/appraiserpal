@@ -30,8 +30,8 @@ class WorkerDashboardController extends Controller
     }
     public function dashboard()
     {
-        print_r('dsf');
-
+    
+dd('dd');
         return view('order.dashboard');
     }
 

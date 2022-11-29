@@ -1,0 +1,10 @@
+<!--hero section-->
+
+<header class="hero-section">
+    <?php echo $__env->make('landing.headerNav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php if(!isset($page)): ?>
+        <?php echo $__env->make('landing.welcome', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php endif; ?>
+</header>
+
+<!--hero section end-->

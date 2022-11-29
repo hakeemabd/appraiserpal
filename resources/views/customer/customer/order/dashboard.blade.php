@@ -90,7 +90,8 @@
             <div class="panel panel-default">
                 <div class="table-responsive">
                     <table class="table table-striped b-t b-light custom-table orders"
-                           data-source="{{ route('customer:getOrdersData') }}" cellspacing="0" width="100%">
+                           data-source="{{ route('customer:
+                           ') }}" cellspacing="0" width="100%">
                         <thead>
                         <tr>
                             <th data-priority="1">Address</th>
@@ -181,6 +182,25 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="testmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
 @endsection
 
 @push('scripts')

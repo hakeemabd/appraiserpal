@@ -1,10 +1,11 @@
-@extends('layout.main')
+@extends('customer.layout.main')
 
 @push('styles')
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <link href="{{ asset('build/styles/vendor.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ asset('build/styles/app.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ asset('styles/customer.css') }}" rel="stylesheet" type="text/css">
+
 @endpush
 
 @push('scripts')
@@ -17,12 +18,13 @@
     document.dispatchEvent(event);
     //###formatter:on
 </script>
+<script src="{{ asset('js/common.js') }}"></script>
 @endpush
 
 @section('header')
     <header class="un-conflict-wrapper">
         <div class="container">
-            @include('widgets.authHeader')
+            @include('customer.widgets.authHeader')
         </div>
     </header>
 @endsection

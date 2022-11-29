@@ -1,4 +1,3 @@
-@extends('customer.layout.authorized')
 <style type="text/css">
     #attachent-check:not(:checked),
     #attachent-check:checked {
@@ -89,59 +88,59 @@
         margin-top: -1px;
     }
 </style>
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="container">
         <div class="row wrapper">
             <h1 class="m-n font-thin h2">My Orders</h1>
         </div>
 
         <div class="row wrapper">
-            {{--@if(!$quotaExceeded)--}}
+            <?php /*<?php if(!$quotaExceeded): ?>*/ ?>
             <div class="btn-group pull-left" role="group">
-                <a href="{{ route('customer:createOrder') }}#/order/create" class="btn btn-primary">Create order</a>
+                <a href="<?php echo e(route('customer:createOrder')); ?>#/order/create" class="btn btn-primary">Create order</a>
             </div>
-            {{--@endif--}}
-            @if((!$trial && !$user->subscribed()) || (empty($user->stripe_plan) && empty($user->stripe_subscription)))
+            <?php /*<?php endif; ?>*/ ?>
+            <?php if((!$trial && !$user->subscribed()) || (empty($user->stripe_plan) && empty($user->stripe_subscription))): ?>
                 <div class="btn-group" role="group" style="margin-left: 10px">
-                    <a href="{{ url('subscription-plans') }}" class="btn btn-info">Choose Subscription</a>
+                    <a href="<?php echo e(url('subscription-plans')); ?>" class="btn btn-info">Choose Subscription</a>
                 </div>
-            @endif
+            <?php endif; ?>
         </div>
-        {{--<div class="row wrapper">--}}
-        {{--@if($quotaExceeded)--}}
-        {{--<div class="alert alert-danger">--}}
-        {{--Your Quota Exceeded--}}
-        {{--</div>--}}
-        {{--@endif--}}
-        {{--@if($remainingQuota >= 1)--}}
+        <?php /*<div class="row wrapper">*/ ?>
+        <?php /*<?php if($quotaExceeded): ?>*/ ?>
+        <?php /*<div class="alert alert-danger">*/ ?>
+        <?php /*Your Quota Exceeded*/ ?>
+        <?php /*</div>*/ ?>
+        <?php /*<?php endif; ?>*/ ?>
+        <?php /*<?php if($remainingQuota >= 1): ?>*/ ?>
         <div class="alert alert-info">
-            @if($user->hasFreeOrders() || !$user->subscribed())<b>Free Orders :</b>@if($user->hasFreeOrders()) 1 @else
-                0 @endif<br>@endif
-            @if($user->subscribed())<b>Remaining Orders :</b> {{$remainingOrders}}@endif
-            {{--You have {{$remainingQuota}} reports remaining from your subscription plan--}}
+            <?php if($user->hasFreeOrders() || !$user->subscribed()): ?><b>Free Orders :</b><?php if($user->hasFreeOrders()): ?> 1 <?php else: ?>
+                0 <?php endif; ?><br><?php endif; ?>
+            <?php if($user->subscribed()): ?><b>Remaining Orders :</b> <?php echo e($remainingOrders); ?><?php endif; ?>
+            <?php /*You have <?php echo e($remainingQuota); ?> reports remaining from your subscription plan*/ ?>
         </div>
-        {{--</div>--}}
-        {{--@endif--}}
-        @if($trial && !$user->subscribed())
+        <?php /*</div>*/ ?>
+        <?php /*<?php endif; ?>*/ ?>
+        <?php if($trial && !$user->subscribed()): ?>
             <div class="alert alert-info">
                 You are currently on trial period
             </div>
-        @endif
-        {{--</div>--}}
-        @if (\Session::has('success'))
+        <?php endif; ?>
+        <?php /*</div>*/ ?>
+        <?php if(\Session::has('success')): ?>
             <div class="row wrapper">
                 <div class="alert alert-success">
                     <ul>
-                        <li>{!! Session::get('success') !!}</li>
+                        <li><?php echo Session::get('success'); ?></li>
                     </ul>
                 </div>
             </div>
-        @endif
+        <?php endif; ?>
         <div class="row wrapper">
             <div class="panel panel-default">
                 <div class="table-responsive">
                     <table class="table table-striped b-t b-light custom-table orders"
-                           data-source="{{ route('customer:getOrdersData') }}" cellspacing="0" width="100%">
+                           data-source="<?php echo e(route('customer:getOrdersData')); ?>" cellspacing="0" width="100%">
                         <thead>
                         <tr>
                             <th data-priority="1">Addressss</th>
@@ -164,7 +163,7 @@
                         </div>
                         <input id="isComment" type="hidden" value="true">
                         <input id="isRework" type="hidden" value="true">
-                        <form id="comment_form" action="{{ route('customer:invitation.reworking') }}" method="POST"
+                        <form id="comment_form" action="<?php echo e(route('customer:invitation.reworking')); ?>" method="POST"
                               onsubmit="event.preventDefault();" class="comment-form">
                             <div class="modal-body form-group">
                                 <textarea class="form-control" rows="4" cols="20" name="content"
@@ -177,7 +176,7 @@
                                 </div>
                             </div>
                         </form>
-                        <form id="comment_attach_form" action="{{$uploadConfig['uploadUrl']}}" method="POST"
+                        <form id="comment_attach_form" action="<?php echo e($uploadConfig['uploadUrl']); ?>" method="POST"
                               class="cors-form" enctype="multipart/form-data" style="display:none"
                               onsubmit="event.preventDefault();">
                             <div class="modal-body form-group">
@@ -188,15 +187,15 @@
                                 </div>
                                 <div>
                                     <input type="hidden" name="key">
-                                    <input type="hidden" name="AWSAccessKeyId" value="{{$uploadConfig['accessKey']}}">
+                                    <input type="hidden" name="AWSAccessKeyId" value="<?php echo e($uploadConfig['accessKey']); ?>">
                                     <input type="hidden" name="acl" value="private">
                                     <input type="hidden" name="policy"
-                                           value="{{$uploadConfig['uploadConfig'][$configType]['policy']}}">
+                                           value="<?php echo e($uploadConfig['uploadConfig'][$configType]['policy']); ?>">
                                     <input type="hidden" name="signature"
-                                           value="{{$uploadConfig['uploadConfig'][$configType]['signature']}}">
+                                           value="<?php echo e($uploadConfig['uploadConfig'][$configType]['signature']); ?>">
                                     <input type="hidden" name="Content-Type">
                                     <input type="hidden" name="success_action_status"
-                                           value="{{$uploadConfig['uploadConfig'][$configType]['success_action_status']}}">
+                                           value="<?php echo e($uploadConfig['uploadConfig'][$configType]['success_action_status']); ?>">
                                     <br>
                                     <div class="input-field col s12">
                                         <input value="" type="text" id="label-id" class="validate"
@@ -263,17 +262,17 @@
           </div>
         </div>
       </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('scripts')
+<?php $__env->startSection('scripts'); ?>
     <script type="text/javascript">
 
         CJMA.DI.get('corsForm').addForm({
-            folder: "{{$uploadConfig['uploadConfig'][$configType]['folder']}}",
-            configType: "{{$configType}}",
+            folder: "<?php echo e($uploadConfig['uploadConfig'][$configType]['folder']); ?>",
+            configType: "<?php echo e($configType); ?>",
             method: "POST",
             baseUrl: $('.cors-form').attr('action'),
-            serverUrl: "/attachment/{{$configType}}",
+            serverUrl: "/attachment/<?php echo e($configType); ?>",
             extraFields: [
                 {
                     name: 'label',
@@ -322,7 +321,7 @@
 
         function warnBeforeRedirect(order_id) {
             if (confirm('Are you sure you want to mark this order as completed?')) {
-                var url = "{{ route('customer:order.complete', ['orderId' => ':order_id']) }}";
+                var url = "<?php echo e(route('customer:order.complete', ['orderId' => ':order_id'])); ?>";
                 url = url.replace(':order_id', order_id);
                 window.location.href = url;
             }
@@ -349,4 +348,5 @@
             ;
         });
     </script>
-@endpush
+<?php $__env->appendSection(); ?>
+<?php echo $__env->make('customer.layout.authorized', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
