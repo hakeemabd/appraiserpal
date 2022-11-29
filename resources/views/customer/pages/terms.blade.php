@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('customer.layout.main')
 
 @section('content')
     <div class="wapper_content">
