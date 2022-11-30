@@ -51,7 +51,7 @@ class ManageController extends Controller
      */
     public function index()
     {
-       
+        print_r('fd');
         $uploadConfig = $this->attachmentRepository->getUploadConfig();
         $configType = 'any';
         $user = $this->userRepository->find(Sentinel::getUser()->id);
@@ -70,9 +70,18 @@ class ManageController extends Controller
         }
 
 
-        
+        //        $subscriptionObject = $this->userRepository->getStripeSubscriptionDetails($user->stripe_subscription, env('STRIPE_API_SECRET'));
+        //
+        //        if($user->onTrial()){
+        //
+        //        }
+        //
+        //        $totalTransactions = $this->transactionRepository->getTotalTransactions($user, $subscriptionObject);
+        //        $quotaExceeded = $this->transactionRepository->checkExceeded($user->stripe_plan, $totalTransactions);
+        //        $remainingQuota = $this->transactionRepository->getRemainingQuota($user->stripe_plan, $totalTransactions);
+
         return view(
-            'customer.order.dashboard',
+            'order.dashboard',
             compact(
                 'uploadConfig',
                 'configType',
@@ -81,7 +90,11 @@ class ManageController extends Controller
                 'remainingOrders'
             )
         );
-    
+        //        ,
+        //        'totalTransactions',
+        //                'quotaExceeded',
+        //                'remainingQuota',
+        //                'user'
     }
 
 
@@ -151,12 +164,16 @@ class ManageController extends Controller
             ), SymfonyResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+<<<<<<< HEAD
 public function bidmodal($id){
 dd($id);
 
     $values='test';
     return;
 }
+=======
+
+>>>>>>> d4f8875e56bf3704e2a7e9308344340c4175bdd9
     public function getOrdersData()
     {
         $orders = $this->orderRepository->getCustomerOrders();
@@ -181,35 +198,25 @@ dd($id);
             ->addColumn('action', function ($model) {
                 $actions = [];
                 $icons = [
-                    'bid' => 'user',
                     'view' => 'eye',
                     'edit' => 'pencil',
                     'comment' => 'comments',
                     'download' => 'download',
                     'cancel' => 'times',
-                    'leaveFeedback' => 'heart',
-                    // 'profile'=> 'profile'
+                    'leaveFeedback' => 'heart'
 
                 ];
-                foreach ([ 'bid','view', 'edit', 'comment', 'cancel', 'download', 'leaveFeedback'] as $action) {
+                foreach (['view', 'edit', 'comment', 'cancel', 'download', 'leaveFeedback'] as $action) {
                     $method = 'can' . ucfirst($action);
                     if (!method_exists($model, $method) || $model->{$method}()) {
-                        if($icons[$action] == "user"){
-
-                            $actions[] = '<a href="javascript:void(0)" class="load-modal" title="Edit"
-                            data-url="' . url('bidmodal', ['id' => $model->id]) . '" title="Edit"><i data-role="action" data-action="' . $action . '" class="fa fa-' . $icons[$action] . '" data-toggle="modal" data-target="#testmodal"></i></a>';
-                        
-                        }else{
-                            $actions[] = '<i data-role="action" data-action="' . $action . '" class="fa fa-' . $icons[$action] . '" ></i>';
-                        
-                        }
+                        $actions[] = '<i data-role="action" data-action="' . $action . '" class="fa fa-' . $icons[$action] . '"></i>';
                     }
                 }
 
                 if ($model->is_completed && $model->status !== Order::STATUS_DELIVERED) {
                     $actions[] = '<i data-toggle="modal" data-id="' . $model->id . '" data-title="' . $model->title . '" data-target="#modal-comment-customer"  class="fa fa-reply"></i>';
                     $actions[] = '<i><a class="fa fa-check-circle-o" onclick="deliver(' . $model->id . ')"></a></i>';
-                     }
+                }
 
                 return join(' ', $actions);
             })

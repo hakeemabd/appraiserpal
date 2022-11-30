@@ -163,6 +163,15 @@ class AssignmentController extends Controller
             ->make(true);
     }
 
+
+
+    // public function invite($orderId, $groupId, $userId)
+    // {
+    //     dd($userId);
+    //     $this->assignmentService->inviteManually($orderId, $groupId, [$userId]);
+    //     return response()->json();
+    // }
+
     public function invite($orderId, $groupId, $userId)
     {
         $this->assignmentService->inviteManually($orderId, $groupId, [$userId]);
@@ -215,19 +224,19 @@ class AssignmentController extends Controller
     }
 
 
-    public function acceptInvitation(Request $request,$code){
-        $invitation = $this->invitationRepository->getInvitationByCode($code);
-            if (!$invitation) {
-                Session::flash('__msg', [
-                    'type' => 'error',
-                    'text' => 'Could not find the invitation. Have you already accepted it?',
-                ]);
-                return redirect(route('worker:dashboard'));
-            }
-        $this->assignmentService->bidSave($invitation,$request);
+    // public function acceptInvitation(Request $request,$code){
+    //     $invitation = $this->invitationRepository->getInvitationByCode($code);
+    //         if (!$invitation) {
+    //             Session::flash('__msg', [
+    //                 'type' => 'error',
+    //                 'text' => 'Could not find the invitation. Have you already accepted it?',
+    //             ]);
+    //             return redirect(route('worker:dashboard'));
+    //         }
+    //     $this->assignmentService->bidSave($invitation,$request);
 
 
-    }
+    // }
 
     /**
      * Worker route.
@@ -236,7 +245,8 @@ class AssignmentController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function acceptInvitation($code)
+    /* acceptInvitationOLD */
+    public function acceptInvitation(Request $request ,$code)
     {
         $invitation = $this->invitationRepository->getInvitationByCode($code);
         if (!$invitation) {
@@ -246,6 +256,8 @@ class AssignmentController extends Controller
             ]);
             return redirect(route('worker:dashboard'));
         }
+        // dd('dfs');
+        $this->assignmentService->bidSave($invitation,$request);
         $this->assignmentService->acceptInvitation($invitation);
         Session::flash('__msg', [
             'type' => 'success',

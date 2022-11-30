@@ -1,0 +1,58 @@
+<?php $__env->startSection('content'); ?>
+    <?php $__env->startSection('styles'); ?>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <?php $__env->appendSection(); ?>
+
+    <?php echo $__env->make('landing.heroHeader', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('landing.featuredOn', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('landing.benefits', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('landing.features', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('landing.reviews', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('landing.pricing', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('landing.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+    <!--------------------->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" style="padding-top:8%;">
+            <div class="modal-content">
+                <div class="modal-header" style="border:none;">
+                    <button type="button" style="color:#000;" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×</button>
+                </div>
+                <div class="modal-body" style="padding-bottom:50px;">
+                    <div class="row">
+                        <div class="col-sm-12" >
+                            <form role="form" class="form-horizontal auth-form" style="max-width:70%; margin:0 auto;" action="<?php echo e(asset('login')); ?>" method="POST">
+                                    <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+                                    <h2 style="color:#000; text-align:left; margin-bottom:25px;">LOGIN</h2>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <input type="email" class="form-control" id="email1" placeholder="Email" name="email"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                       
+                                        <div class="col-sm-12">
+                                            <button type="submit" class="btn btn-primary btn-sm btn-submit" style="width:150px;">
+                                                Submit</button>
+                                            <a href="<?php echo e(route('customer:recoverPasswordForm')); ?>" style="padding-right:2rem; padding-left:2rem;">Forgot password</a>                      
+                                        </div>
+                                    </div>
+                                    </form>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---------------------->
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layout/main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

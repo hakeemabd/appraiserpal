@@ -1,0 +1,6 @@
+<?php if(Sentinel::guest()): ?>
+    <li><a href="<?php echo e(route('worker:login')); ?>">Log in</a></li>
+<?php else: ?>
+    <li><a href="<?php echo e(route('worker:dashboard')); ?>">Dashboard</a></li>
+    <li><a href="<?php echo e(route('worker:logout')); ?>">Log out</a></li>
+<?php endif; ?>

@@ -3,34 +3,34 @@
 <head>
     <title>Appraiser Solutions</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
     <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link href="/styles/worker.css" rel="stylesheet">
-    @yield('custom-styles')
+    <?php echo $__env->yieldContent('custom-styles'); ?>
 </head>
 <body>
-{{-- Nav --}}
+<?php /* Nav */ ?>
 <nav class="teal darken-1 main-nav">
     <div class="nav-wrapper container-custom">
-        <a href="{{ route('worker:dashboard') }}" class="brand-logo waves-effect">Appraiser Solutions</a>
+        <a href="<?php echo e(route('worker:dashboard')); ?>" class="brand-logo waves-effect">Appraiser Solutions</a>
         <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href='{{ route('worker:dashboard') }}' class='waves-effect'>Dashboard</a></li>
-            <li><a href='{{ route('worker:order.index') }}' class='waves-effect'>Orders</a></li>
-            <li><a href='{{ route('worker:messages') }}' class='waves-effect'>Messages</a></li>
+            <li><a href='<?php echo e(route('worker:dashboard')); ?>' class='waves-effect'>Dashboard</a></li>
+            <li><a href='<?php echo e(route('worker:order.index')); ?>' class='waves-effect'>Orders</a></li>
+            <li><a href='<?php echo e(route('worker:messages')); ?>' class='waves-effect'>Messages</a></li>
             <li><a href='#!' class='waves-effect'>Payments</a></li>
-            <li><a href='{{ route('worker:logout') }}'
-                   class='waves-effect'><strong>{{ \Cartalyst\Sentinel\Laravel\Facades\Sentinel::check()->fullName }}</strong>
+            <li><a href='<?php echo e(route('worker:logout')); ?>'
+                   class='waves-effect'><strong><?php echo e(\Cartalyst\Sentinel\Laravel\Facades\Sentinel::check()->fullName); ?></strong>
                     [Log out]</a></li>
         </ul>
         <ul class="side-nav" id="mobile-menu" style="left: 0;">
-            <li><a href='{{ route('worker:dashboard') }}' class='waves-effect'>Dashboard</a></li>
+            <li><a href='<?php echo e(route('worker:dashboard')); ?>' class='waves-effect'>Dashboard</a></li>
             <li><a href='#!' class='waves-effect'>Orders</a></li>
             <li><a href='#!' class='waves-effect'>Messages</a></li>
             <li><a href='#!' class='waves-effect'>Payments</a></li>
-            <li><a href='{{ route('worker:logout') }}' class='waves-effect'>{{ Sentinel::check()->fullName }} Log
+            <li><a href='<?php echo e(route('worker:logout')); ?>' class='waves-effect'><?php echo e(Sentinel::check()->fullName); ?> Log
                     out</a></li>
         </ul>
     </div>
@@ -38,38 +38,38 @@
 
 <main class="container-custom">
     <div class="row">
-        @if(!isset($breadcumb) || (isset($breadcumb) && $breadcumb == true))
+        <?php if(!isset($breadcumb) || (isset($breadcumb) && $breadcumb == true)): ?>
             <div class="col s12 card-panel grid-panel">
                 <nav class="teal lighten-2">
                     <div class="nav-wrapper">
                         <div class="col s12 breadcrumb-wrap">
-                            @yield('breadcrumb')
+                            <?php echo $__env->yieldContent('breadcrumb'); ?>
                         </div>
                     </div>
                 </nav>
                 <div class="divider"></div>
 
-                @yield('content')
+                <?php echo $__env->yieldContent('content'); ?>
             </div>
-        @else
-            @yield('content')
-        @endif
+        <?php else: ?>
+            <?php echo $__env->yieldContent('content'); ?>
+        <?php endif; ?>
     </div>
 </main>
 
 <script type="text/javascript">
     var __MSG = {};
     //###formatter:off
-    @if (Session::has('__msg'))
-        __MSG = {!! json_encode(Session::pull('__msg')) !!};
-    @endif
+    <?php if(Session::has('__msg')): ?>
+        __MSG = <?php echo json_encode(Session::pull('__msg')); ?>;
+    <?php endif; ?>
     //###formatter:on
 </script>
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-<script type="text/javascript" src="{{ asset('build/scripts/vendor.js') }}"></script>
-<script src="{{ elixir('worker/js/all.js') }}"></script>
-{{-- Scripts --}}
-@stack('scripts')
+<script type="text/javascript" src="<?php echo e(asset('build/scripts/vendor.js')); ?>"></script>
+<script src="<?php echo e(elixir('worker/js/all.js')); ?>"></script>
+<?php /* Scripts */ ?>
+<?php echo $__env->yieldContent('scripts'); ?>
 <!--Start of Zendesk Chat Script-->
 <script type="text/javascript">
     $.fn.dataTable.ext.errMode = 'throw';

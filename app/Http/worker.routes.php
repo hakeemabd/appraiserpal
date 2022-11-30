@@ -25,6 +25,10 @@ return function () {
             'as' => 'dashboard',
             'uses' => 'WorkerDashboardController@index',
         ]);
+        Route::get('messages', [
+            'as' => 'messages',
+            'uses' => 'WorkerMessageController@index',
+        ]);
 
         Route::get('availability/{available}', [
             'as' => 'availability',

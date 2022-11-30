@@ -17,20 +17,19 @@
         <a href="{{ route('worker:dashboard') }}" class="brand-logo waves-effect">Appraiser Solutions</a>
         <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href='{{ route('worker:dashboard') }}' class='waves-effect'>Dashboard</a></li>
-            <li><a href='{{ route('worker:order.index') }}' class='waves-effect'>Orders</a></li>
-            <li><a href='{{ route('worker:messages') }}' class='waves-effect'>Messages</a></li>
-            <li><a href='#!' class='waves-effect'>Payments</a></li>
-            <li><a href='{{ route('worker:logout') }}'
+            <li><a href='{{ route('customer:dashboard') }}' class='waves-effect'>Dashboard</a></li>
+            <li><a href='{{ route('customer:messages') }}' class='waves-effect'>Messages</a></li>
+            {{-- <li><a href='#!' class='waves-effect'>Payments</a></li> --}}
+            <li><a href='{{ route('customer:logout') }}'
                    class='waves-effect'><strong>{{ \Cartalyst\Sentinel\Laravel\Facades\Sentinel::check()->fullName }}</strong>
                     [Log out]</a></li>
         </ul>
         <ul class="side-nav" id="mobile-menu" style="left: 0;">
-            <li><a href='{{ route('worker:dashboard') }}' class='waves-effect'>Dashboard</a></li>
-            <li><a href='#!' class='waves-effect'>Orders</a></li>
-            <li><a href='#!' class='waves-effect'>Messages</a></li>
-            <li><a href='#!' class='waves-effect'>Payments</a></li>
-            <li><a href='{{ route('worker:logout') }}' class='waves-effect'>{{ Sentinel::check()->fullName }} Log
+            <li><a href='{{ route('customer:dashboard') }}' class='waves-effect'>Dashboard</a></li>
+            {{-- <li><a href='#!' class='waves-effect'>Orders</a></li> --}}
+            <li><a href='customer:messages' class='waves-effect'>Messages</a></li>
+            {{-- <li><a href='#!' class='waves-effect'>Payments</a></li> --}}
+            <li><a href='{{ route('customer:logout') }}' class='waves-effect'>{{ Sentinel::check()->fullName }} Log
                     out</a></li>
         </ul>
     </div>
