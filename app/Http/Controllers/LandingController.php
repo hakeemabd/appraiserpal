@@ -18,6 +18,6 @@ class LandingController extends Controller
      */
     public function showLanding()
     {
-        return view('landing.index');
+        return view('customer.landing.index');
     }
 }

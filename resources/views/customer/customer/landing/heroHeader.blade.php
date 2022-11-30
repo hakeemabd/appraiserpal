@@ -1,8 +1,8 @@
 <!--hero section-->
 
 <header class="hero-section">
-    @include('landing.headerNav')
-    @include('landing.welcome')
+    @include('customer.landing.headerNav')
+    @include('customer.landing.welcome')
 </header>
 
 <!--hero section end-->

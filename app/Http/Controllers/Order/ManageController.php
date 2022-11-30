@@ -151,8 +151,11 @@ class ManageController extends Controller
             ), SymfonyResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-public function bidmodal(){
+public function bidmodal($id){
+dd($id);
 
+    $values='test';
+    return;
 }
     public function getOrdersData()
     {

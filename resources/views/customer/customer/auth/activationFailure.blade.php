@@ -7,7 +7,7 @@
 @section('header')
     <header class="un-conflict-wrapper">
         <div class="container">
-            @include('landing.headerNav')
+            @include('customer.landing.headerNav')
         </div>
     </header>
 @endsection

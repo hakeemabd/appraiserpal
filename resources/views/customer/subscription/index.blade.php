@@ -50,7 +50,7 @@
                 <a href="{{ url('/dashboard') }}" class="btn btn-warning">Back</a>
             </div>
             {{--@endif--}}
-            @include('landing.pricing')
+            @include('customer.landing.pricing')
         </div>
     </div>
 @endsection

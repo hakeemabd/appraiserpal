@@ -1,17 +1,17 @@
-@extends('layout/main')
+@extends('customer.layout/main')
 
 @section('content')
     @push('styles')
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     @endpush
 
-    @include('landing.heroHeader')
-    @include('landing.featuredOn')
-    @include('landing.benefits')
-    @include('landing.features')
-    @include('landing.reviews')
-    @include('landing.pricing')
-    @include('landing.footer')
+    @include('customer.landing.heroHeader')
+    @include('customer.landing.featuredOn')
+    @include('customer.landing.benefits')
+    @include('customer.landing.features')
+    @include('customer.landing.reviews')
+    @include('customer.landing.pricing')
+    @include('customer.landing.footer')
 
     <!--------------------->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"

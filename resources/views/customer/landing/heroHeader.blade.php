@@ -1,9 +1,9 @@
 <!--hero section-->
 
 <header class="hero-section">
-    @include('landing.headerNav')
+    @include('customer.landing.headerNav')
     @if(!isset($page))
-        @include('landing.welcome')
+        @include('customer.landing.welcome')
     @endif
 </header>
 

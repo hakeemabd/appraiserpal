@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('customer.layout.main')
 
 @push('styles')
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -9,7 +9,7 @@
 @section('header')
     <header class="un-conflict-wrapper">
         <div class="container">
-            @include('landing.headerNav')
+            @include('customer.landing.headerNav')
         </div>
     </header>
 @endsection
